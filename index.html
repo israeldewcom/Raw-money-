@@ -4903,7 +4903,7 @@ class DepositManager {
             
             const amount = parseFloat(document.getElementById('depositAmount').value);
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const paymentProof = document.getElementById('paymentProof').files[0];
+    
             
             if (amount < 3500) {
                 Utils.showNotification('Minimum deposit amount is ₦3,500', 'error');
