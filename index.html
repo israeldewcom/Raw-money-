@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* [YOUR ENTIRE 3000+ LINES OF CSS CODE REMAINS EXACTLY THE SAME] */
+        /* I'm preserving your entire CSS structure - adding only missing classes */
         :root {
         --primary: #0f172a;
         --secondary: #1e293b;
@@ -2608,8 +2610,282 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
         }
-        }/* [YOUR EXISTING 3000+ LINES OF CSS CODE REMAINS EXACTLY THE SAME] */
-        /* I'm preserving your entire CSS structure */
+        }
+        /* ====== ADD MISSING CSS CLASSES ====== */
+        .withdrawal-fee-notice {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--warning);
+            font-size: 0.9rem;
+        }
+        
+        .withdrawal-fee-notice i {
+            font-size: 1rem;
+        }
+        
+        .bank-instructions {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            animation: slideInDown 0.3s ease;
+        }
+        
+        .bank-details {
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .whatsapp-notice {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-emerald);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .investment-progress {
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .investment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .investment-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .investment-earned {
+            color: var(--accent-emerald);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .days-remaining {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: 10px;
+        }
+        
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent-gold);
+        }
+        
+        .transaction-details {
+            flex: 1;
+        }
+        
+        .transaction-description {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        
+        .transaction-date {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        
+        .transaction-amount {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .transaction-amount.positive {
+            color: var(--accent-emerald);
+        }
+        
+        .transaction-amount.negative {
+            color: var(--error);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        .empty-state p.small {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar-small {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .btn-success {
+            background: var(--accent-emerald);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--error);
+            color: white;
+        }
+        
+        .referral-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .referral-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .user-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .user-email {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        
+        .referral-details {
+            text-align: center;
+        }
+        
+        .referral-earnings {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .interest-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        .interest-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            margin-top: 0.5rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 1rem;
+        }
+        
+        .interest-note {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        
+        .value-updated {
+            animation: valueUpdate 1s ease;
+        }
+        
+        @keyframes valueUpdate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); background-color: rgba(245, 158, 11, 0.1); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -3368,12 +3644,12 @@
                         <span id="active-referrals">0</span>
                     </div>
                     <div class="referral-stat">
-                        <span>Referral Earnings</span>
-                        <span style="color: var(--accent-gold);" id="referral-earnings-amount">₦0.00</span>
+                        <span>Total Earnings</span>
+                        <span style="color: var(--accent-gold);" id="total-referral-earnings">₦0.00</span>
                     </div>
                     <div class="referral-stat">
-                        <span>Commission Rate</span>
-                        <span style="color: var(--warning);" id="commission-rate">15%</span>
+                        <span>Pending Earnings</span>
+                        <span style="color: var(--warning);" id="pending-referral-earnings">₦0.00</span>
                     </div>
                 </div>
                 <div class="referral-links">
@@ -3393,13 +3669,10 @@
                         </div>
                     </div>
                     <div style="margin-top: 1.5rem;">
-                        <h3>How it works:</h3>
-                        <ul style="padding-left: 1.2rem; margin-top: 0.5rem;">
-                            <li>Share your referral link with friends</li>
-                            <li>When they sign up and invest, you earn 15% of their first investment</li>
-                            <li>No limit on how much you can earn</li>
-                            <li>Earnings are credited after their investment is approved</li>
-                        </ul>
+                        <h3>Referral List</h3>
+                        <div id="referral-list">
+                            <!-- Referral list will be dynamically loaded here -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3575,107 +3848,149 @@
                     <!-- Users Tab -->
                     <div id="users-tab" style="display: none;">
                         <h2>User Management</h2>
-                        <div style="margin-bottom: 1rem;">
-                            <input type="text" class="form-control" placeholder="Search users..." id="user-search" style="width: 300px;">
+                        <div style="margin-bottom: 1rem; display: flex; gap: 10px;">
+                            <input type="text" class="form-control" placeholder="Search users..." id="user-search" style="flex: 1;">
+                            <button class="btn btn-primary" onclick="app.loadAdminUsers()">Search</button>
                         </div>
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Joined</th>
-                                    <th>Role</th>
-                                    <th>Balance</th>
-                                    <th>Status</th>
-                                    <th>KYC</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-users-table">
-                                <!-- Users will be dynamically loaded here -->
-                            </tbody>
-                        </table>
+                        <div style="overflow-x: auto;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Joined</th>
+                                        <th>Role</th>
+                                        <th>Balance</th>
+                                        <th>Status</th>
+                                        <th>KYC</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-users-table">
+                                    <!-- Users will be dynamically loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <!-- Investments Tab -->
                     <div id="investments-tab" style="display: none;">
                         <h2>Investment Requests</h2>
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Plan</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-investments-table">
-                                <!-- Investment requests will be dynamically loaded here -->
-                            </tbody>
-                        </table>
+                        <div style="margin-bottom: 1rem;">
+                            <select id="investment-status-filter" class="form-control" style="width: 200px;" onchange="app.loadAdminInvestments()">
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Plan</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-investments-table">
+                                    <!-- Investment requests will be dynamically loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <!-- Deposits Tab -->
                     <div id="deposits-tab" style="display: none;">
                         <h2>Deposit Requests</h2>
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Amount</th>
-                                    <th>Method</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-deposits-table">
-                                <!-- Deposit requests will be dynamically loaded here -->
-                            </tbody>
-                        </table>
+                        <div style="margin-bottom: 1rem;">
+                            <select id="deposit-status-filter" class="form-control" style="width: 200px;" onchange="app.loadAdminDeposits()">
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-deposits-table">
+                                    <!-- Deposit requests will be dynamically loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <!-- Withdrawals Tab -->
                     <div id="withdrawals-tab" style="display: none;">
                         <h2>Withdrawal Requests</h2>
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Amount</th>
-                                    <th>Fee</th>
-                                    <th>Net Amount</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-withdrawals-table">
-                                <!-- Withdrawal requests will be dynamically loaded here -->
-                            </tbody>
-                        </table>
+                        <div style="margin-bottom: 1rem;">
+                            <select id="withdrawal-status-filter" class="form-control" style="width: 200px;" onchange="app.loadAdminWithdrawals()">
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Amount</th>
+                                        <th>Fee</th>
+                                        <th>Net Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-withdrawals-table">
+                                    <!-- Withdrawal requests will be dynamically loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
-                    <!-- KYC Admin Tab -->
+                    <!-- KYC Tab -->
                     <div id="kyc-admin-tab" style="display: none;">
-                        <h2>KYC Verification Requests</h2>
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>ID Type</th>
-                                    <th>ID Number</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-kyc-table">
-                                <!-- KYC requests will be dynamically loaded here -->
-                            </tbody>
-                        </table>
+                        <h2>KYC Requests</h2>
+                        <div style="margin-bottom: 1rem;">
+                            <select id="kyc-status-filter" class="form-control" style="width: 200px;" onchange="app.loadAdminKYC()">
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>ID Type</th>
+                                        <th>ID Number</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-kyc-table">
+                                    <!-- KYC requests will be dynamically loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3735,6 +4050,9 @@
                 <button class="close-modal" onclick="app.closeModal('deposit-modal')">&times;</button>
             </div>
             <form id="deposit-form">
+                <div id="deposit-instructions">
+                    <!-- Bank instructions will be inserted here -->
+                </div>
                 <div class="form-group">
                     <label for="deposit-amount">Amount (₦)</label>
                     <input type="number" id="deposit-amount" class="form-control" placeholder="Enter amount" min="500" required>
@@ -3831,9 +4149,9 @@
     </div>
 
     <script>
-// ==================== RAW WEALTHY FRONTEND v47.0 - COMPLETE FIXED VERSION ====================
+// ==================== RAW WEALTHY FRONTEND v47.0 - COMPLETE FUNCTIONAL DASHBOARD ====================
 const app = {
-    // ==================== CONFIGURATION ====================
+    // ==================== ENHANCED CONFIGURATION ====================
     config: {
         API_BASE_URL: (() => {
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -3854,11 +4172,18 @@ const app = {
         MIN_WITHDRAWAL: 1000,
         PLATFORM_FEE_PERCENT: 5,
         REFERRAL_COMMISSION_PERCENT: 15,
+        // ==================== DEPOSIT BANK DETAILS ====================
         DEPOSIT_BANK_DETAILS: {
             bank_name: 'OPay',
             account_number: '7072859483',
             account_name: 'JOSEPH INALEGWU ISRAEL'
-        }
+        },
+        // ==================== WHATSAPP NOTIFICATION ====================
+        WHATSAPP_ADMIN_NUMBER: '+2349028022559',
+        WHATSAPP_ENABLED: true,
+        // ==================== AUTO UPDATE CONFIG ====================
+        AUTO_UPDATE_INTERVAL: 30000,
+        BALANCE_UPDATE_TRIGGERS: ['deposit', 'withdrawal', 'investment', 'earning', 'referral']
     },
 
     // ==================== APPLICATION STATE ====================
@@ -3884,22 +4209,549 @@ const app = {
             deposits: [],
             withdrawals: [],
             kycSubmissions: []
-        }
+        },
+        lastUpdateTime: null,
+        updateInProgress: false,
+        pendingUpdates: []
     },
 
-    // ==================== INITIALIZATION ====================
+    // ==================== ENHANCED INITIALIZATION ====================
     init() {
         console.log('🚀 Raw Wealthy Frontend v47.0 Initializing...');
         console.log(`🌐 Backend URL: ${this.config.API_BASE_URL}`);
+        console.log(`🏷️ Environment: ${this.config.ENVIRONMENT}`);
         
         this.setupEventListeners();
         this.checkAuthentication();
         this.loadInvestmentPlans();
-        this.initTheme();
+        this.initAnimations();
         this.checkReferralFromURL();
+        this.initTheme();
+        this.initAutoUpdater();
+        
+        this.testAPIConnection();
         
         if (window.location.hash === '#dashboard' || document.getElementById('dashboard-page').style.display !== 'none') {
             this.updateDashboard();
+        }
+    },
+
+    // ==================== AUTO UPDATER SYSTEM ====================
+    initAutoUpdater() {
+        setInterval(() => {
+            if (this.state.isAuthenticated && !this.state.isAdmin) {
+                this.autoUpdateDashboard();
+            }
+        }, this.config.AUTO_UPDATE_INTERVAL);
+        
+        if (this.state.isAdmin) {
+            setInterval(() => {
+                this.loadAdminData();
+            }, 60000);
+        }
+    },
+
+    async autoUpdateDashboard() {
+        if (this.state.updateInProgress) return;
+        
+        try {
+            this.state.updateInProgress = true;
+            const response = await this.apiRequest('/api/profile');
+            const user = response.data?.user;
+            const stats = response.data?.stats || {};
+            
+            if (user && this.hasDataChanged(user, stats)) {
+                this.updateUserInfo(user);
+                this.updateDashboardStats(user, stats);
+                this.showToast('Dashboard updated', 'info');
+            }
+        } catch (error) {
+            console.error('Auto-update error:', error);
+        } finally {
+            this.state.updateInProgress = false;
+        }
+    },
+
+    hasDataChanged(newUser, newStats) {
+        const oldUser = this.state.currentUser;
+        const oldStats = this.state.userStats;
+        
+        return (
+            newUser.balance !== oldUser?.balance ||
+            newUser.total_earnings !== oldUser?.total_earnings ||
+            newUser.referral_earnings !== oldUser?.referral_earnings ||
+            newStats.active_investment_value !== oldStats.activeInvestments ||
+            newStats.daily_interest !== oldStats.dailyEarnings
+        );
+    },
+
+    // ==================== ENHANCED DEPOSIT HANDLING ====================
+    async handleDeposit(e) {
+        e.preventDefault();
+
+        if (!this.state.currentUser) {
+            this.showToast('Please login to make a deposit', 'error');
+            this.showPage('login');
+            return;
+        }
+
+        const amount = parseFloat(document.getElementById('deposit-amount').value);
+        const paymentMethod = document.getElementById('deposit-method').value;
+        const proofFile = document.getElementById('deposit-proof').files[0];
+
+        if (amount < this.config.MIN_DEPOSIT) {
+            this.showToast(`Minimum deposit is ₦${this.config.MIN_DEPOSIT.toLocaleString()}`, 'error');
+            return;
+        }
+
+        if (!paymentMethod) {
+            this.showToast('Please select a payment method', 'error');
+            return;
+        }
+
+        if (!proofFile) {
+            this.showToast('Please upload payment proof', 'error');
+            return;
+        }
+
+        this.setLoadingState('deposit-btn', true);
+
+        try {
+            const formData = new FormData();
+            formData.append('amount', amount);
+            formData.append('payment_method', paymentMethod);
+            formData.append('payment_proof', proofFile);
+
+            const response = await this.apiRequest('/api/deposits', {
+                method: 'POST',
+                body: formData
+            });
+
+            this.showToast('✅ Deposit request submitted successfully!', 'success');
+            this.closeModal('deposit-modal');
+            
+            await this.sendWhatsAppDepositNotification(amount, proofFile);
+
+            e.target.reset();
+            const preview = document.getElementById('deposit-preview');
+            if (preview) {
+                preview.style.display = 'none';
+                preview.src = '';
+            }
+
+            this.updateDashboard();
+
+        } catch (error) {
+            console.error('Deposit error:', error);
+            this.showToast('Error submitting deposit', 'error');
+        } finally {
+            this.setLoadingState('deposit-btn', false);
+        }
+    },
+
+    // ==================== WHATSAPP NOTIFICATION FUNCTION ====================
+    async sendWhatsAppDepositNotification(amount, proofFile) {
+        if (!this.config.WHATSAPP_ENABLED) return;
+        
+        try {
+            const user = this.state.currentUser;
+            const userName = user.full_name || 'User';
+            const userEmail = user.email || 'N/A';
+            const timestamp = new Date().toLocaleString();
+            
+            const message = `💰 *NEW DEPOSIT ALERT* 💰
+            
+👤 *User Details:*
+• Name: ${userName}
+• Email: ${userEmail}
+• Phone: ${user.phone || 'N/A'}
+
+💵 *Transaction Details:*
+• Amount: ₦${amount.toLocaleString()}
+• Date: ${timestamp}
+• Status: Pending Approval
+
+📋 *Bank Details Used:*
+• Bank: ${this.config.DEPOSIT_BANK_DETAILS.bank_name}
+• Account: ${this.config.DEPOSIT_BANK_DETAILS.account_number}
+• Name: ${this.config.DEPOSIT_BANK_DETAILS.account_name}
+
+⚠️ *ACTION REQUIRED:* 
+Please log into admin panel to review and approve this deposit.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${this.config.WHATSAPP_ADMIN_NUMBER}?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+
+            console.log('📱 WhatsApp notification sent to admin');
+            console.log('💵 Deposit details:', { amount, user: userName, timestamp });
+
+        } catch (error) {
+            console.error('Failed to send WhatsApp notification:', error);
+        }
+    },
+
+    // ==================== ENHANCED BANK DETAILS UPDATE ====================
+    async handleBankUpdate(e) {
+        e.preventDefault();
+
+        const bankName = document.getElementById('bank-name').value.trim();
+        const accountName = document.getElementById('account-name').value.trim();
+        const accountNumber = document.getElementById('account-number').value.trim();
+
+        if (!bankName || !accountName || !accountNumber) {
+            this.showToast('Please fill all required bank details', 'error');
+            return;
+        }
+
+        if (accountNumber.length < 10) {
+            this.showToast('Please enter a valid account number', 'error');
+            return;
+        }
+
+        try {
+            const response = await this.apiRequest('/api/profile/bank', {
+                method: 'PUT',
+                body: {
+                    bank_name: bankName,
+                    account_name: accountName,
+                    account_number: accountNumber
+                }
+            });
+
+            this.showToast('✅ Bank details updated successfully!', 'success');
+            
+            await this.sendWhatsAppBankUpdateNotification(bankName, accountName, accountNumber);
+
+            e.target.reset();
+
+        } catch (error) {
+            console.error('Failed to update bank details:', error);
+            this.showToast('Error updating bank details', 'error');
+        }
+    },
+
+    async sendWhatsAppBankUpdateNotification(bankName, accountName, accountNumber) {
+        if (!this.config.WHATSAPP_ENABLED) return;
+        
+        try {
+            const user = this.state.currentUser;
+            const userName = user.full_name || 'User';
+            const timestamp = new Date().toLocaleString();
+            
+            const message = `🏦 *BANK DETAILS UPDATE ALERT* 🏦
+            
+👤 *User Details:*
+• Name: ${userName}
+• Email: ${user.email || 'N/A'}
+• Phone: ${user.phone || 'N/A'}
+
+🏦 *New Bank Details:*
+• Bank Name: ${bankName}
+• Account Name: ${accountName}
+• Account Number: ${accountNumber}
+• Updated At: ${timestamp}
+
+📋 *Action Required:*
+Please verify these bank details in the admin panel for future withdrawals.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${this.config.WHATSAPP_ADMIN_NUMBER}?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+
+            console.log('📱 Bank details WhatsApp notification sent to admin');
+
+        } catch (error) {
+            console.error('Failed to send bank update WhatsApp notification:', error);
+        }
+    },
+
+    // ==================== ENHANCED WITHDRAWAL HANDLING ====================
+    async handleWithdrawal(e) {
+        e.preventDefault();
+
+        if (!this.state.currentUser) {
+            this.showToast('Please login to make a withdrawal', 'error');
+            this.showPage('login');
+            return;
+        }
+
+        const amount = parseFloat(document.getElementById('withdraw-amount').value);
+        const paymentMethod = document.getElementById('withdraw-method').value;
+
+        if (amount < this.config.MIN_WITHDRAWAL) {
+            this.showToast(`Minimum withdrawal is ₦${this.config.MIN_WITHDRAWAL.toLocaleString()}`, 'error');
+            return;
+        }
+
+        if (amount > (this.state.currentUser.balance || 0)) {
+            this.showToast('Insufficient balance for withdrawal', 'error');
+            return;
+        }
+
+        if (!paymentMethod) {
+            this.showToast('Please select a withdrawal method', 'error');
+            return;
+        }
+
+        if (paymentMethod === 'bank_transfer' && 
+            (!this.state.currentUser.bank_details || !this.state.currentUser.bank_details.verified)) {
+            this.showToast('Please verify your bank details before withdrawing', 'error');
+            this.showPage('profile');
+            return;
+        }
+
+        this.setLoadingState('withdraw-btn', true);
+
+        try {
+            const response = await this.apiRequest('/api/withdrawals', {
+                method: 'POST',
+                body: {
+                    amount: amount,
+                    payment_method: paymentMethod
+                }
+            });
+
+            this.showToast('✅ Withdrawal request submitted successfully!', 'success');
+            this.closeModal('withdraw-modal');
+            
+            e.target.reset();
+            
+            this.updateDashboard();
+
+            await this.sendWhatsAppWithdrawalNotification(amount, paymentMethod);
+
+        } catch (error) {
+            console.error('Withdrawal error:', error);
+            this.showToast('Error submitting withdrawal', 'error');
+        } finally {
+            this.setLoadingState('withdraw-btn', false);
+        }
+    },
+
+    async sendWhatsAppWithdrawalNotification(amount, paymentMethod) {
+        if (!this.config.WHATSAPP_ENABLED) return;
+        
+        try {
+            const user = this.state.currentUser;
+            const userName = user.full_name || 'User';
+            const timestamp = new Date().toLocaleString();
+            const fee = amount * (this.config.PLATFORM_FEE_PERCENT / 100);
+            const netAmount = amount - fee;
+            
+            const message = `💸 *WITHDRAWAL REQUEST ALERT* 💸
+            
+👤 *User Details:*
+• Name: ${userName}
+• Email: ${user.email || 'N/A'}
+• Current Balance: ₦${(user.balance || 0).toLocaleString()}
+
+💵 *Withdrawal Details:*
+• Amount: ₦${amount.toLocaleString()}
+• Fee (${this.config.PLATFORM_FEE_PERCENT}%): ₦${fee.toLocaleString()}
+• Net Amount: ₦${netAmount.toLocaleString()}
+• Method: ${paymentMethod}
+• Date: ${timestamp}
+
+🏦 *Bank Details:*
+${user.bank_details ? `
+• Bank: ${user.bank_details.bank_name || 'N/A'}
+• Account: ${user.bank_details.account_number || 'N/A'}
+• Name: ${user.bank_details.account_name || 'N/A'}
+` : '• No bank details on file'}
+
+⚠️ *ACTION REQUIRED:* 
+Please process this withdrawal request in the admin panel.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${this.config.WHATSAPP_ADMIN_NUMBER}?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+
+            console.log('📱 Withdrawal WhatsApp notification sent to admin');
+
+        } catch (error) {
+            console.error('Failed to send withdrawal WhatsApp notification:', error);
+        }
+    },
+
+    updateWithdrawalFee() {
+        const amountInput = document.getElementById('withdraw-amount');
+        const feeNotice = document.getElementById('withdrawal-fee-notice');
+        if (!amountInput || !feeNotice) return;
+
+        const amount = parseFloat(amountInput.value) || 0;
+        const fee = amount * (this.config.PLATFORM_FEE_PERCENT / 100);
+        const netAmount = amount - fee;
+
+        feeNotice.innerHTML = `
+            <i class="fas fa-info-circle"></i>
+            <span>
+                Platform Fee (${this.config.PLATFORM_FEE_PERCENT}%): <strong>₦${fee.toLocaleString()}</strong><br>
+                Net Amount You'll Receive: <strong>₦${netAmount.toLocaleString()}</strong>
+            </span>
+        `;
+    },
+
+    // ==================== ENHANCED DASHBOARD FUNCTIONS ====================
+    async updateDashboard() {
+        if (!this.state.currentUser) return;
+
+        try {
+            console.log('🔄 Updating dashboard...');
+            const response = await this.apiRequest('/api/profile');
+            const user = response.data?.user;
+            const stats = response.data?.stats || {};
+
+            if (!user) {
+                console.error('❌ No user data in response');
+                return;
+            }
+
+            console.log('📊 Dashboard data received:', { user, stats });
+
+            this.state.currentUser = { ...this.state.currentUser, ...user };
+            this.state.userStats = {
+                balance: user.balance || 0,
+                activeInvestments: stats.active_investment_value || 0,
+                dailyEarnings: stats.daily_interest || 0,
+                totalEarnings: user.total_earnings || 0,
+                referralEarnings: user.referral_earnings || 0,
+                portfolioValue: user.portfolio_value || 0
+            };
+
+            this.updateUserInfo(user);
+            this.updateDashboardStats(user, stats);
+            await this.loadUserInvestments();
+            await this.loadUserTransactions();
+            this.createEarningsChart(stats.earnings_history || []);
+            this.showDailyInterestCalculation(stats.active_investments || []);
+
+            this.state.lastUpdateTime = new Date();
+
+        } catch (error) {
+            console.error('❌ Failed to update dashboard:', error);
+            this.showToast('Error loading dashboard data', 'error');
+        }
+    },
+
+    updateUserInfo(user) {
+        const elements = {
+            'user-name': user.full_name || 'User',
+            'user-avatar': user.full_name ? user.full_name.split(' ').map(n => n[0]).join('').toUpperCase() : 'U',
+            'user-tier': user.kyc_verified ? 'Verified Investor' : 'Standard Investor',
+            'user-email': user.email || 'N/A',
+            'user-balance': `₦${(user.balance || 0).toLocaleString()}`,
+            'user-referral-code': user.referral_code || 'N/A'
+        };
+
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) element.textContent = value;
+        });
+
+        const avatar = document.getElementById('user-avatar');
+        if (avatar) {
+            avatar.textContent = elements['user-avatar'];
+        }
+    },
+
+    updateDashboardStats(user, stats) {
+        console.log('📈 Updating dashboard stats:', { user, stats });
+        
+        const statElements = {
+            'total-balance': `₦${(user.balance || 0).toLocaleString()}`,
+            'active-investments': `₦${(stats.active_investment_value || 0).toLocaleString()}`,
+            'total-earnings': `₦${(user.total_earnings || 0).toLocaleString()}`,
+            'referral-earnings': `₦${(user.referral_earnings || 0).toLocaleString()}`
+        };
+
+        Object.entries(statElements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                const currentValue = element.textContent.replace(/[^0-9.]/g, '');
+                const newValue = value.replace(/[^0-9.]/g, '');
+                if (Math.abs(parseFloat(currentValue || 0) - parseFloat(newValue || 0)) > 1) {
+                    element.textContent = value;
+                    element.classList.add('value-updated');
+                    setTimeout(() => element.classList.remove('value-updated'), 1000);
+                }
+            }
+        });
+    },
+
+    // ==================== ENHANCED API REQUEST HANDLER ====================
+    async apiRequest(endpoint, options = {}) {
+        const url = `${this.config.API_BASE_URL}${endpoint}`;
+        
+        const headers = {
+            'Content-Type': 'application/json',
+            ...options.headers
+        };
+
+        if (this.state.token) {
+            headers['Authorization'] = `Bearer ${this.state.token}`;
+        }
+
+        const config = {
+            method: options.method || 'GET',
+            headers: headers,
+            credentials: 'include',
+            ...options
+        };
+
+        if (options.body instanceof FormData) {
+            delete config.headers['Content-Type'];
+            config.body = options.body;
+        } else if (options.body && typeof options.body === 'object') {
+            config.body = JSON.stringify(options.body);
+        }
+
+        try {
+            this.showLoadingSpinner(true);
+            const response = await fetch(url, config);
+            
+            if (response.status === 401) {
+                this.handleTokenExpired();
+                throw new Error('Authentication required');
+            }
+
+            if (response.status === 403) {
+                throw new Error('Access denied');
+            }
+
+            if (response.status === 404) {
+                throw new Error('Endpoint not found');
+            }
+
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                const errorMessage = data.message || data.error || `HTTP ${response.status}`;
+                throw new Error(errorMessage);
+            }
+
+            if (data.success === false) {
+                throw new Error(data.message || 'Request failed');
+            }
+
+            return data;
+        } catch (error) {
+            console.error(`API Request Error [${endpoint}]:`, error);
+            
+            if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
+                this.showToast('Network error. Please check your connection.', 'error');
+            } else if (error.message.includes('401') || error.message.includes('token')) {
+                this.handleTokenExpired();
+            } else {
+                this.showToast(error.message || 'An error occurred', 'error');
+            }
+            
+            throw error;
+        } finally {
+            this.showLoadingSpinner(false);
         }
     },
 
@@ -3919,7 +4771,6 @@ const app = {
             this.state.isAdmin = this.state.currentUser.role === 'admin' || this.state.currentUser.role === 'super_admin';
             this.state.isAuthenticated = true;
 
-            // Initialize user stats
             this.state.userStats = {
                 balance: this.state.currentUser.balance || 0,
                 activeInvestments: 0,
@@ -3930,10 +4781,10 @@ const app = {
             };
 
             const initials = this.state.currentUser.full_name
-                ?.split(' ')
+                .split(' ')
                 .map(n => n[0])
                 .join('')
-                .toUpperCase() || 'U';
+                .toUpperCase();
             
             const avatar = document.getElementById('user-avatar');
             if (avatar) avatar.textContent = initials;
@@ -3951,14 +4802,13 @@ const app = {
         }
     },
 
-    logout() {
-        this.state.currentUser = null;
-        this.state.token = null;
-        this.state.isAdmin = false;
-        this.state.isAuthenticated = false;
+    handleTokenExpired() {
         localStorage.removeItem('raw_wealthy_token');
-        this.showToast('You have been logged out.', 'info');
-        this.showPage('home');
+        this.state.token = null;
+        this.state.currentUser = null;
+        this.state.isAuthenticated = false;
+        this.showToast('Your session has expired. Please login again.', 'warning');
+        this.showPage('login');
     },
 
     // ==================== PAGE NAVIGATION ====================
@@ -4145,106 +4995,23 @@ const app = {
             this.showToast('✅ Login successful!', 'success');
             this.setLoadingState('login-btn', false);
 
-            setTimeout(() => {
-                if (this.state.isAdmin) {
-                    this.showPage('admin');
-                } else {
-                    this.showPage('dashboard');
-                }
-            }, 1000);
+            if (this.state.currentUser.two_factor_enabled) {
+                this.showTwoFactorPrompt();
+            } else {
+                setTimeout(() => {
+                    if (this.state.isAdmin) {
+                        this.showPage('admin');
+                    } else {
+                        this.showPage('dashboard');
+                    }
+                }, 1000);
+            }
         } catch (error) {
             this.setLoadingState('login-btn', false);
         }
     },
 
-    // ==================== ENHANCED DASHBOARD FUNCTIONS ====================
-    async updateDashboard() {
-        if (!this.state.currentUser) return;
-
-        try {
-            const response = await this.apiRequest('/api/profile');
-            const user = response.data?.user;
-            const stats = response.data?.stats || {};
-
-            if (!user) {
-                console.error('No user data in response');
-                return;
-            }
-
-            // Update state
-            this.state.currentUser = { ...this.state.currentUser, ...user };
-            this.state.userStats = {
-                balance: user.balance || 0,
-                activeInvestments: stats.active_investment_value || 0,
-                dailyEarnings: stats.daily_interest || 0,
-                totalEarnings: user.total_earnings || 0,
-                referralEarnings: user.referral_earnings || 0,
-                portfolioValue: user.portfolio_value || 0
-            };
-
-            // Update UI
-            this.updateUserInfo(user);
-            this.updateDashboardStats(user, stats);
-            await this.loadUserInvestments();
-            await this.loadUserTransactions();
-            this.createEarningsChart(stats.earnings_history || []);
-
-        } catch (error) {
-            console.error('Failed to update dashboard:', error);
-            this.showToast('Error loading dashboard data', 'error');
-        }
-    },
-
-    updateUserInfo(user) {
-        const elements = {
-            'user-name': user.full_name || 'User',
-            'user-avatar': user.full_name ? user.full_name.split(' ').map(n => n[0]).join('').toUpperCase() : 'U',
-            'user-tier': user.kyc_verified ? 'Verified Investor' : 'Standard Investor',
-            'user-email': user.email || 'N/A',
-            'user-balance': `₦${(user.balance || 0).toLocaleString()}`,
-            'user-referral-code': user.referral_code || 'N/A'
-        };
-
-        Object.entries(elements).forEach(([id, value]) => {
-            const element = document.getElementById(id);
-            if (element) element.textContent = value;
-        });
-
-        // Update avatar element separately
-        const avatar = document.getElementById('user-avatar');
-        if (avatar) {
-            avatar.textContent = elements['user-avatar'];
-        }
-    },
-
-    updateDashboardStats(user, stats) {
-        // Update main dashboard stats
-        const statElements = {
-            'total-balance': `₦${(user.balance || 0).toLocaleString()}`,
-            'active-investments': `₦${(stats.active_investment_value || 0).toLocaleString()}`,
-            'total-earnings': `₦${(user.total_earnings || 0).toLocaleString()}`,
-            'referral-earnings': `₦${(user.referral_earnings || 0).toLocaleString()}`
-        };
-
-        Object.entries(statElements).forEach(([id, value]) => {
-            const element = document.getElementById(id);
-            if (element) element.textContent = value;
-        });
-
-        // Update additional stats if elements exist
-        const additionalStats = {
-            'total-referrals': stats.referral_count || 0,
-            'total-investments': stats.total_investments || 0,
-            'daily-earnings': `₦${(stats.daily_interest || 0).toLocaleString()}`,
-            'portfolio-value': `₦${(user.portfolio_value || 0).toLocaleString()}`
-        };
-
-        Object.entries(additionalStats).forEach(([id, value]) => {
-            const element = document.getElementById(id);
-            if (element) element.textContent = value;
-        });
-    },
-
+    // ==================== INVESTMENT MANAGEMENT ====================
     async loadUserInvestments() {
         try {
             const response = await this.apiRequest('/api/investments?status=active&limit=5');
@@ -4299,6 +5066,113 @@ const app = {
         }
     },
 
+    async handleInvestment(e) {
+        e.preventDefault();
+
+        if (!this.state.currentUser) {
+            this.showToast('Please login to make an investment', 'error');
+            this.showPage('login');
+            return;
+        }
+
+        const planId = document.getElementById('investment-plan').value;
+        const amount = parseFloat(document.getElementById('investment-amount').value);
+        const autoRenew = document.getElementById('auto-renew')?.checked || false;
+        const proofFile = document.getElementById('investment-proof').files[0];
+
+        const plan = this.state.investmentPlans.find(p => p._id === planId);
+        if (!plan) {
+            this.showToast('Invalid investment plan selected', 'error');
+            return;
+        }
+
+        if (amount < (plan.min_amount || this.config.MIN_INVESTMENT)) {
+            this.showToast(`Minimum investment for ${plan.name} is ₦${(plan.min_amount || this.config.MIN_INVESTMENT).toLocaleString()}`, 'error');
+            return;
+        }
+
+        if (amount > (this.state.currentUser.balance || 0)) {
+            this.showToast('Insufficient balance for this investment', 'error');
+            return;
+        }
+
+        if (!proofFile) {
+            this.showToast('Please upload payment proof', 'error');
+            return;
+        }
+
+        this.setLoadingState('invest-btn', true);
+
+        try {
+            const formData = new FormData();
+            formData.append('plan_id', planId);
+            formData.append('amount', amount);
+            formData.append('auto_renew', autoRenew);
+            formData.append('payment_proof', proofFile);
+
+            const response = await this.apiRequest('/api/investments', {
+                method: 'POST',
+                body: formData
+            });
+
+            this.showToast('✅ Investment request submitted successfully!', 'success');
+            this.closeModal('invest-modal');
+            
+            e.target.reset();
+            const preview = document.getElementById('investment-preview');
+            if (preview) {
+                preview.style.display = 'none';
+                preview.src = '';
+            }
+
+            this.updateDashboard();
+
+            await this.sendWhatsAppInvestmentNotification(amount, plan.name, proofFile);
+
+        } catch (error) {
+            console.error('Investment error:', error);
+        } finally {
+            this.setLoadingState('invest-btn', false);
+        }
+    },
+
+    async sendWhatsAppInvestmentNotification(amount, planName, proofFile) {
+        if (!this.config.WHATSAPP_ENABLED) return;
+        
+        try {
+            const user = this.state.currentUser;
+            const userName = user.full_name || 'User';
+            const timestamp = new Date().toLocaleString();
+            
+            const message = `📈 *NEW INVESTMENT ALERT* 📈
+            
+👤 *Investor Details:*
+• Name: ${userName}
+• Email: ${user.email || 'N/A'}
+• Phone: ${user.phone || 'N/A'}
+
+💰 *Investment Details:*
+• Plan: ${planName}
+• Amount: ₦${amount.toLocaleString()}
+• Date: ${timestamp}
+• Status: Pending Approval
+
+📋 *Action Required:* 
+Please review and approve this investment request in the admin panel.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${this.config.WHATSAPP_ADMIN_NUMBER}?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+
+            console.log('📱 Investment WhatsApp notification sent to admin');
+
+        } catch (error) {
+            console.error('Failed to send investment WhatsApp notification:', error);
+        }
+    },
+
+    // ==================== TRANSACTION MANAGEMENT ====================
     async loadUserTransactions() {
         try {
             const response = await this.apiRequest('/api/transactions?limit=10');
@@ -4320,7 +5194,7 @@ const app = {
                     const amount = txn.amount || 0;
                     const description = txn.description || 'Transaction';
                     const date = txn.createdAt ? new Date(txn.createdAt).toLocaleDateString() : 'N/A';
-                    const isPositive = amount > 0;
+                    const isPositive = ['deposit', 'earning', 'referral', 'bonus', 'refund'].includes(type);
                     
                     return `
                         <div class="transaction-item">
@@ -4332,7 +5206,7 @@ const app = {
                                 <div class="transaction-date">${date}</div>
                             </div>
                             <div class="transaction-amount ${isPositive ? 'positive' : 'negative'}">
-                                ${isPositive ? '+' : ''}₦${Math.abs(amount).toLocaleString()}
+                                ${isPositive ? '+' : '-'}₦${Math.abs(amount).toLocaleString()}
                             </div>
                         </div>
                     `;
@@ -4341,6 +5215,20 @@ const app = {
         } catch (error) {
             console.error('Failed to load transactions:', error);
         }
+    },
+
+    getTransactionIcon(type) {
+        const icons = {
+            'deposit': 'arrow-down',
+            'withdrawal': 'arrow-up',
+            'investment': 'chart-line',
+            'earning': 'money-bill-wave',
+            'referral': 'user-friends',
+            'bonus': 'gift',
+            'fee': 'credit-card',
+            'refund': 'undo'
+        };
+        return icons[type] || 'exchange-alt';
     },
 
     // ==================== INVESTMENT PLANS ====================
@@ -4477,7 +5365,6 @@ const app = {
                 return;
             }
 
-            // Update personal information
             const personalFields = {
                 'profile-fullname': user.full_name,
                 'profile-email': user.email,
@@ -4490,13 +5377,11 @@ const app = {
                 if (element) element.value = value || '';
             });
 
-            // Update bank details if they exist
             if (user.bank_details) {
                 const bankFields = {
                     'bank-name': user.bank_details.bank_name,
                     'account-name': user.bank_details.account_name,
-                    'account-number': user.bank_details.account_number,
-                    'bank-code': user.bank_details.bank_code
+                    'account-number': user.bank_details.account_number
                 };
 
                 Object.entries(bankFields).forEach(([id, value]) => {
@@ -4505,7 +5390,6 @@ const app = {
                 });
             }
 
-            // Update KYC status
             const kycStatusElement = document.getElementById('kyc-status-text');
             if (kycStatusElement) {
                 kycStatusElement.textContent = user.kyc_verified ? 'Verified' : user.kyc_status || 'Not Submitted';
@@ -4541,6 +5425,56 @@ const app = {
         }
     },
 
+    // ==================== KYC SUBMISSION ====================
+    async handleKYCSubmission(e) {
+        e.preventDefault();
+
+        const idType = document.getElementById('id-type').value;
+        const idNumber = document.getElementById('id-number').value.trim();
+        const idFrontFile = document.getElementById('id-front').files[0];
+        const selfieFile = document.getElementById('selfie-with-id').files[0];
+
+        if (!idType || !idNumber) {
+            this.showToast('Please fill all required fields', 'error');
+            return;
+        }
+
+        if (!idFrontFile || !selfieFile) {
+            this.showToast('Please upload required documents', 'error');
+            return;
+        }
+
+        this.setLoadingState('kyc-submit-btn', true);
+
+        try {
+            const formData = new FormData();
+            formData.append('id_type', idType);
+            formData.append('id_number', idNumber);
+            formData.append('id_front', idFrontFile);
+            formData.append('selfie_with_id', selfieFile);
+
+            const idBackFile = document.getElementById('id-back').files[0];
+            if (idBackFile) formData.append('id_back', idBackFile);
+
+            const response = await this.apiRequest('/api/kyc', {
+                method: 'POST',
+                body: formData
+            });
+
+            this.showToast('✅ KYC application submitted successfully!', 'success');
+            
+            document.getElementById('kyc-status-text').textContent = 'Pending';
+            document.getElementById('kyc-status-text').className = 'status-badge pending';
+
+            e.target.reset();
+
+        } catch (error) {
+            console.error('KYC submission error:', error);
+        } finally {
+            this.setLoadingState('kyc-submit-btn', false);
+        }
+    },
+
     // ==================== REFERRAL SYSTEM ====================
     async loadReferralData() {
         if (!this.state.currentUser) return;
@@ -4548,6 +5482,8 @@ const app = {
         try {
             const response = await this.apiRequest('/api/referrals/stats');
             const stats = response.data?.stats || {};
+
+            console.log('📊 Referral stats received:', stats);
 
             const baseUrl = window.location.origin;
             const referralLink = `${baseUrl}/?ref=${this.state.currentUser.referral_code || ''}`;
@@ -4558,8 +5494,8 @@ const app = {
             const statElements = {
                 'total-referrals': stats.total_referrals || 0,
                 'active-referrals': stats.active_referrals || 0,
-                'referral-earnings-amount': `₦${(stats.referral_earnings || 0).toLocaleString()}`,
-                'commission-rate': `${stats.commission_rate || this.config.REFERRAL_COMMISSION_PERCENT}%`
+                'total-referral-earnings': `₦${(stats.total_referral_earnings || 0).toLocaleString()}`,
+                'pending-referral-earnings': `₦${(stats.pending_referral_earnings || 0).toLocaleString()}`
             };
 
             Object.entries(statElements).forEach(([id, value]) => {
@@ -4577,7 +5513,7 @@ const app = {
 
     async loadReferralList() {
         try {
-            const response = await this.apiRequest('/api/referrals/stats');
+            const response = await this.apiRequest('/api/referrals/list');
             const referrals = response.data?.referrals || [];
             const container = document.getElementById('referral-list');
 
@@ -4645,6 +5581,30 @@ const app = {
         }
     },
 
+    // ==================== SUPPORT SYSTEM ====================
+    async handleSupportRequest(e) {
+        e.preventDefault();
+
+        const formData = {
+            subject: document.getElementById('support-subject').value.trim(),
+            category: document.getElementById('support-category').value,
+            message: document.getElementById('support-message').value.trim()
+        };
+
+        try {
+            const response = await this.apiRequest('/api/support', {
+                method: 'POST',
+                body: formData
+            });
+
+            this.showToast('✅ Support ticket submitted successfully!', 'success');
+            e.target.reset();
+        } catch (error) {
+            console.error('Failed to submit support ticket:', error);
+            this.showToast('Error submitting support ticket', 'error');
+        }
+    },
+
     // ==================== ADMIN FUNCTIONS ====================
     async loadAdminData() {
         if (!this.state.isAdmin) return;
@@ -4669,14 +5629,16 @@ const app = {
             const response = await this.apiRequest('/api/admin/dashboard');
             const stats = response.data?.stats || {};
 
+            console.log('📊 Admin dashboard stats:', stats);
+
             const statElements = {
                 'admin-total-users': stats.overview?.total_users || 0,
                 'admin-total-invested': `₦${(stats.overview?.total_active_value || 0).toLocaleString()}`,
                 'admin-total-withdrawn': `₦${(stats.overview?.total_withdrawals || 0).toLocaleString()}`,
                 'admin-pending-requests': stats.pending_actions?.total_pending || 0,
                 'admin-platform-earnings': `₦${(stats.overview?.platform_revenue || 0).toLocaleString()}`,
-                'admin-active-investments': stats.overview?.active_investments || 0,
-                'admin-referral-earnings': `₦${(stats.overview?.admin_referral_earnings || 0).toLocaleString()}`
+                'admin-referral-earnings': `₦${(stats.overview?.admin_referral_earnings || 0).toLocaleString()}`,
+                'admin-active-investments': stats.overview?.active_investments || 0
             };
 
             Object.entries(statElements).forEach(([id, value]) => {
@@ -4765,7 +5727,10 @@ const app = {
 
     async loadAdminInvestments() {
         try {
-            const response = await this.apiRequest('/api/admin/pending-investments');
+            const status = document.getElementById('investment-status-filter')?.value || 'pending';
+            const query = status !== 'all' ? `?status=${status}` : '';
+            
+            const response = await this.apiRequest(`/api/admin/pending-investments${query}`);
             const investments = response.data?.investments || [];
             this.state.adminData.investments = investments;
             
@@ -4828,7 +5793,7 @@ const app = {
                                         <button class="btn btn-sm btn-danger" onclick="app.rejectInvestment('${inv._id}')">
                                             <i class="fas fa-times"></i> Reject
                                         </button>
-                                    </div>
+                                </div>
                                 ` : `
                                     <span class="text-muted">Processed</span>
                                 `}
@@ -4844,7 +5809,10 @@ const app = {
 
     async loadAdminDeposits() {
         try {
-            const response = await this.apiRequest('/api/admin/pending-deposits');
+            const status = document.getElementById('deposit-status-filter')?.value || 'pending';
+            const query = status !== 'all' ? `?status=${status}` : '';
+            
+            const response = await this.apiRequest(`/api/admin/pending-deposits${query}`);
             const deposits = response.data?.deposits || [];
             this.state.adminData.deposits = deposits;
             
@@ -4854,7 +5822,7 @@ const app = {
             if (deposits.length === 0) {
                 table.innerHTML = `
                     <tr>
-                        <td colspan="6" class="text-center py-4">
+                        <td colspan="5" class="text-center py-4">
                             <div class="empty-state">
                                 <i class="fas fa-wallet"></i>
                                 <p>No deposit requests found</p>
@@ -4877,7 +5845,6 @@ const app = {
                     }
                     
                     const amount = deposit.amount || 0;
-                    const method = deposit.payment_method || 'N/A';
                     const date = deposit.createdAt ? new Date(deposit.createdAt).toLocaleDateString() : 'N/A';
                     const status = deposit.status || 'pending';
                     
@@ -4893,7 +5860,6 @@ const app = {
                                 </div>
                             </td>
                             <td>₦${amount.toLocaleString()}</td>
-                            <td>${method}</td>
                             <td>${date}</td>
                             <td>
                                 <span class="status-badge ${status}">${status}</span>
@@ -4923,7 +5889,10 @@ const app = {
 
     async loadAdminWithdrawals() {
         try {
-            const response = await this.apiRequest('/api/admin/pending-withdrawals');
+            const status = document.getElementById('withdrawal-status-filter')?.value || 'pending';
+            const query = status !== 'all' ? `?status=${status}` : '';
+            
+            const response = await this.apiRequest(`/api/admin/pending-withdrawals${query}`);
             const withdrawals = response.data?.withdrawals || [];
             this.state.adminData.withdrawals = withdrawals;
             
@@ -5004,7 +5973,10 @@ const app = {
 
     async loadAdminKYC() {
         try {
-            const response = await this.apiRequest('/api/admin/pending-kyc');
+            const status = document.getElementById('kyc-status-filter')?.value || 'pending';
+            const query = status !== 'all' ? `?status=${status}` : '';
+            
+            const response = await this.apiRequest(`/api/admin/pending-kyc${query}`);
             const kycRequests = response.data?.kyc_submissions || [];
             this.state.adminData.kycSubmissions = kycRequests;
             
@@ -5458,78 +6430,55 @@ const app = {
         });
     },
 
-    // ==================== UTILITY FUNCTIONS ====================
-    async apiRequest(endpoint, options = {}) {
-        const url = `${this.config.API_BASE_URL}${endpoint}`;
+    showDailyInterestCalculation(investments) {
+        const calculator = document.getElementById('daily-interest-calculator');
+        const breakdown = document.getElementById('interest-breakdown');
         
-        const headers = {
-            'Content-Type': 'application/json',
-            ...options.headers
-        };
+        if (!calculator || !breakdown) return;
 
-        if (this.state.token) {
-            headers['Authorization'] = `Bearer ${this.state.token}`;
+        if (investments.length === 0) {
+            calculator.style.display = 'none';
+            return;
         }
 
-        const config = {
-            method: options.method || 'GET',
-            headers: headers,
-            credentials: 'include',
-            ...options
-        };
+        let totalDailyInterest = 0;
+        let html = '<h4>Daily Interest Breakdown</h4>';
 
-        if (options.body instanceof FormData) {
-            delete config.headers['Content-Type'];
-            config.body = options.body;
-        } else if (options.body && typeof options.body === 'object') {
-            config.body = JSON.stringify(options.body);
-        }
-
-        try {
-            this.showLoadingSpinner(true);
-            const response = await fetch(url, config);
+        investments.forEach(investment => {
+            const dailyInterest = (investment.amount * (investment.plan?.daily_interest || 0) / 100);
+            totalDailyInterest += dailyInterest;
             
-            if (response.status === 401) {
-                this.handleTokenExpired();
-                throw new Error('Authentication required');
-            }
+            html += `
+                <div class="interest-item">
+                    <span>${investment.plan?.name || 'Plan'}:</span>
+                    <span>₦${dailyInterest.toLocaleString()}</span>
+                </div>
+            `;
+        });
 
-            const data = await response.json().catch(() => ({}));
+        html += `
+            <div class="interest-total">
+                <span><strong>Total Daily Interest:</strong></span>
+                <span><strong>₦${totalDailyInterest.toLocaleString()}</strong></span>
+            </div>
+            <div class="interest-note">
+                <small>Interest is calculated and added to your balance daily</small>
+            </div>
+        `;
 
-            if (!response.ok) {
-                const errorMessage = data.message || data.error || `HTTP ${response.status}`;
-                throw new Error(errorMessage);
-            }
-
-            if (data.success === false) {
-                throw new Error(data.message || 'Request failed');
-            }
-
-            return data;
-        } catch (error) {
-            console.error(`API Request Error [${endpoint}]:`, error);
-            
-            if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
-                this.showToast('Network error. Please check your connection.', 'error');
-            } else if (error.message.includes('401') || error.message.includes('token')) {
-                this.handleTokenExpired();
-            } else {
-                this.showToast(error.message || 'An error occurred', 'error');
-            }
-            
-            throw error;
-        } finally {
-            this.showLoadingSpinner(false);
-        }
+        breakdown.innerHTML = html;
+        calculator.style.display = 'block';
     },
 
-    handleTokenExpired() {
-        localStorage.removeItem('raw_wealthy_token');
-        this.state.token = null;
+    // ==================== UTILITY FUNCTIONS ====================
+    logout() {
         this.state.currentUser = null;
+        this.state.token = null;
+        this.state.isAdmin = false;
         this.state.isAuthenticated = false;
-        this.showToast('Your session has expired. Please login again.', 'warning');
-        this.showPage('login');
+        localStorage.removeItem('raw_wealthy_token');
+        this.showToast('You have been logged out.', 'info');
+        this.showPage('home');
     },
 
     setLoadingState(buttonId, isLoading) {
@@ -5583,20 +6532,6 @@ const app = {
                 container.removeChild(toast);
             }
         }, 5000);
-    },
-
-    getTransactionIcon(type) {
-        const icons = {
-            'deposit': 'arrow-down',
-            'withdrawal': 'arrow-up',
-            'investment': 'chart-line',
-            'earning': 'money-bill-wave',
-            'referral': 'user-friends',
-            'bonus': 'gift',
-            'fee': 'credit-card',
-            'refund': 'undo'
-        };
-        return icons[type] || 'exchange-alt';
     },
 
     // ==================== UI HELPERS ====================
@@ -5713,15 +6648,23 @@ const app = {
         });
     },
 
-    initTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-            const themeIcon = document.querySelector('#theme-toggle i');
-            if (themeIcon) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            }
+    initAnimations() {
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.feature, .plan-card, .step, .testimonial-card').forEach(el => {
+                observer.observe(el);
+            });
         }
     },
 
@@ -5744,6 +6687,10 @@ const app = {
 
                 case 'invest-modal':
                     this.loadInvestmentPlansForModal();
+                    break;
+
+                case 'deposit-modal':
+                    this.showDepositInstructions();
                     break;
             }
         }
@@ -5779,24 +6726,6 @@ const app = {
                     ${plan.name} - Min: ₦${(plan.min_amount || 0).toLocaleString()} | Daily: ${plan.daily_interest}%
                 </option>
             `).join('');
-    },
-
-    updateWithdrawalFee() {
-        const amountInput = document.getElementById('withdraw-amount');
-        const feeNotice = document.getElementById('withdrawal-fee-notice');
-        if (!amountInput || !feeNotice) return;
-
-        const amount = parseFloat(amountInput.value) || 0;
-        const fee = amount * (this.config.PLATFORM_FEE_PERCENT / 100);
-        const netAmount = amount - fee;
-
-        feeNotice.innerHTML = `
-            <i class="fas fa-info-circle"></i>
-            <span>
-                Platform Fee (${this.config.PLATFORM_FEE_PERCENT}%): <strong>₦${fee.toLocaleString()}</strong><br>
-                Net Amount You'll Receive: <strong>₦${netAmount.toLocaleString()}</strong>
-            </span>
-        `;
     },
 
     // ==================== TAB SWITCHING ====================
@@ -5880,7 +6809,8 @@ const app = {
                 this.loadAdminWithdrawals(); 
                 break;
             case 'kyc-admin': 
-                this.loadAdminKYC();
+                this.loadAdminKYC(); 
+                break;
         }
     },
 
@@ -5897,313 +6827,75 @@ const app = {
         }
     },
 
-    // ==================== INVESTMENT HANDLING ====================
-    async handleInvestment(e) {
-        e.preventDefault();
-
-        if (!this.state.currentUser) {
-            this.showToast('Please login to make an investment', 'error');
-            this.showPage('login');
-            return;
-        }
-
-        const planId = document.getElementById('investment-plan').value;
-        const amount = parseFloat(document.getElementById('investment-amount').value);
-        const autoRenew = document.getElementById('auto-renew')?.checked || false;
-        const proofFile = document.getElementById('investment-proof').files[0];
-
-        const plan = this.state.investmentPlans.find(p => p._id === planId);
-        if (!plan) {
-            this.showToast('Invalid investment plan selected', 'error');
-            return;
-        }
-
-        if (amount < (plan.min_amount || this.config.MIN_INVESTMENT)) {
-            this.showToast(`Minimum investment for ${plan.name} is ₦${(plan.min_amount || this.config.MIN_INVESTMENT).toLocaleString()}`, 'error');
-            return;
-        }
-
-        if (amount > (this.state.currentUser.balance || 0)) {
-            this.showToast('Insufficient balance for this investment', 'error');
-            return;
-        }
-
-        if (!proofFile) {
-            this.showToast('Please upload payment proof', 'error');
-            return;
-        }
-
-        this.setLoadingState('invest-btn', true);
-
-        try {
-            const formData = new FormData();
-            formData.append('plan_id', planId);
-            formData.append('amount', amount);
-            formData.append('auto_renew', autoRenew);
-            formData.append('payment_proof', proofFile);
-
-            const response = await this.apiRequest('/api/investments', {
-                method: 'POST',
-                body: formData
-            });
-
-            this.showToast('✅ Investment request submitted successfully!', 'success');
-            this.closeModal('invest-modal');
-            
-            e.target.reset();
-            const preview = document.getElementById('investment-preview');
-            if (preview) {
-                preview.style.display = 'none';
-                preview.src = '';
-            }
-
-            // Update dashboard immediately
-            this.updateDashboard();
-
-        } catch (error) {
-            console.error('Investment error:', error);
-        } finally {
-            this.setLoadingState('invest-btn', false);
-        }
+    // ==================== ERROR HANDLING ====================
+    handleGlobalError(event) {
+        console.error('Global error:', event.error);
+        this.showToast('An unexpected error occurred', 'error');
     },
 
-    async handleDeposit(e) {
-        e.preventDefault();
-
-        if (!this.state.currentUser) {
-            this.showToast('Please login to make a deposit', 'error');
-            this.showPage('login');
-            return;
-        }
-
-        const amount = parseFloat(document.getElementById('deposit-amount').value);
-        const paymentMethod = document.getElementById('deposit-method').value;
-        const proofFile = document.getElementById('deposit-proof').files[0];
-
-        // Validation
-        if (amount < this.config.MIN_DEPOSIT) {
-            this.showToast(`Minimum deposit is ₦${this.config.MIN_DEPOSIT.toLocaleString()}`, 'error');
-            return;
-        }
-
-        if (!paymentMethod) {
-            this.showToast('Please select a payment method', 'error');
-            return;
-        }
-
-        if (!proofFile) {
-            this.showToast('Please upload payment proof', 'error');
-            return;
-        }
-
-        this.setLoadingState('deposit-btn', true);
-
-        try {
-            const formData = new FormData();
-            formData.append('amount', amount);
-            formData.append('payment_method', paymentMethod);
-            formData.append('payment_proof', proofFile);
-
-            const response = await this.apiRequest('/api/deposits', {
-                method: 'POST',
-                body: formData
-            });
-
-            this.showToast('✅ Deposit request submitted successfully!', 'success');
-            this.closeModal('deposit-modal');
-            
-            // Clear form
-            e.target.reset();
-            const preview = document.getElementById('deposit-preview');
-            if (preview) {
-                preview.style.display = 'none';
-                preview.src = '';
-            }
-
-            // Force immediate dashboard update
-            this.updateDashboard();
-
-        } catch (error) {
-            console.error('Deposit error:', error);
-            this.showToast('Error submitting deposit', 'error');
-        } finally {
-            this.setLoadingState('deposit-btn', false);
-        }
+    handlePromiseRejection(event) {
+        console.error('Unhandled promise rejection:', event.reason);
+        this.showToast('An operation failed to complete', 'error');
     },
 
-    async handleWithdrawal(e) {
-        e.preventDefault();
+    // ==================== TWO-FACTOR AUTHENTICATION ====================
+    showTwoFactorPrompt() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = 'two-factor-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Two-Factor Authentication</h2>
+                    <button class="close-modal" onclick="app.closeModal('two-factor-modal')">&times;</button>
+                </div>
+                <form id="two-factor-form">
+                    <div class="form-group">
+                        <label for="two-factor-code">Enter 6-digit code from your authenticator app</label>
+                        <input type="text" id="two-factor-code" class="form-control" 
+                               placeholder="000000" maxlength="6" pattern="[0-9]{6}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        Verify
+                    </button>
+                </form>
+            </div>
+        `;
 
-        if (!this.state.currentUser) {
-            this.showToast('Please login to make a withdrawal', 'error');
-            this.showPage('login');
-            return;
-        }
+        document.body.appendChild(modal);
+        this.openModal('two-factor-modal');
 
-        const amount = parseFloat(document.getElementById('withdraw-amount').value);
-        const paymentMethod = document.getElementById('withdraw-method').value;
+        document.getElementById('two-factor-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.verifyTwoFactorCode();
+        });
+    },
 
-        // Validation
-        if (amount < this.config.MIN_WITHDRAWAL) {
-            this.showToast(`Minimum withdrawal is ₦${this.config.MIN_WITHDRAWAL.toLocaleString()}`, 'error');
-            return;
-        }
-
-        if (amount > (this.state.currentUser.balance || 0)) {
-            this.showToast('Insufficient balance for withdrawal', 'error');
-            return;
-        }
-
-        if (!paymentMethod) {
-            this.showToast('Please select a withdrawal method', 'error');
-            return;
-        }
-
-        if (paymentMethod === 'bank_transfer' && 
-            (!this.state.currentUser.bank_details || !this.state.currentUser.bank_details.verified)) {
-            this.showToast('Please verify your bank details before withdrawing', 'error');
-            this.showPage('profile');
-            return;
-        }
-
-        this.setLoadingState('withdraw-btn', true);
-
+    async verifyTwoFactorCode() {
+        const code = document.getElementById('two-factor-code').value;
+        
         try {
-            const response = await this.apiRequest('/api/withdrawals', {
+            const response = await this.apiRequest('/api/auth/verify-2fa', {
                 method: 'POST',
-                body: {
-                    amount: amount,
-                    payment_method: paymentMethod
+                body: { code }
+            });
+
+            this.showToast('✅ Two-factor authentication successful!', 'success');
+            this.closeModal('two-factor-modal');
+            
+            setTimeout(() => {
+                if (this.state.isAdmin) {
+                    this.showPage('admin');
+                } else {
+                    this.showPage('dashboard');
                 }
-            });
-
-            this.showToast('✅ Withdrawal request submitted successfully!', 'success');
-            this.closeModal('withdraw-modal');
-            
-            e.target.reset();
-            
-            // Force immediate dashboard update
-            this.updateDashboard();
-
+            }, 1000);
         } catch (error) {
-            console.error('Withdrawal error:', error);
-            this.showToast('Error submitting withdrawal', 'error');
-        } finally {
-            this.setLoadingState('withdraw-btn', false);
+            this.showToast('Invalid verification code', 'error');
         }
     },
 
-    async handleBankUpdate(e) {
-        e.preventDefault();
-
-        const bankName = document.getElementById('bank-name').value.trim();
-        const accountName = document.getElementById('account-name').value.trim();
-        const accountNumber = document.getElementById('account-number').value.trim();
-
-        // Validation
-        if (!bankName || !accountName || !accountNumber) {
-            this.showToast('Please fill all required bank details', 'error');
-            return;
-        }
-
-        if (accountNumber.length < 10) {
-            this.showToast('Please enter a valid account number', 'error');
-            return;
-        }
-
-        try {
-            const response = await this.apiRequest('/api/profile/bank', {
-                method: 'PUT',
-                body: {
-                    bank_name: bankName,
-                    account_name: accountName,
-                    account_number: accountNumber
-                }
-            });
-
-            this.showToast('✅ Bank details updated successfully!', 'success');
-            
-            // Clear form
-            e.target.reset();
-
-        } catch (error) {
-            console.error('Failed to update bank details:', error);
-            this.showToast('Error updating bank details', 'error');
-        }
-    },
-
-    async handleKYCSubmission(e) {
-        e.preventDefault();
-
-        const idType = document.getElementById('id-type').value;
-        const idNumber = document.getElementById('id-number').value.trim();
-        const idFrontFile = document.getElementById('id-front').files[0];
-        const selfieFile = document.getElementById('selfie-with-id').files[0];
-
-        if (!idType || !idNumber) {
-            this.showToast('Please fill all required fields', 'error');
-            return;
-        }
-
-        if (!idFrontFile || !selfieFile) {
-            this.showToast('Please upload required documents', 'error');
-            return;
-        }
-
-        this.setLoadingState('kyc-submit-btn', true);
-
-        try {
-            const formData = new FormData();
-            formData.append('id_type', idType);
-            formData.append('id_number', idNumber);
-            formData.append('id_front', idFrontFile);
-            formData.append('selfie_with_id', selfieFile);
-
-            const idBackFile = document.getElementById('id-back').files[0];
-            if (idBackFile) formData.append('id_back', idBackFile);
-
-            const response = await this.apiRequest('/api/kyc', {
-                method: 'POST',
-                body: formData
-            });
-
-            this.showToast('✅ KYC application submitted successfully!', 'success');
-            
-            document.getElementById('kyc-status-text').textContent = 'Pending';
-            document.getElementById('kyc-status-text').className = 'status-badge pending';
-
-            e.target.reset();
-
-        } catch (error) {
-            console.error('KYC submission error:', error);
-        } finally {
-            this.setLoadingState('kyc-submit-btn', false);
-        }
-    },
-
-    async handleSupportRequest(e) {
-        e.preventDefault();
-
-        const formData = {
-            subject: document.getElementById('support-subject').value.trim(),
-            category: document.getElementById('support-category').value,
-            message: document.getElementById('support-message').value.trim()
-        };
-
-        try {
-            const response = await this.apiRequest('/api/support', {
-                method: 'POST',
-                body: formData
-            });
-
-            this.showToast('✅ Support ticket submitted successfully!', 'success');
-            e.target.reset();
-        } catch (error) {
-            console.error('Failed to submit support ticket:', error);
-            this.showToast('Error submitting support ticket', 'error');
-        }
-    },
-
+    // ==================== PASSWORD MANAGEMENT ====================
     async handlePasswordReset(e) {
         e.preventDefault();
         
@@ -6228,30 +6920,58 @@ const app = {
         }
     },
 
-    // ==================== OPEN INVESTMENT MODAL ====================
-    openInvestmentModal(planId) {
-        const plan = this.state.investmentPlans.find(p => p._id === planId);
-        if (!plan) return;
+    async handlePasswordChange(e) {
+        e.preventDefault();
 
-        const modalId = 'invest-modal';
-        const modal = document.getElementById(modalId);
-        if (!modal) return;
+        const currentPassword = document.getElementById('current-password').value;
+        const newPassword = document.getElementById('new-password').value;
+        const confirmPassword = document.getElementById('confirm-new-password').value;
 
-        // Set plan selection
-        const planSelect = document.getElementById('investment-plan');
-        if (planSelect) {
-            planSelect.value = planId;
+        if (newPassword !== confirmPassword) {
+            this.showToast('New passwords do not match!', 'error');
+            return;
         }
 
-        // Set minimum amount
-        const amountInput = document.getElementById('investment-amount');
-        if (amountInput) {
-            amountInput.min = plan.min_amount;
-            amountInput.placeholder = `Minimum: ₦${plan.min_amount.toLocaleString()}`;
+        if (newPassword.length < 6) {
+            this.showToast('New password must be at least 6 characters', 'error');
+            return;
         }
 
-        // Open modal
-        this.openModal(modalId);
+        try {
+            await this.apiRequest('/api/auth/change-password', {
+                method: 'POST',
+                body: {
+                    current_password: currentPassword,
+                    new_password: newPassword
+                }
+            });
+
+            this.showToast('✅ Password changed successfully!', 'success');
+            e.target.reset();
+        } catch (error) {
+            console.error('Password change error:', error);
+            this.showToast('Error changing password', 'error');
+        }
+    },
+
+    // ==================== NOTIFICATION SYSTEM ====================
+    async loadNotifications() {
+        if (!this.state.currentUser) return;
+
+        try {
+            const response = await this.apiRequest('/api/notifications?limit=10');
+            const notifications = response.data?.notifications || [];
+            this.state.notifications = notifications;
+
+            const unreadCount = notifications.filter(n => !n.is_read).length;
+            const badge = document.getElementById('notification-badge');
+            if (badge) {
+                badge.textContent = unreadCount;
+                badge.style.display = unreadCount > 0 ? 'flex' : 'none';
+            }
+        } catch (error) {
+            console.error('Failed to load notifications:', error);
+        }
     },
 
     // ==================== SETUP EVENT LISTENERS ====================
@@ -6292,7 +7012,17 @@ const app = {
             withdrawAmount.addEventListener('input', () => this.updateWithdrawalFee());
         }
 
+        const investAmount = document.getElementById('investment-amount');
+        const investPlan = document.getElementById('investment-plan');
+        if (investAmount && investPlan) {
+            investAmount.addEventListener('input', () => this.calculateInvestmentInterest());
+            investPlan.addEventListener('change', () => this.calculateInvestmentInterest());
+        }
+
         window.addEventListener('hashchange', () => window.scrollTo(0, 0));
+
+        window.addEventListener('error', (e) => this.handleGlobalError(e));
+        window.addEventListener('unhandledrejection', (e) => this.handlePromiseRejection(e));
     },
 
     setupFormListeners() {
@@ -6306,7 +7036,9 @@ const app = {
             'bank-form': (e) => this.handleBankUpdate(e),
             'kyc-form': (e) => this.handleKYCSubmission(e),
             'support-form': (e) => this.handleSupportRequest(e),
-            'password-reset-form': (e) => this.handlePasswordReset(e)
+            'password-reset-form': (e) => this.handlePasswordReset(e),
+            'password-change-form': (e) => this.handlePasswordChange(e),
+            'preferences-form': (e) => this.handlePreferencesUpdate(e)
         };
 
         Object.entries(forms).forEach(([formId, handler]) => {
@@ -6317,9 +7049,172 @@ const app = {
         });
     },
 
+    testAPIConnection() {
+        try {
+            fetch(`${this.config.API_BASE_URL}/health`)
+                .then(response => {
+                    if (response.ok) {
+                        console.log('✅ API Connection: SUCCESS');
+                    } else {
+                        console.warn('⚠️ API Connection: WEAK');
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ API Connection: FAILED');
+                    this.showToast('Backend connection issue. Some features may be limited.', 'warning');
+                });
+        } catch (error) {
+            console.error('API connection test error:', error);
+        }
+    },
+
+    initTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            const themeIcon = document.querySelector('#theme-toggle i');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        }
+    },
+
+    // ==================== OPEN INVESTMENT MODAL ====================
+    openInvestmentModal(planId) {
+        const plan = this.state.investmentPlans.find(p => p._id === planId);
+        if (!plan) return;
+
+        const modalId = 'invest-modal';
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+
+        const planSelect = document.getElementById('investment-plan');
+        if (planSelect) {
+            planSelect.value = planId;
+        }
+
+        const amountInput = document.getElementById('investment-amount');
+        if (amountInput) {
+            amountInput.min = plan.min_amount;
+            amountInput.placeholder = `Minimum: ₦${plan.min_amount.toLocaleString()}`;
+        }
+
+        this.openModal(modalId);
+        this.calculateInvestmentInterest();
+    },
+
+    calculateInvestmentInterest() {
+        const planId = document.getElementById('investment-plan').value;
+        const amount = parseFloat(document.getElementById('investment-amount').value) || 0;
+        const calculator = document.getElementById('modal-interest-calculator');
+        const interestDisplay = document.getElementById('modal-daily-interest');
+        const detailsDisplay = document.getElementById('modal-interest-details');
+
+        if (!planId || amount === 0) {
+            if (calculator) calculator.style.display = 'none';
+            return;
+        }
+
+        const plan = this.state.investmentPlans.find(p => p._id === planId);
+        if (!plan) return;
+
+        const dailyInterest = (amount * (plan.daily_interest || 0) / 100);
+        const totalInterest = (amount * (plan.total_interest || 0) / 100);
+        const totalReturn = amount + totalInterest;
+
+        if (calculator && interestDisplay && detailsDisplay) {
+            interestDisplay.textContent = `₦${dailyInterest.toLocaleString()}`;
+            detailsDisplay.innerHTML = `
+                Daily Interest: ${plan.daily_interest}%<br>
+                Total Return After ${plan.duration} Days: ₦${totalReturn.toLocaleString()}<br>
+                Total Profit: ₦${totalInterest.toLocaleString()}
+            `;
+            calculator.style.display = 'block';
+        }
+    },
+
+    async handlePreferencesUpdate(e) {
+        e.preventDefault();
+
+        const formData = {
+            risk_tolerance: document.getElementById('risk-tolerance-pref').value,
+            investment_strategy: document.getElementById('investment-strategy-pref').value,
+            currency: document.getElementById('currency').value
+        };
+
+        try {
+            const response = await this.apiRequest('/api/profile', {
+                method: 'PUT',
+                body: formData
+            });
+
+            this.showToast('✅ Preferences updated successfully!', 'success');
+        } catch (error) {
+            console.error('Failed to update preferences:', error);
+            this.showToast('Error updating preferences', 'error');
+        }
+    },
+
+    showDepositInstructions() {
+        const instructionsContainer = document.getElementById('deposit-instructions');
+        if (!instructionsContainer) {
+            const form = document.getElementById('deposit-form');
+            if (form) {
+                const instructionsHTML = `
+                    <div class="bank-instructions">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-bank"></i> Bank Transfer Instructions
+                        </h3>
+                        <div class="bank-details">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-muted);">Bank Name:</span>
+                                <span style="font-weight: 600; color: var(--accent-emerald);">${this.config.DEPOSIT_BANK_DETAILS.bank_name}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-muted);">Account Number:</span>
+                                <span style="font-weight: 600; color: var(--accent-emerald); font-family: monospace; font-size: 1.1rem;">${this.config.DEPOSIT_BANK_DETAILS.account_number}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-muted);">Account Name:</span>
+                                <span style="font-weight: 600; color: var(--accent-emerald);">${this.config.DEPOSIT_BANK_DETAILS.account_name}</span>
+                            </div>
+                        </div>
+                        <div class="instructions" style="color: var(--text-muted); font-size: 0.9rem;">
+                            <p style="margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <i class="fas fa-info-circle" style="color: var(--accent-blue); margin-top: 0.2rem;"></i>
+                                Transfer the exact amount to the account above
+                            </p>
+                            <p style="margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <i class="fas fa-info-circle" style="color: var(--accent-blue); margin-top: 0.2rem;"></i>
+                                Use your registered name as transfer reference
+                            </p>
+                            <p style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <i class="fas fa-info-circle" style="color: var(--accent-blue); margin-top: 0.2rem;"></i>
+                                Upload payment proof screenshot after transfer
+                            </p>
+                        </div>
+                        <div class="whatsapp-notice">
+                            <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                            <span>Admin will be automatically notified via WhatsApp after your deposit</span>
+                        </div>
+                    </div>
+                `;
+                form.insertAdjacentHTML('afterbegin', instructionsHTML);
+            }
+        }
+    },
+
     viewUserDetails(userId) {
         console.log('View user details:', userId);
-        this.showToast('User details view coming soon', 'info');
+    },
+
+    enable2FA() {
+        this.showToast('2FA feature coming soon!', 'info');
+    },
+
+    disable2FA() {
+        this.showToast('2FA feature coming soon!', 'info');
     }
 };
 
@@ -6361,81 +7256,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add CSS for value update animation
-const style = document.createElement('style');
-style.textContent = `
-    .value-updated {
-        animation: valueUpdate 1s ease;
+// Add additional event listeners for form inputs
+document.addEventListener('input', function(e) {
+    if (e.target.id === 'password') {
+        const strengthBar = document.getElementById('password-strength');
+        const password = e.target.value;
+        let strength = 0;
+        
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        strengthBar.className = 'password-strength';
+        if (strength === 0) {
+            strengthBar.style.width = '0%';
+        } else if (strength === 1) {
+            strengthBar.className = 'password-strength weak';
+        } else if (strength === 2 || strength === 3) {
+            strengthBar.className = 'password-strength medium';
+        } else {
+            strengthBar.className = 'password-strength strong';
+        }
     }
-    
-    @keyframes valueUpdate {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); background-color: rgba(245, 158, 11, 0.1); }
-        100% { transform: scale(1); }
-    }
-    
-    .empty-state {
-        text-align: center;
-        padding: 2rem;
-        color: var(--text-muted);
-    }
-    
-    .empty-state i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        opacity: 0.5;
-    }
-    
-    .investment-item, .transaction-item {
-        background: var(--secondary);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-bottom: 0.75rem;
-        transition: all 0.3s ease;
-    }
-    
-    .investment-item:hover, .transaction-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    
-    .status-badge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        display: inline-block;
-    }
-    
-    .status-badge.active {
-        background: rgba(59, 130, 246, 0.2);
-        color: var(--info);
-    }
-    
-    .status-badge.pending {
-        background: rgba(245, 158, 11, 0.2);
-        color: var(--warning);
-    }
-    
-    .status-badge.approved {
-        background: rgba(16, 185, 129, 0.2);
-        color: var(--success);
-    }
-    
-    .withdrawal-fee-notice {
-        background: rgba(245, 158, 11, 0.1);
-        border: 1px solid rgba(245, 158, 11, 0.2);
-        border-radius: 8px;
-        padding: 12px;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--warning);
-        font-size: 0.9rem;
-    }
-`;
-document.head.appendChild(style);
-</script>
+});
+    </script>
 </body>
 </html>
