@@ -3326,9 +3326,9 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script>
-// ==============================================
-// ENHANCED RAW WEALTHY FRONTEND v38.0
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>// ==============================================
+// ENHANCED RAW WEALTHY FRONTEND v38.0 - DEBUGGED VERSION
 // Production-Ready with Complete Debugging System
 // Fully Integrated with Backend v38.0
 // ==============================================
@@ -3743,7 +3743,7 @@ class ApiService {
                 }
             });
             
-            // Add file with correct field name
+            // Add file with correct field name (MATCHING BACKEND)
             formData.append('payment_proof', investmentData.payment_proof);
             
             return this.request('/api/investments', {
@@ -3809,26 +3809,28 @@ class ApiService {
         return this.request(`/api/transactions${params ? `?${params}` : ''}`);
     }
     
-    // KYC endpoints
+    // KYC endpoints - FIXED VERSION
     static async getKYCStatus() {
         return this.request('/api/kyc/status');
     }
     
-    static async submitKYC(kycData, files) {
+    static async submitKYC(kycData) {
         const formData = new FormData();
         
         // Add form data
         Object.keys(kycData).forEach(key => {
-            formData.append(key, kycData[key]);
+            if (key !== 'id_front' && key !== 'id_back' && key !== 'selfie_with_id' && key !== 'address_proof') {
+                formData.append(key, kycData[key]);
+            }
         });
         
         // Add files with correct field names (matching backend)
-        if (files.id_front) formData.append('id_front', files.id_front);
-        if (files.id_back) formData.append('id_back', files.id_back);
-        if (files.selfie_with_id) formData.append('selfie_with_id', files.selfie_with_id);
-        if (files.address_proof) formData.append('address_proof', files.address_proof);
+        if (kycData.id_front) formData.append('id_front', kycData.id_front);
+        if (kycData.id_back) formData.append('id_back', kycData.id_back);
+        if (kycData.selfie_with_id) formData.append('selfie_with_id', kycData.selfie_with_id);
+        if (kycData.address_proof) formData.append('address_proof', kycData.address_proof);
         
-        return this.request('/api/kyc/submit', {
+        return this.request('/api/kyc', {
             method: 'POST',
             headers: {},
             body: formData
@@ -3853,13 +3855,13 @@ class ApiService {
                 formData.append('attachments', file);
             });
             
-            return this.request('/api/support/tickets', {
+            return this.request('/api/support', {
                 method: 'POST',
                 headers: {},
                 body: formData
             });
         } else {
-            return this.request('/api/support/tickets', {
+            return this.request('/api/support', {
                 method: 'POST',
                 body: JSON.stringify(ticketData)
             });
@@ -3895,10 +3897,10 @@ class ApiService {
     }
     
     // Upload endpoint
-    static async uploadFile(file, purpose = 'general') {
+    static async uploadFile(file, folder = 'general') {
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('purpose', purpose);
+        if (folder) formData.append('folder', folder);
         
         return this.request('/api/upload', {
             method: 'POST',
@@ -4397,9 +4399,9 @@ class DashboardManager {
             // Update active investments
             document.getElementById('activeInvestments').textContent = Utils.formatCurrency(stats.active_investment_value || 0);
             
-            // Update total earnings (investment earnings + referral earnings)
-            const totalEarnings = (user.total_earnings || 0) + (user.referral_earnings || 0);
-            document.getElementById('totalEarnings').textContent = Utils.formatCurrency(totalEarnings);
+            // Update daily interest (CHANGED from total earnings)
+            document.getElementById('totalEarnings').textContent = Utils.formatCurrency(stats.daily_interest || 0);
+            document.getElementById('totalEarnings').parentElement.querySelector('.stat-label').textContent = 'Daily Interest';
             
             // Update total referrals
             document.getElementById('totalReferrals').textContent = user.referral_count || 0;
@@ -6024,16 +6026,22 @@ class KYCManager {
                 id_number: idNumber.value
             };
             
-            const files = {
-                id_front: idFront.files[0],
-                id_back: idBack.files[0],
-                selfie_with_id: selfieWithId.files[0],
-                address_proof: addressProof.files[0]
-            };
+            // Add files to kycData object
+            if (idFront.files[0]) kycData.id_front = idFront.files[0];
+            if (idBack.files[0]) kycData.id_back = idBack.files[0];
+            if (selfieWithId.files[0]) kycData.selfie_with_id = selfieWithId.files[0];
+            if (addressProof.files[0]) kycData.address_proof = addressProof.files[0];
             
-            Debug.debug('KYC', 'KYC data:', kycData);
+            Debug.debug('KYC', 'KYC data to submit:', {
+                id_type: kycData.id_type,
+                id_number: kycData.id_number,
+                has_id_front: !!kycData.id_front,
+                has_id_back: !!kycData.id_back,
+                has_selfie: !!kycData.selfie_with_id,
+                has_address_proof: !!kycData.address_proof
+            });
             
-            const response = await ApiService.submitKYC(kycData, files);
+            const response = await ApiService.submitKYC(kycData);
             
             if (response.success) {
                 Utils.showNotification('KYC documents submitted successfully!', 'success');
@@ -6231,10 +6239,17 @@ class ReferralManager {
         try {
             const stats = data.stats || {};
             
+            // Advanced referral stats
             document.getElementById('totalReferralsCount').textContent = stats.total_referrals || 0;
-            document.getElementById('referralEarnings').textContent = Utils.formatCurrency(stats.total_earnings || 0);
-            document.getElementById('commissionRate').textContent = `${stats.commission_rate || 10}%`;
+            document.getElementById('referralEarnings').textContent = Utils.formatCurrency(stats.referral_earnings || 0);
+            document.getElementById('commissionRate').textContent = `${stats.commission_rate || CONFIG.REFERRAL_COMMISSION_PERCENT}%`;
             document.getElementById('pendingEarnings').textContent = Utils.formatCurrency(stats.pending_earnings || 0);
+            
+            // Update active referrals count
+            const activeReferralsElement = document.querySelector('.stat-card:nth-child(2) .stat-value');
+            if (activeReferralsElement) {
+                activeReferralsElement.textContent = stats.active_referrals || 0;
+            }
             
             // Update referral code and link
             const referralCode = document.getElementById('referralCode');
@@ -6374,6 +6389,9 @@ class EventHandlers {
         
         // File preview handlers
         this.setupFilePreviews();
+        
+        // Withdrawal amount calculation
+        this.setupWithdrawalCalculation();
         
         Debug.info('EventHandlers', 'Event handlers initialized successfully');
     }
@@ -6528,14 +6546,6 @@ class EventHandlers {
             withdrawalForm.addEventListener('submit', (e) => {
                 WithdrawalManager.submitWithdrawal(e);
             });
-            
-            // Withdrawal amount calculation
-            const withdrawalAmount = document.getElementById('withdrawalAmount');
-            if (withdrawalAmount) {
-                withdrawalAmount.addEventListener('input', () => {
-                    WithdrawalManager.calculateFees();
-                });
-            }
         }
         
         // Profile form
@@ -6577,11 +6587,81 @@ class EventHandlers {
             });
         }
         
+        // Bank details form
+        const bankDetailsForm = document.getElementById('bankDetailsForm');
+        if (bankDetailsForm) {
+            bankDetailsForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                try {
+                    Utils.showLoader('Updating bank details...');
+                    
+                    const bankData = {
+                        bank_name: document.getElementById('bankName')?.value || '',
+                        account_name: document.getElementById('accountName')?.value || '',
+                        account_number: document.getElementById('accountNumber')?.value || '',
+                        bank_code: document.getElementById('bankCode')?.value || ''
+                    };
+                    
+                    const response = await ApiService.updateBankDetails(bankData);
+                    
+                    if (response.success) {
+                        Utils.showNotification('Bank details updated successfully!', 'success');
+                        await AuthManager.loadUserData();
+                    } else {
+                        Utils.showNotification(response.message || 'Bank details update failed', 'error');
+                    }
+                } catch (error) {
+                    Debug.error('Profile', 'Failed to update bank details:', error);
+                    Utils.showError(error, 'Bank Details Update');
+                } finally {
+                    Utils.hideLoader();
+                }
+            });
+        }
+        
         // KYC form
         const kycForm = document.getElementById('kycForm');
         if (kycForm) {
             kycForm.addEventListener('submit', (e) => {
                 KYCManager.submitKYC(e);
+            });
+        }
+        
+        // Support form
+        const supportForm = document.getElementById('supportForm');
+        if (supportForm) {
+            supportForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                try {
+                    Utils.showLoader('Submitting support ticket...');
+                    
+                    const ticketData = {
+                        subject: document.getElementById('ticketSubject')?.value || '',
+                        message: document.getElementById('ticketMessage')?.value || '',
+                        category: document.getElementById('ticketCategory')?.value || 'general',
+                        priority: document.getElementById('ticketPriority')?.value || 'medium'
+                    };
+                    
+                    const attachmentsInput = document.getElementById('ticketAttachments');
+                    const attachments = attachmentsInput ? Array.from(attachmentsInput.files) : [];
+                    
+                    const response = await ApiService.createSupportTicket(ticketData, attachments);
+                    
+                    if (response.success) {
+                        Utils.showNotification('Support ticket submitted successfully!', 'success');
+                        supportForm.reset();
+                        await SupportManager.loadSupportTickets();
+                    } else {
+                        Utils.showNotification(response.message || 'Support ticket submission failed', 'error');
+                    }
+                } catch (error) {
+                    Debug.error('Support', 'Failed to submit support ticket:', error);
+                    Utils.showError(error, 'Support Ticket Submission');
+                } finally {
+                    Utils.hideLoader();
+                }
             });
         }
     }
@@ -6642,6 +6722,7 @@ class EventHandlers {
         this.setupFilePreview('idBack', 'idBackPreview');
         this.setupFilePreview('selfieWithId', 'selfiePreview');
         this.setupFilePreview('addressProof', 'addressProofPreview');
+        this.setupFilePreview('modalPaymentProof', 'modalPaymentProofPreview');
     }
     
     static setupFilePreview(inputId, previewId) {
@@ -6721,9 +6802,30 @@ class EventHandlers {
         preview.appendChild(removeBtn);
         container.appendChild(preview);
     }
+    
+    static setupWithdrawalCalculation() {
+        const withdrawalAmount = document.getElementById('withdrawalAmount');
+        if (withdrawalAmount) {
+            withdrawalAmount.addEventListener('input', () => {
+                this.calculateWithdrawalFees();
+            });
+        }
+    }
+    
+    static calculateWithdrawalFees() {
+        const amountInput = document.getElementById('withdrawalAmount');
+        if (!amountInput) return;
+        
+        const amount = parseFloat(amountInput.value) || 0;
+        const platformFee = amount * (CONFIG.PLATFORM_FEE_PERCENT / 100);
+        const netAmount = amount - platformFee;
+        
+        document.getElementById('platformFee').textContent = Utils.formatCurrency(platformFee);
+        document.getElementById('netAmount').textContent = Utils.formatCurrency(netAmount);
+    }
 }
 
-// ===== ENHANCED ADMIN MANAGER (Basic) =====
+// ===== ENHANCED ADMIN MANAGER =====
 class AdminManager {
     static async loadAdminDashboard() {
         Debug.info('Admin', 'Loading admin dashboard...');
@@ -6806,8 +6908,8 @@ async function checkAPIHealth() {
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
-    Debug.info('App', 'Initializing Raw Wealthy v38.0...');
-    console.log('🚀 Raw Wealthy Frontend v38.0 - Production Ready');
+    Debug.info('App', 'Initializing Raw Wealthy v38.0 - Debugged Version...');
+    console.log('🚀 Raw Wealthy Frontend v38.0 - Debugged Version');
     console.log('📊 Debug Mode:', CONFIG.DEBUG_MODE);
     console.log('🔐 Auth Status:', authToken ? 'Logged In' : 'Logged Out');
     console.log('👤 Current User:', currentUser?.email || 'None');
@@ -6846,7 +6948,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Debug.warn('Network', 'Connection lost');
     });
     
-    Debug.info('App', '✅ Raw Wealthy Frontend v38.0 - Initialization Complete');
+    Debug.info('App', '✅ Raw Wealthy Frontend v38.0 - Debugged Version Initialization Complete');
 });
 
 // ===== GLOBAL ERROR HANDLING =====
@@ -6898,7 +7000,7 @@ window.RawWealthy = {
     refreshInvestments: () => InvestmentManager.loadInvestments(),
     refreshDeposits: () => DepositManager.loadDeposits(),
     refreshWithdrawals: () => WithdrawalManager.loadWithdrawals()
-};
-</script>
+};</script>
 </body>
 </html>
+ 
