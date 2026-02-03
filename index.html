@@ -3330,7 +3330,7 @@
     <script>// ==============================================
 // ENHANCED RAW WEALTHY FRONTEND v38.0 - PRODUCTION READY
 // Complete Debugging System with Advanced Features
-// Fully Integrated with Backend v38.0
+// Fully Integrated with Backend v38.0 - ULTIMATE EDITION
 // ==============================================
 
 // ===== ENHANCED CONFIGURATION =====
@@ -3350,13 +3350,6 @@ const CONFIG = {
     REFERRAL_COMMISSION_PERCENT: 10,
     WELCOME_BONUS: 100,
     
-    // Platform Bank Details (From Screenshot)
-    PLATFORM_BANK_DETAILS: {
-        bank_name: 'OPay',
-        account_name: 'JOSEPH INALEGWU ISRAEL',
-        account_number: '7072859483'
-    },
-    
     // File upload (must match backend)
     MAX_FILE_SIZE: 10 * 1024 * 1024, // 10MB
     ALLOWED_MIME_TYPES: {
@@ -3367,6 +3360,14 @@ const CONFIG = {
         'image/webp': 'webp',
         'application/pdf': 'pdf',
         'image/svg+xml': 'svg'
+    },
+
+    // Platform Bank Details (from screenshot)
+    PLATFORM_BANK_DETAILS: {
+        bank_name: "OPay",
+        account_name: "JOSEPH INALEGWU ISRAEL",
+        account_number: "7072859483",
+        note: "Use your registered name as depositor name"
     }
 };
 
@@ -3637,6 +3638,27 @@ class Utils {
     static generateId(prefix = 'id') {
         return `${prefix}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     }
+
+    // Calculate total earnings (daily interest + referral earnings)
+    static calculateTotalEarnings(user) {
+        if (!user) return 0;
+        const dailyEarnings = user.total_earnings || 0;
+        const referralEarnings = user.referral_earnings || 0;
+        return dailyEarnings + referralEarnings;
+    }
+
+    // Calculate withdrawable balance (daily earnings + referral earnings)
+    static calculateWithdrawableBalance(user) {
+        if (!user) return 0;
+        const dailyEarnings = user.total_earnings || 0;
+        const referralEarnings = user.referral_earnings || 0;
+        return dailyEarnings + referralEarnings;
+    }
+
+    // Check if user has bank details
+    static hasBankDetails(user) {
+        return user && user.bank_details && user.bank_details.account_number && user.bank_details.account_number.trim() !== '';
+    }
 }
 
 // ===== ENHANCED API SERVICE WITH PROPER FILE UPLOAD =====
@@ -3647,9 +3669,9 @@ class ApiService {
         
         Debug.debug('API', `[${requestId}] ${options.method || 'GET'} ${endpoint}`);
         
-        const headers = {
-            'Content-Type': 'application/json',
-            ...options.headers
+        // For FormData requests, don't set Content-Type header
+        const headers = options.body instanceof FormData ? {} : {
+            'Content-Type': 'application/json'
         };
         
         if (authToken) {
@@ -3755,7 +3777,6 @@ class ApiService {
             
             return this.request('/api/investments', {
                 method: 'POST',
-                headers: {}, // Let browser set Content-Type for FormData
                 body: formData
             });
         } else {
@@ -3786,7 +3807,6 @@ class ApiService {
             
             return this.request('/api/deposits', {
                 method: 'POST',
-                headers: {},
                 body: formData
             });
         } else {
@@ -3797,17 +3817,16 @@ class ApiService {
         }
     }
     
-    // Withdrawal endpoints - ENHANCED FOR AUTO-APPROVAL
+    // Withdrawal endpoints - FIXED: Send only amount and payment_method
     static async getWithdrawals(query = {}) {
         const params = new URLSearchParams(query).toString();
         return this.request(`/api/withdrawals${params ? `?${params}` : ''}`);
     }
     
-    static async createWithdrawal(withdrawalData) {
-        // IMPORTANT: Withdrawal now automatically approved if bank details exist
+    static async createWithdrawal(amount, payment_method = 'bank_transfer') {
         return this.request('/api/withdrawals', {
             method: 'POST',
-            body: JSON.stringify(withdrawalData)
+            body: JSON.stringify({ amount, payment_method })
         });
     }
     
@@ -3840,7 +3859,6 @@ class ApiService {
         
         return this.request('/api/kyc', {
             method: 'POST',
-            headers: {},
             body: formData
         });
     }
@@ -3865,7 +3883,6 @@ class ApiService {
             
             return this.request('/api/support', {
                 method: 'POST',
-                headers: {},
                 body: formData
             });
         } else {
@@ -3912,7 +3929,6 @@ class ApiService {
         
         return this.request('/api/upload', {
             method: 'POST',
-            headers: {},
             body: formData
         });
     }
@@ -3925,18 +3941,6 @@ class ApiService {
         } catch (error) {
             return false;
         }
-    }
-    
-    // Debug endpoints
-    static async getAdminStatus() {
-        return this.request('/api/debug/admin-status');
-    }
-    
-    static async createAdmin(email, password) {
-        return this.request('/api/debug/create-admin', {
-            method: 'POST',
-            body: JSON.stringify({ email, password })
-        });
     }
 }
 
@@ -4071,19 +4075,6 @@ class AuthManager {
             if (response.success) {
                 currentUser = response.data.user;
                 isAdmin = currentUser.role === 'admin' || currentUser.role === 'super_admin';
-                
-                // CRITICAL FIX: Ensure all financial fields exist
-                currentUser.balance = currentUser.balance || 0;
-                currentUser.total_earnings = currentUser.total_earnings || 0;
-                currentUser.referral_earnings = currentUser.referral_earnings || 0;
-                currentUser.total_deposits = currentUser.total_deposits || 0;
-                currentUser.total_withdrawals = currentUser.total_withdrawals || 0;
-                currentUser.total_investments = currentUser.total_investments || 0;
-                
-                // Calculate portfolio value
-                currentUser.portfolio_value = (currentUser.balance || 0) + 
-                                            (currentUser.total_earnings || 0) + 
-                                            (currentUser.referral_earnings || 0);
                 
                 // Update state
                 StateManager.set('currentUser', currentUser);
@@ -4372,7 +4363,7 @@ class Router {
     }
 }
 
-// ===== ENHANCED DASHBOARD MANAGER WITH PROPER EARNINGS CALCULATION =====
+// ===== ENHANCED DASHBOARD MANAGER =====
 class DashboardManager {
     static chartInstance = null;
     
@@ -4426,21 +4417,33 @@ class DashboardManager {
             // Calculate portfolio value (balance + total earnings + referral earnings)
             const portfolioValue = (user.balance || 0) + (user.total_earnings || 0) + (user.referral_earnings || 0);
             
+            // Calculate total earnings (daily interest + referral earnings)
+            const totalEarnings = Utils.calculateTotalEarnings(user);
+            
+            // Calculate withdrawable balance (daily earnings + referral earnings)
+            const withdrawableBalance = Utils.calculateWithdrawableBalance(user);
+            
             // Update total balance
             document.getElementById('totalBalance').textContent = Utils.formatCurrency(user.balance || 0);
             
             // Update active investments
             document.getElementById('activeInvestments').textContent = Utils.formatCurrency(stats.active_investment_value || 0);
             
-            // Update total earnings (CRITICAL FIX: Use total_earnings + referral_earnings)
-            const totalEarnings = (user.total_earnings || 0) + (user.referral_earnings || 0);
+            // Update total earnings (daily interest + referral)
             document.getElementById('totalEarnings').textContent = Utils.formatCurrency(totalEarnings);
+            document.getElementById('totalEarnings').parentElement.querySelector('.stat-label').textContent = 'Total Earnings';
             
             // Update total referrals
             document.getElementById('totalReferrals').textContent = user.referral_count || 0;
             
-            // Update available balance for withdrawals
-            document.getElementById('availableBalance').textContent = Utils.formatCurrency(user.balance || 0);
+            // Update available balance for withdrawals (withdrawable balance)
+            document.getElementById('availableBalance').textContent = Utils.formatCurrency(withdrawableBalance);
+            
+            // Add new stat for withdrawable balance if element exists
+            const withdrawableElement = document.getElementById('withdrawableBalance');
+            if (withdrawableElement) {
+                withdrawableElement.textContent = Utils.formatCurrency(withdrawableBalance);
+            }
             
             Debug.info('Dashboard', 'Dashboard stats updated successfully');
         } catch (error) {
@@ -5150,7 +5153,7 @@ class InvestmentManager {
     }
 }
 
-// ===== ENHANCED DEPOSIT MANAGER WITH PLATFORM BANK DETAILS =====
+// ===== ENHANCED DEPOSIT MANAGER =====
 class DepositManager {
     static async loadDeposits() {
         Debug.info('Deposit', 'Loading deposits...');
@@ -5164,7 +5167,6 @@ class DepositManager {
                 const deposits = response.data.deposits || [];
                 this.renderDepositsTable(deposits);
                 this.updateDepositStats(deposits);
-                this.displayPlatformBankDetails();
                 Debug.info('Deposit', `Loaded ${deposits.length} deposits`);
             } else {
                 Debug.warn('Deposit', 'Failed to load deposits:', response.message);
@@ -5175,84 +5177,6 @@ class DepositManager {
             this.showDepositError('Failed to load deposits');
         } finally {
             Utils.hideLoader();
-        }
-    }
-    
-    static displayPlatformBankDetails() {
-        Debug.info('Deposit', 'Displaying platform bank details...');
-        
-        const bankDetailsSection = document.getElementById('bankDetailsInfo');
-        if (!bankDetailsSection) return;
-        
-        try {
-            // Clear existing content
-            bankDetailsSection.innerHTML = '';
-            
-            // Add platform bank details
-            const platformDetailsHTML = `
-                <div class="platform-bank-details mb-4">
-                    <h5 class="mb-3">Platform Bank Details</h5>
-                    <div class="card bg-dark-card">
-                        <div class="card-body">
-                            <div class="bank-detail-item mb-2">
-                                <span class="text-muted">Bank Name:</span>
-                                <strong>${CONFIG.PLATFORM_BANK_DETAILS.bank_name}</strong>
-                            </div>
-                            <div class="bank-detail-item mb-2">
-                                <span class="text-muted">Account Name:</span>
-                                <strong>${CONFIG.PLATFORM_BANK_DETAILS.account_name}</strong>
-                            </div>
-                            <div class="bank-detail-item mb-3">
-                                <span class="text-muted">Account Number:</span>
-                                <strong>${CONFIG.PLATFORM_BANK_DETAILS.account_number}</strong>
-                            </div>
-                            <div class="alert alert-info mb-0">
-                                <i class="fas fa-info-circle mr-2"></i>
-                                <span>Transfer to this account and upload payment proof</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            bankDetailsSection.innerHTML += platformDetailsHTML;
-            
-            // Add user bank details if available
-            if (currentUser?.bank_details) {
-                const userDetailsHTML = `
-                    <div class="user-bank-details mt-4">
-                        <h5 class="mb-3">Your Bank Details</h5>
-                        <div class="card bg-dark-card">
-                            <div class="card-body">
-                                <div class="bank-detail-item mb-2">
-                                    <span class="text-muted">Bank Name:</span>
-                                    <strong>${currentUser.bank_details.bank_name || 'N/A'}</strong>
-                                </div>
-                                <div class="bank-detail-item mb-2">
-                                    <span class="text-muted">Account Name:</span>
-                                    <strong>${currentUser.bank_details.account_name || 'N/A'}</strong>
-                                </div>
-                                <div class="bank-detail-item mb-3">
-                                    <span class="text-muted">Account Number:</span>
-                                    <strong>${currentUser.bank_details.account_number || 'N/A'}</strong>
-                                </div>
-                                <div class="d-flex justify-between">
-                                    <span>Verification Status:</span>
-                                    <span class="badge ${currentUser.bank_details.verified ? 'badge-success' : 'badge-warning'}">
-                                        ${currentUser.bank_details.verified ? 'Verified' : 'Pending'}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                bankDetailsSection.innerHTML += userDetailsHTML;
-            }
-            
-            Debug.info('Deposit', 'Platform bank details displayed');
-        } catch (error) {
-            Debug.error('Deposit', 'Failed to display bank details:', error);
         }
     }
     
@@ -5324,10 +5248,10 @@ class DepositManager {
             const total = deposits.reduce((sum, deposit) => sum + (deposit.amount || 0), 0);
             const pending = deposits
                 .filter(d => d.status === 'pending')
-                .reduce((sum, deposit) => sum + (deposit.amount || 0), 0);
+                .reduce((sum, d) => sum + (d.amount || 0), 0);
             const approved = deposits
                 .filter(d => d.status === 'approved')
-                .reduce((sum, deposit) => sum + (deposit.amount || 0), 0);
+                .reduce((sum, d) => sum + (d.amount || 0), 0);
             
             document.getElementById('totalDeposits').textContent = Utils.formatCurrency(total);
             document.getElementById('pendingDeposits').textContent = Utils.formatCurrency(pending);
@@ -5364,19 +5288,6 @@ class DepositManager {
                 return;
             }
             
-            // CRITICAL: Validate file before upload
-            if (paymentProof) {
-                if (paymentProof.size > CONFIG.MAX_FILE_SIZE) {
-                    Utils.showNotification(`File size exceeds ${CONFIG.MAX_FILE_SIZE / 1024 / 1024}MB limit`, 'error');
-                    return;
-                }
-                
-                if (!CONFIG.ALLOWED_MIME_TYPES[paymentProof.type]) {
-                    Utils.showNotification('Invalid file type. Allowed: JPG, PNG, PDF, GIF, SVG', 'error');
-                    return;
-                }
-            }
-            
             const depositData = {
                 amount: amount,
                 payment_method: paymentMethod
@@ -5399,13 +5310,6 @@ class DepositManager {
                 if (form) form.reset();
                 
                 if (amountInput) amountInput.value = CONFIG.MIN_DEPOSIT;
-                
-                // Clear file preview
-                const preview = document.getElementById('paymentPreview');
-                if (preview) {
-                    preview.innerHTML = '';
-                    preview.classList.add('d-none');
-                }
                 
                 // Refresh deposits
                 await this.loadDeposits();
@@ -5471,9 +5375,71 @@ class DepositManager {
             `;
         }
     }
+
+    // Add platform bank details to deposit page
+    static showPlatformBankDetails() {
+        const bankDetailsContainer = document.getElementById('bankDetailsInfo');
+        if (!bankDetailsContainer) return;
+
+        const hasUserBankDetails = Utils.hasBankDetails(currentUser);
+        
+        if (hasUserBankDetails) {
+            // Show user's bank details
+            bankDetailsContainer.innerHTML = `
+                <div class="bank-details-card p-3 border rounded">
+                    <h6 class="mb-3">Your Bank Details</h6>
+                    <div class="mb-2">
+                        <small class="text-muted">Bank Name</small>
+                        <div>${currentUser.bank_details.bank_name || 'N/A'}</div>
+                    </div>
+                    <div class="mb-2">
+                        <small class="text-muted">Account Name</small>
+                        <div>${currentUser.bank_details.account_name || 'N/A'}</div>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted">Account Number</small>
+                        <div>${currentUser.bank_details.account_number || 'N/A'}</div>
+                    </div>
+                    <button class="btn btn-sm btn-outline w-100" data-action="add-bank-details">
+                        <i class="fas fa-edit"></i> Update Bank Details
+                    </button>
+                </div>
+            `;
+        } else {
+            // Show platform bank details for deposit
+            bankDetailsContainer.innerHTML = `
+                <div class="bank-details-card p-3 border rounded">
+                    <h6 class="mb-3">Platform Bank Details for Deposit</h6>
+                    <div class="alert alert-info mb-3">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <small>Transfer to the account below and upload payment proof</small>
+                    </div>
+                    <div class="mb-2">
+                        <small class="text-muted">Bank Name</small>
+                        <div class="font-weight-bold">${CONFIG.PLATFORM_BANK_DETAILS.bank_name}</div>
+                    </div>
+                    <div class="mb-2">
+                        <small class="text-muted">Account Name</small>
+                        <div class="font-weight-bold">${CONFIG.PLATFORM_BANK_DETAILS.account_name}</div>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted">Account Number</small>
+                        <div class="font-weight-bold">${CONFIG.PLATFORM_BANK_DETAILS.account_number}</div>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted">Note</small>
+                        <div class="small text-muted">${CONFIG.PLATFORM_BANK_DETAILS.note}</div>
+                    </div>
+                    <button class="btn btn-sm btn-outline w-100" data-action="add-bank-details">
+                        <i class="fas fa-plus"></i> Add Your Bank Details
+                    </button>
+                </div>
+            `;
+        }
+    }
 }
 
-// ===== ENHANCED WITHDRAWAL MANAGER WITH AUTO-APPROVAL =====
+// ===== ENHANCED WITHDRAWAL MANAGER =====
 class WithdrawalManager {
     static async loadWithdrawals() {
         Debug.info('Withdrawal', 'Loading withdrawals...');
@@ -5487,7 +5453,6 @@ class WithdrawalManager {
                 const withdrawals = response.data.withdrawals || [];
                 this.renderWithdrawalsTable(withdrawals);
                 this.updateWithdrawalStats(withdrawals);
-                this.setupWithdrawalForm();
                 Debug.info('Withdrawal', `Loaded ${withdrawals.length} withdrawals`);
             } else {
                 Debug.warn('Withdrawal', 'Failed to load withdrawals:', response.message);
@@ -5499,42 +5464,6 @@ class WithdrawalManager {
         } finally {
             Utils.hideLoader();
         }
-    }
-    
-    static setupWithdrawalForm() {
-        Debug.info('Withdrawal', 'Setting up withdrawal form...');
-        
-        const amountInput = document.getElementById('withdrawalAmount');
-        if (amountInput) {
-            amountInput.addEventListener('input', () => {
-                this.calculateWithdrawalFees();
-            });
-        }
-        
-        // Initial calculation
-        this.calculateWithdrawalFees();
-    }
-    
-    static calculateWithdrawalFees() {
-        const amountInput = document.getElementById('withdrawalAmount');
-        if (!amountInput) return;
-        
-        const amount = parseFloat(amountInput.value) || 0;
-        const platformFee = amount * (CONFIG.PLATFORM_FEE_PERCENT / 100);
-        const netAmount = amount - platformFee;
-        
-        const platformFeeElement = document.getElementById('platformFee');
-        const netAmountElement = document.getElementById('netAmount');
-        
-        if (platformFeeElement) {
-            platformFeeElement.textContent = Utils.formatCurrency(platformFee);
-        }
-        
-        if (netAmountElement) {
-            netAmountElement.textContent = Utils.formatCurrency(netAmount);
-        }
-        
-        Debug.debug('Withdrawal', 'Fees calculated:', { amount, platformFee, netAmount });
     }
     
     static renderWithdrawalsTable(withdrawals) {
@@ -5625,69 +5554,38 @@ class WithdrawalManager {
             Utils.showLoader('Processing withdrawal...');
             
             const amountInput = document.getElementById('withdrawalAmount');
-            const paymentMethodRadio = document.querySelector('input[name="withdrawMethod"]:checked');
             
-            if (!amountInput || !paymentMethodRadio) {
+            if (!amountInput) {
                 throw new Error('Required form elements not found');
             }
             
             const amount = parseFloat(amountInput.value) || 0;
-            const paymentMethod = paymentMethodRadio.value;
             
-            // Validate amount
             if (amount < CONFIG.MIN_WITHDRAWAL) {
                 Utils.showNotification(`Minimum withdrawal amount is ${Utils.formatCurrency(CONFIG.MIN_WITHDRAWAL)}`, 'error');
                 return;
             }
             
-            if (amount > (currentUser?.balance || 0)) {
-                Utils.showNotification('Insufficient balance', 'error');
+            // Calculate withdrawable balance (daily earnings + referral earnings)
+            const withdrawableBalance = Utils.calculateWithdrawableBalance(currentUser);
+            
+            if (amount > withdrawableBalance) {
+                Utils.showNotification(`Insufficient withdrawable balance. Available: ${Utils.formatCurrency(withdrawableBalance)}`, 'error');
                 return;
             }
             
-            // Check if withdrawal is from available earnings (daily interest + referral earnings)
-            const availableEarnings = (currentUser?.total_earnings || 0) + (currentUser?.referral_earnings || 0);
-            if (amount > availableEarnings) {
-                Utils.showNotification(`Maximum withdrawal from earnings is ${Utils.formatCurrency(availableEarnings)}`, 'error');
+            // Check if user has bank details
+            if (!Utils.hasBankDetails(currentUser)) {
+                Utils.showNotification('Please add your bank details in profile settings before making a withdrawal', 'error');
+                Router.navigateTo('profile');
                 return;
             }
             
-            let withdrawalData = {
-                amount: amount,
-                payment_method: paymentMethod
-            };
-            
-            // CRITICAL: Auto-use bank details if available (NO MORE "FILL IN DETAILS")
-            if (paymentMethod === 'bank_transfer' && currentUser?.bank_details) {
-                // Auto-use existing bank details
-                withdrawalData.bank_name = currentUser.bank_details.bank_name;
-                withdrawalData.account_name = currentUser.bank_details.account_name;
-                withdrawalData.account_number = currentUser.bank_details.account_number;
-                withdrawalData.bank_code = currentUser.bank_details.bank_code;
-            } else if (paymentMethod === 'bank_transfer' && !currentUser?.bank_details) {
-                Utils.showNotification('Please add bank details in your profile first', 'error');
-                return;
-            } else if (paymentMethod === 'crypto' && !currentUser?.wallet_address) {
-                Utils.showNotification('Please set your wallet address in profile settings', 'error');
-                return;
-            } else if (paymentMethod === 'paypal' && !currentUser?.paypal_email) {
-                Utils.showNotification('Please set your PayPal email in profile settings', 'error');
-                return;
-            }
-            
-            Debug.debug('Withdrawal', 'Withdrawal data:', withdrawalData);
-            
-            const response = await ApiService.createWithdrawal(withdrawalData);
+            // Simple withdrawal request - backend will use user's bank details
+            const response = await ApiService.createWithdrawal(amount, 'bank_transfer');
             
             if (response.success) {
-                Utils.showNotification('Withdrawal request submitted successfully! Sent for admin approval.', 'success');
-                
-                // Update user balance
-                if (currentUser) {
-                    currentUser.balance -= amount;
-                    StateManager.set('currentUser', currentUser);
-                    AuthManager.updateUI();
-                }
+                Utils.showNotification('Withdrawal request submitted successfully! It will be processed by admin.', 'success');
                 
                 // Reset form
                 const form = document.getElementById('withdrawalForm');
@@ -5707,6 +5605,90 @@ class WithdrawalManager {
             Utils.showError(error, 'Withdrawal Submission');
         } finally {
             Utils.hideLoader();
+        }
+    }
+    
+    // Update withdrawal form to show simplified interface
+    static updateWithdrawalForm() {
+        const withdrawalForm = document.getElementById('withdrawalForm');
+        if (!withdrawalForm) return;
+        
+        // Calculate withdrawable balance
+        const withdrawableBalance = Utils.calculateWithdrawableBalance(currentUser);
+        const hasBankDetails = Utils.hasBankDetails(currentUser);
+        
+        // Update available balance
+        const availableBalanceElement = document.getElementById('availableBalance');
+        if (availableBalanceElement) {
+            availableBalanceElement.textContent = Utils.formatCurrency(withdrawableBalance);
+        }
+        
+        // Update withdrawal details section
+        const withdrawalDetails = document.getElementById('withdrawalDetails');
+        if (withdrawalDetails) {
+            if (hasBankDetails) {
+                withdrawalDetails.innerHTML = `
+                    <div class="alert alert-success">
+                        <div class="d-flex align-start">
+                            <i class="fas fa-check-circle mt-1 mr-2"></i>
+                            <div>
+                                <h6 class="mb-2">Bank Details Verified</h6>
+                                <p class="small mb-1">Your withdrawal will be sent to your registered bank account:</p>
+                                <div class="bg-light p-2 rounded small">
+                                    <div><strong>Bank:</strong> ${currentUser.bank_details.bank_name}</div>
+                                    <div><strong>Account:</strong> ${currentUser.bank_details.account_name}</div>
+                                    <div><strong>Number:</strong> ${currentUser.bank_details.account_number}</div>
+                                </div>
+                                <p class="small mt-2 mb-0">To update bank details, go to <a href="#profile" class="text-primary">Profile Settings</a></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                withdrawalDetails.innerHTML = `
+                    <div class="alert alert-warning">
+                        <div class="d-flex align-start">
+                            <i class="fas fa-exclamation-triangle mt-1 mr-2"></i>
+                            <div>
+                                <h6 class="mb-2">Bank Details Required</h6>
+                                <p class="small mb-2">Please add your bank details to make withdrawals.</p>
+                                <a href="#profile" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-university"></i> Add Bank Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        // Update amount input max value
+        const amountInput = document.getElementById('withdrawalAmount');
+        if (amountInput) {
+            amountInput.max = withdrawableBalance;
+        }
+        
+        // Update fee calculation
+        this.calculateWithdrawalFees();
+    }
+    
+    static calculateWithdrawalFees() {
+        const amountInput = document.getElementById('withdrawalAmount');
+        if (!amountInput) return;
+        
+        const amount = parseFloat(amountInput.value) || 0;
+        const platformFee = amount * (CONFIG.PLATFORM_FEE_PERCENT / 100);
+        const netAmount = amount - platformFee;
+        
+        const platformFeeElement = document.getElementById('platformFee');
+        const netAmountElement = document.getElementById('netAmount');
+        
+        if (platformFeeElement) {
+            platformFeeElement.textContent = Utils.formatCurrency(platformFee);
+        }
+        
+        if (netAmountElement) {
+            netAmountElement.textContent = Utils.formatCurrency(netAmount);
         }
     }
     
@@ -5760,7 +5742,7 @@ class WithdrawalManager {
     }
 }
 
-// ===== ENHANCED TRANSACTION MANAGER WITH DAILY INTEREST TRACKING =====
+// ===== ENHANCED TRANSACTION MANAGER =====
 class TransactionManager {
     static async loadTransactions() {
         Debug.info('Transaction', 'Loading transactions...');
@@ -5813,18 +5795,12 @@ class TransactionManager {
                 const typeIcon = this.getTypeIcon(transaction.type);
                 const statusClass = this.getStatusClass(transaction.status);
                 
-                // Special styling for daily interest
-                const isDailyInterest = transaction.type === 'earning' && 
-                                      transaction.description?.includes('Daily interest');
-                const rowClass = isDailyInterest ? 'daily-interest-row' : '';
-                
                 return `
-                    <tr class="${rowClass}">
+                    <tr>
                         <td>${Utils.formatDateTime(transaction.createdAt)}</td>
                         <td>
                             <i class="fas ${typeIcon} mr-2"></i>
                             ${this.getTypeText(transaction.type)}
-                            ${isDailyInterest ? '<span class="badge badge-success ml-2">Daily</span>' : ''}
                         </td>
                         <td>${transaction.description || 'No description'}</td>
                         <td class="${isPositive ? 'text-success' : 'text-danger'}">
@@ -5845,21 +5821,6 @@ class TransactionManager {
             }).join('');
             
             container.innerHTML = transactionsHTML;
-            
-            // Add CSS for daily interest rows
-            if (!document.querySelector('#daily-interest-style')) {
-                const style = document.createElement('style');
-                style.id = 'daily-interest-style';
-                style.textContent = `
-                    .daily-interest-row {
-                        background-color: rgba(16, 185, 129, 0.05);
-                    }
-                    .daily-interest-row:hover {
-                        background-color: rgba(16, 185, 129, 0.1);
-                    }
-                `;
-                document.head.appendChild(style);
-            }
             
             Debug.info('Transaction', `Rendered ${transactions.length} transactions`);
         } catch (error) {
@@ -5891,16 +5852,6 @@ class TransactionManager {
             const netFlow = totalIncome - totalExpenses;
             const totalCount = transactions.length;
             
-            // Calculate daily interest total
-            const dailyInterestTotal = transactions
-                .filter(t => t.type === 'earning' && t.description?.includes('Daily interest'))
-                .reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0);
-            
-            // Calculate withdrawal total
-            const withdrawalTotal = transactions
-                .filter(t => t.type === 'withdrawal')
-                .reduce((sum, t) => sum + Math.abs(parseFloat(t.amount) || 0), 0);
-            
             document.getElementById('totalIncome').textContent = Utils.formatCurrency(totalIncome);
             document.getElementById('totalExpenses').textContent = Utils.formatCurrency(totalExpenses);
             document.getElementById('netFlow').textContent = Utils.formatCurrency(netFlow);
@@ -5910,9 +5861,7 @@ class TransactionManager {
                 totalIncome,
                 totalExpenses,
                 netFlow,
-                totalCount,
-                dailyInterestTotal,
-                withdrawalTotal
+                totalCount
             });
         } catch (error) {
             Debug.error('Transaction', 'Failed to update transaction stats:', error);
@@ -6079,488 +6028,38 @@ class ProfileManager {
                     profileAvatar.style.fontSize = '1.5rem';
                 }
             }
+
+            // Update bank details form
+            this.updateBankDetailsForm();
             
             Debug.info('Profile', 'Profile page updated');
         } catch (error) {
             Debug.error('Profile', 'Failed to update profile page:', error);
         }
     }
-}
 
-// ===== ENHANCED KYC MANAGER =====
-class KYCManager {
-    static async loadKYCStatus() {
-        Debug.info('KYC', 'Loading KYC status...');
-        
-        try {
-            Utils.showLoader('Loading KYC status...');
-            
-            const response = await ApiService.getKYCStatus();
-            
-            if (response.success) {
-                this.renderKYCStatus(response.data);
-                Debug.info('KYC', 'KYC status loaded successfully');
-            } else {
-                Debug.warn('KYC', 'Failed to load KYC status:', response.message);
-                this.showKYCError('Failed to load KYC status');
-            }
-        } catch (error) {
-            Debug.error('KYC', 'Failed to load KYC status:', error);
-            this.showKYCError('Failed to load KYC status');
-        } finally {
-            Utils.hideLoader();
-        }
-    }
-    
-    static renderKYCStatus(data) {
-        Debug.info('KYC', 'Rendering KYC status...', data);
-        
-        const container = document.getElementById('kycStatus');
-        if (!container) return;
-        
-        try {
-            const status = data.kyc_status || 'not_submitted';
-            const verified = data.kyc_verified || false;
-            const submission = data.kyc_submission;
-            
-            let statusHTML = '';
-            
-            switch(status) {
-                case 'not_submitted':
-                    statusHTML = `
-                        <div class="text-center py-4">
-                            <i class="fas fa-id-card fa-3x text-muted mb-3"></i>
-                            <h4 class="text-muted">KYC Not Submitted</h4>
-                            <p class="text-muted">Submit your KYC documents to verify your identity and unlock full platform features.</p>
-                            <button class="btn btn-primary mt-2" onclick="document.getElementById('kycForm').scrollIntoView({ behavior: 'smooth' })">
-                                <i class="fas fa-upload"></i> Submit KYC
-                            </button>
-                        </div>
-                    `;
-                    break;
-                case 'pending':
-                    statusHTML = `
-                        <div class="alert alert-warning">
-                            <div class="d-flex align-start">
-                                <i class="fas fa-clock fa-2x mr-3 mt-1"></i>
-                                <div>
-                                    <h4 class="alert-heading">KYC Under Review</h4>
-                                    <p>Your KYC documents are being reviewed. This typically takes 24-48 hours.</p>
-                                    <p class="mb-0"><strong>Submitted:</strong> ${Utils.formatDateTime(data.kyc_submitted_at)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                case 'verified':
-                    statusHTML = `
-                        <div class="alert alert-success">
-                            <div class="d-flex align-start">
-                                <i class="fas fa-check-circle fa-2x mr-3 mt-1"></i>
-                                <div>
-                                    <h4 class="alert-heading">KYC Verified</h4>
-                                    <p>Your identity has been successfully verified.</p>
-                                    <p class="mb-0"><strong>Verified:</strong> ${Utils.formatDateTime(data.kyc_verified_at)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                case 'rejected':
-                    statusHTML = `
-                        <div class="alert alert-danger">
-                            <div class="d-flex align-start">
-                                <i class="fas fa-times-circle fa-2x mr-3 mt-1"></i>
-                                <div>
-                                    <h4 class="alert-heading">KYC Rejected</h4>
-                                    <p>Your KYC submission was rejected. Reason: <strong>${submission?.rejection_reason || 'Not specified'}</strong></p>
-                                    <p>Please submit new documents following the requirements.</p>
-                                    <button class="btn btn-primary mt-2" onclick="document.getElementById('kycForm').scrollIntoView({ behavior: 'smooth' })">
-                                        <i class="fas fa-upload"></i> Resubmit KYC
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-            }
-            
-            container.innerHTML = statusHTML;
-            Debug.info('KYC', 'KYC status rendered:', status);
-        } catch (error) {
-            Debug.error('KYC', 'Failed to render KYC status:', error);
-            container.innerHTML = `
-                <div class="text-center py-4">
-                    <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                    <h4 class="text-warning">Failed to Load KYC Status</h4>
-                    <p class="text-muted">Please try again later.</p>
-                </div>
-            `;
-        }
-    }
-    
-    static async submitKYC(e) {
-        Debug.info('KYC', 'Submitting KYC documents...');
-        
-        if (e) e.preventDefault();
-        
-        try {
-            Utils.showLoader('Submitting KYC documents...');
-            
-            const idType = document.getElementById('idType');
-            const idNumber = document.getElementById('idNumber');
-            const idFront = document.getElementById('idFront');
-            const idBack = document.getElementById('idBack');
-            const selfieWithId = document.getElementById('selfieWithId');
-            const addressProof = document.getElementById('addressProof');
-            
-            if (!idType || !idNumber || !idFront || !selfieWithId) {
-                Utils.showNotification('Please fill all required fields', 'error');
-                return;
-            }
-            
-            const kycData = {
-                id_type: idType.value,
-                id_number: idNumber.value
-            };
-            
-            // Add files to kycData object
-            if (idFront.files[0]) kycData.id_front = idFront.files[0];
-            if (idBack.files[0]) kycData.id_back = idBack.files[0];
-            if (selfieWithId.files[0]) kycData.selfie_with_id = selfieWithId.files[0];
-            if (addressProof.files[0]) kycData.address_proof = addressProof.files[0];
-            
-            Debug.debug('KYC', 'KYC data to submit:', {
-                id_type: kycData.id_type,
-                id_number: kycData.id_number,
-                has_id_front: !!kycData.id_front,
-                has_id_back: !!kycData.id_back,
-                has_selfie: !!kycData.selfie_with_id,
-                has_address_proof: !!kycData.address_proof
-            });
-            
-            const response = await ApiService.submitKYC(kycData);
-            
-            if (response.success) {
-                Utils.showNotification('KYC documents submitted successfully!', 'success');
-                
-                // Reset form
-                const form = document.getElementById('kycForm');
-                if (form) form.reset();
-                
-                // Reload KYC status
-                await this.loadKYCStatus();
-                
-                Debug.info('KYC', 'KYC submitted successfully');
-            } else {
-                Utils.showNotification(response.message || 'KYC submission failed', 'error');
-            }
-        } catch (error) {
-            Debug.error('KYC', 'Failed to submit KYC:', error);
-            Utils.showError(error, 'KYC Submission');
-        } finally {
-            Utils.hideLoader();
-        }
-    }
-    
-    static showKYCError(message) {
-        const container = document.getElementById('kycStatus');
-        if (container) {
-            container.innerHTML = `
-                <div class="text-center py-4">
-                    <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                    <h4 class="text-warning">Failed to Load KYC Status</h4>
-                    <p class="text-muted">${message}</p>
-                    <button class="btn btn-primary mt-3" onclick="KYCManager.loadKYCStatus()">
-                        <i class="fas fa-redo"></i> Retry
-                    </button>
-                </div>
-            `;
-        }
-    }
-}
+    static updateBankDetailsForm() {
+        const bankNameInput = document.getElementById('bankName');
+        const accountNameInput = document.getElementById('accountName');
+        const accountNumberInput = document.getElementById('accountNumber');
+        const bankCodeInput = document.getElementById('bankCode');
+        const bankVerificationStatus = document.getElementById('bankVerificationStatus');
 
-// ===== ENHANCED SUPPORT MANAGER =====
-class SupportManager {
-    static async loadSupportTickets() {
-        Debug.info('Support', 'Loading support tickets...');
-        
-        try {
-            Utils.showLoader('Loading support tickets...');
+        if (currentUser.bank_details) {
+            if (bankNameInput) bankNameInput.value = currentUser.bank_details.bank_name || '';
+            if (accountNameInput) accountNameInput.value = currentUser.bank_details.account_name || '';
+            if (accountNumberInput) accountNumberInput.value = currentUser.bank_details.account_number || '';
+            if (bankCodeInput) bankCodeInput.value = currentUser.bank_details.bank_code || '';
             
-            const response = await ApiService.getSupportTickets();
-            
-            if (response.success) {
-                const tickets = response.data.tickets || [];
-                this.renderSupportTickets(tickets);
-                Debug.info('Support', `Loaded ${tickets.length} support tickets`);
-            } else {
-                Debug.warn('Support', 'Failed to load support tickets:', response.message);
-                this.showSupportError('Failed to load support tickets');
-            }
-        } catch (error) {
-            Debug.error('Support', 'Failed to load support tickets:', error);
-            this.showSupportError('Failed to load support tickets');
-        } finally {
-            Utils.hideLoader();
-        }
-    }
-    
-    static renderSupportTickets(tickets) {
-        Debug.info('Support', 'Rendering support tickets...');
-        
-        const container = document.getElementById('ticketsList');
-        if (!container) return;
-        
-        try {
-            if (!tickets || tickets.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-4">
-                        <i class="fas fa-headset fa-2x text-muted mb-3"></i>
-                        <h4 class="text-muted">No support tickets</h4>
-                        <p class="text-muted">Create your first support ticket if you need assistance.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            const ticketsHTML = tickets.map(ticket => {
-                const statusClass = this.getStatusClass(ticket.status);
-                const priorityClass = this.getPriorityClass(ticket.priority);
-                
-                return `
-                    <div class="ticket-item d-flex justify-between align-center p-3 border-bottom">
-                        <div class="flex-grow-1">
-                            <h6 class="mb-1">${ticket.subject || 'No subject'}</h6>
-                            <p class="text-muted small mb-1">${(ticket.message || '').substring(0, 100)}...</p>
-                            <div class="d-flex gap-3">
-                                <span class="badge ${statusClass}">${ticket.status || 'open'}</span>
-                                <span class="badge ${priorityClass}">${ticket.priority || 'medium'}</span>
-                                <span class="text-muted small">${Utils.formatDate(ticket.createdAt)}</span>
-                            </div>
-                        </div>
-                        <button class="btn btn-sm btn-secondary view-ticket" data-id="${ticket.ticket_id || ticket._id}">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                `;
-            }).join('');
-            
-            container.innerHTML = ticketsHTML;
-            
-            Debug.info('Support', `Rendered ${tickets.length} support tickets`);
-        } catch (error) {
-            Debug.error('Support', 'Failed to render support tickets:', error);
-            container.innerHTML = `
-                <div class="text-center py-4">
-                    <i class="fas fa-exclamation-triangle fa-2x text-warning mb-3"></i>
-                    <h4 class="text-warning">Failed to Load Tickets</h4>
-                    <p class="text-muted">Please try again later.</p>
-                </div>
-            `;
-        }
-    }
-    
-    static getStatusClass(status) {
-        const classes = {
-            open: 'badge-warning',
-            in_progress: 'badge-info',
-            resolved: 'badge-success',
-            closed: 'badge-secondary'
-        };
-        return classes[status] || 'badge-secondary';
-    }
-    
-    static getPriorityClass(priority) {
-        const classes = {
-            low: 'badge-success',
-            medium: 'badge-primary',
-            high: 'badge-warning',
-            urgent: 'badge-danger'
-        };
-        return classes[priority] || 'badge-secondary';
-    }
-    
-    static showSupportError(message) {
-        const container = document.getElementById('ticketsList');
-        if (container) {
-            container.innerHTML = `
-                <div class="text-center py-4">
-                    <i class="fas fa-exclamation-triangle fa-2x text-warning mb-3"></i>
-                    <h4 class="text-warning">Failed to Load Tickets</h4>
-                    <p class="text-muted">${message}</p>
-                    <button class="btn btn-primary mt-3" onclick="SupportManager.loadSupportTickets()">
-                        <i class="fas fa-redo"></i> Retry
-                    </button>
-                </div>
-            `;
-        }
-    }
-}
-
-// ===== ENHANCED REFERRAL MANAGER =====
-class ReferralManager {
-    static async loadReferralData() {
-        Debug.info('Referral', 'Loading referral data...');
-        
-        try {
-            Utils.showLoader('Loading referral data...');
-            
-            const response = await ApiService.getReferralStats();
-            
-            if (response.success) {
-                this.renderReferralStats(response.data);
-                
-                // Load referrals list
-                const referralsResponse = await ApiService.getReferrals();
-                if (referralsResponse.success) {
-                    const referrals = referralsResponse.data.referrals || [];
-                    this.renderReferralTable(referrals);
+            if (bankVerificationStatus) {
+                if (currentUser.bank_details.verified) {
+                    bankVerificationStatus.className = 'badge badge-success';
+                    bankVerificationStatus.textContent = 'Verified';
+                } else {
+                    bankVerificationStatus.className = 'badge badge-warning';
+                    bankVerificationStatus.textContent = 'Pending Verification';
                 }
-                
-                Debug.info('Referral', 'Referral data loaded successfully');
-            } else {
-                Debug.warn('Referral', 'Failed to load referral data:', response.message);
-                this.showReferralError('Failed to load referral data');
             }
-        } catch (error) {
-            Debug.error('Referral', 'Failed to load referral data:', error);
-            this.showReferralError('Failed to load referral data');
-        } finally {
-            Utils.hideLoader();
-        }
-    }
-    
-    static renderReferralStats(data) {
-        Debug.info('Referral', 'Rendering referral stats...', data);
-        
-        try {
-            const stats = data.stats || {};
-            
-            // Advanced referral stats
-            document.getElementById('totalReferralsCount').textContent = stats.total_referrals || 0;
-            document.getElementById('referralEarnings').textContent = Utils.formatCurrency(stats.referral_earnings || 0);
-            document.getElementById('commissionRate').textContent = `${stats.commission_rate || CONFIG.REFERRAL_COMMISSION_PERCENT}%`;
-            document.getElementById('pendingEarnings').textContent = Utils.formatCurrency(stats.pending_earnings || 0);
-            
-            // Update active referrals count
-            const activeReferralsElement = document.querySelector('.stat-card:nth-child(2) .stat-value');
-            if (activeReferralsElement) {
-                activeReferralsElement.textContent = stats.active_referrals || 0;
-            }
-            
-            // Update referral code and link
-            const referralCode = document.getElementById('referralCode');
-            const referralLink = document.getElementById('referralLink');
-            
-            if (referralCode && currentUser?.referral_code) {
-                referralCode.value = currentUser.referral_code;
-            }
-            
-            if (referralLink && currentUser?.referral_code) {
-                const link = `${window.location.origin}/#register?ref=${currentUser.referral_code}`;
-                referralLink.value = link;
-            }
-            
-            // Add copy functionality
-            const copyCodeBtn = document.getElementById('copyReferralCode');
-            const copyLinkBtn = document.getElementById('copyReferralLink');
-            
-            if (copyCodeBtn) {
-                copyCodeBtn.addEventListener('click', async () => {
-                    await Utils.copyToClipboard(currentUser?.referral_code || '');
-                });
-            }
-            
-            if (copyLinkBtn) {
-                copyLinkBtn.addEventListener('click', async () => {
-                    const link = `${window.location.origin}/#register?ref=${currentUser?.referral_code || ''}`;
-                    await Utils.copyToClipboard(link);
-                });
-            }
-            
-            Debug.info('Referral', 'Referral stats rendered successfully');
-        } catch (error) {
-            Debug.error('Referral', 'Failed to render referral stats:', error);
-        }
-    }
-    
-    static renderReferralTable(referrals) {
-        Debug.info('Referral', 'Rendering referral table...');
-        
-        const container = document.getElementById('referralsTable');
-        if (!container) return;
-        
-        try {
-            if (!referrals || referrals.length === 0) {
-                container.innerHTML = `
-                    <tr>
-                        <td colspan="5" class="text-center py-5">
-                            <i class="fas fa-users fa-2x text-muted mb-3"></i>
-                            <h4 class="text-muted">No referrals yet</h4>
-                            <p class="text-muted">Share your referral link to start earning!</p>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            const referralsHTML = referrals.map(referral => {
-                const user = referral.referred_user || {};
-                const statusClass = this.getStatusClass(referral.status);
-                
-                return `
-                    <tr>
-                        <td>${user.full_name || 'N/A'}</td>
-                        <td>${user.email || 'N/A'}</td>
-                        <td>${Utils.formatDate(referral.createdAt)}</td>
-                        <td><span class="badge ${statusClass}">${referral.status || 'pending'}</span></td>
-                        <td class="text-success">${Utils.formatCurrency(referral.earnings || 0)}</td>
-                    </tr>
-                `;
-            }).join('');
-            
-            container.innerHTML = referralsHTML;
-            Debug.info('Referral', `Rendered ${referrals.length} referrals`);
-        } catch (error) {
-            Debug.error('Referral', 'Failed to render referral table:', error);
-            container.innerHTML = `
-                <tr>
-                    <td colspan="5" class="text-center py-5">
-                        <i class="fas fa-exclamation-triangle fa-2x text-warning mb-3"></i>
-                        <h4 class="text-warning">Failed to Load</h4>
-                        <p class="text-muted">Please try again later.</p>
-                    </td>
-                </tr>
-            `;
-        }
-    }
-    
-    static getStatusClass(status) {
-        const classes = {
-            pending: 'badge-warning',
-            active: 'badge-success',
-            completed: 'badge-primary',
-            expired: 'badge-secondary'
-        };
-        return classes[status] || 'badge-secondary';
-    }
-    
-    static showReferralError(message) {
-        const container = document.getElementById('referralsTable');
-        if (container) {
-            container.innerHTML = `
-                <tr>
-                    <td colspan="5" class="text-center py-5">
-                        <i class="fas fa-exclamation-triangle fa-2x text-warning mb-3"></i>
-                        <h4 class="text-warning">Failed to Load Referrals</h4>
-                        <p class="text-muted">${message}</p>
-                        <button class="btn btn-primary mt-3" onclick="ReferralManager.loadReferralData()">
-                            <i class="fas fa-redo"></i> Retry
-                        </button>
-                    </td>
-                </tr>
-            `;
         }
     }
 }
@@ -6587,9 +6086,6 @@ class EventHandlers {
         
         // File preview handlers
         this.setupFilePreviews();
-        
-        // View proof/image handlers
-        this.setupViewHandlers();
         
         // Withdrawal amount calculation
         this.setupWithdrawalCalculation();
@@ -6807,59 +6303,19 @@ class EventHandlers {
                     const response = await ApiService.updateBankDetails(bankData);
                     
                     if (response.success) {
-                        Utils.showNotification('Bank details updated successfully!', 'success');
+                        Utils.showNotification('Bank details updated successfully! Withdrawals will use these details.', 'success');
                         await AuthManager.loadUserData();
+                        
+                        // Update withdrawal form if on withdrawal page
+                        if (Router.currentSection === 'withdrawals') {
+                            WithdrawalManager.updateWithdrawalForm();
+                        }
                     } else {
                         Utils.showNotification(response.message || 'Bank details update failed', 'error');
                     }
                 } catch (error) {
                     Debug.error('Profile', 'Failed to update bank details:', error);
                     Utils.showError(error, 'Bank Details Update');
-                } finally {
-                    Utils.hideLoader();
-                }
-            });
-        }
-        
-        // KYC form
-        const kycForm = document.getElementById('kycForm');
-        if (kycForm) {
-            kycForm.addEventListener('submit', (e) => {
-                KYCManager.submitKYC(e);
-            });
-        }
-        
-        // Support form
-        const supportForm = document.getElementById('supportForm');
-        if (supportForm) {
-            supportForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                try {
-                    Utils.showLoader('Submitting support ticket...');
-                    
-                    const ticketData = {
-                        subject: document.getElementById('ticketSubject')?.value || '',
-                        message: document.getElementById('ticketMessage')?.value || '',
-                        category: document.getElementById('ticketCategory')?.value || 'general',
-                        priority: document.getElementById('ticketPriority')?.value || 'medium'
-                    };
-                    
-                    const attachmentsInput = document.getElementById('ticketAttachments');
-                    const attachments = attachmentsInput ? Array.from(attachmentsInput.files) : [];
-                    
-                    const response = await ApiService.createSupportTicket(ticketData, attachments);
-                    
-                    if (response.success) {
-                        Utils.showNotification('Support ticket submitted successfully!', 'success');
-                        supportForm.reset();
-                        await SupportManager.loadSupportTickets();
-                    } else {
-                        Utils.showNotification(response.message || 'Support ticket submission failed', 'error');
-                    }
-                } catch (error) {
-                    Debug.error('Support', 'Failed to submit support ticket:', error);
-                    Utils.showError(error, 'Support Ticket Submission');
                 } finally {
                     Utils.hideLoader();
                 }
@@ -6919,12 +6375,7 @@ class EventHandlers {
     static setupFilePreviews() {
         // Payment proof preview
         this.setupFilePreview('paymentProof', 'paymentPreview');
-        this.setupFilePreview('idFront', 'idFrontPreview');
-        this.setupFilePreview('idBack', 'idBackPreview');
-        this.setupFilePreview('selfieWithId', 'selfiePreview');
-        this.setupFilePreview('addressProof', 'addressProofPreview');
         this.setupFilePreview('modalPaymentProof', 'modalPaymentProofPreview');
-        this.setupFilePreview('ticketAttachments', 'attachmentsPreview');
     }
     
     static setupFilePreview(inputId, previewId) {
@@ -6944,14 +6395,7 @@ class EventHandlers {
                 return;
             }
             
-            // For multiple files (attachments)
-            if (files.length > 1) {
-                Array.from(files).forEach(file => {
-                    this.createFilePreview(file, preview);
-                });
-            } else {
-                this.createFilePreview(files[0], preview);
-            }
+            this.createFilePreview(files[0], preview);
         });
     }
     
@@ -6982,8 +6426,6 @@ class EventHandlers {
             reader.readAsDataURL(file);
         } else if (file.type.includes('pdf')) {
             icon.className = 'fas fa-file-pdf text-danger';
-        } else if (file.type.includes('word') || file.type.includes('document')) {
-            icon.className = 'fas fa-file-word text-primary';
         } else {
             icon.className = 'fas fa-file text-secondary';
         }
@@ -7003,17 +6445,7 @@ class EventHandlers {
         removeBtn.onclick = () => {
             preview.remove();
             const input = container.previousElementSibling?.querySelector('input[type="file"]');
-            if (input) {
-                // Create a new file list without the removed file
-                const dt = new DataTransfer();
-                const files = input.files;
-                for (let i = 0; i < files.length; i++) {
-                    if (files[i].name !== file.name) {
-                        dt.items.add(files[i]);
-                    }
-                }
-                input.files = dt.files;
-            }
+            if (input) input.value = '';
             if (container.children.length === 0) {
                 container.classList.add('d-none');
             }
@@ -7022,76 +6454,6 @@ class EventHandlers {
         preview.appendChild(fileInfo);
         preview.appendChild(removeBtn);
         container.appendChild(preview);
-    }
-    
-    static setupViewHandlers() {
-        // View proof/image handlers
-        document.addEventListener('click', (e) => {
-            const viewBtn = e.target.closest('.view-proof');
-            if (viewBtn) {
-                e.preventDefault();
-                const url = viewBtn.getAttribute('data-url');
-                if (url) {
-                    this.showImageModal(url);
-                }
-            }
-        });
-    }
-    
-    static showImageModal(imageUrl) {
-        Debug.info('UI', 'Showing image modal:', imageUrl);
-        
-        // Create modal if it doesn't exist
-        let modal = document.getElementById('imageModal');
-        if (!modal) {
-            modal = document.createElement('div');
-            modal.id = 'imageModal';
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-backdrop"></div>
-                <div class="modal-content" style="max-width: 90%; max-height: 90%;">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Image Preview</h3>
-                        <button class="modal-close">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <img id="modalImage" src="" alt="Preview" style="width: 100%; height: auto; max-height: 70vh; object-fit: contain;">
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            
-            // Add close handlers
-            const closeBtn = modal.querySelector('.modal-close');
-            const backdrop = modal.querySelector('.modal-backdrop');
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-            
-            if (backdrop) {
-                backdrop.addEventListener('click', () => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-        }
-        
-        // Set image and show modal
-        const modalImage = modal.querySelector('#modalImage');
-        if (modalImage) {
-            modalImage.src = imageUrl;
-            modalImage.onerror = () => {
-                modalImage.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f0f0f0"/><text x="200" y="150" text-anchor="middle" fill="%23999" font-family="Arial" font-size="16">Image not available</text></svg>';
-                Utils.showNotification('Could not load image', 'warning');
-            };
-        }
-        
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
     }
     
     static setupWithdrawalCalculation() {
@@ -7104,97 +6466,15 @@ class EventHandlers {
     }
 }
 
-// ===== ENHANCED ADMIN MANAGER =====
-class AdminManager {
-    static async loadAdminDashboard() {
-        Debug.info('Admin', 'Loading admin dashboard...');
-        
-        if (!isAdmin) {
-            Utils.showNotification('Admin access required', 'error');
-            Router.navigateTo('dashboard');
-            return;
-        }
-        
-        try {
-            Utils.showLoader('Loading admin dashboard...');
-            
-            // Load admin stats
-            const profileResponse = await ApiService.getProfile();
-            
-            if (profileResponse.success) {
-                this.updateAdminStats(profileResponse.data);
-                Debug.info('Admin', 'Admin dashboard loaded successfully');
-            } else {
-                Debug.warn('Admin', 'Failed to load admin dashboard:', profileResponse.message);
-                this.showAdminError('Failed to load admin dashboard');
-            }
-        } catch (error) {
-            Debug.error('Admin', 'Failed to load admin dashboard:', error);
-            this.showAdminError('Failed to load admin dashboard');
-        } finally {
-            Utils.hideLoader();
-        }
-    }
-    
-    static updateAdminStats(data) {
-        Debug.info('Admin', 'Updating admin stats...', data);
-        
-        try {
-            const user = data.user || {};
-            const stats = data.stats || {};
-            
-            // Update admin stats (sample data - in production, this would come from admin API)
-            document.getElementById('adminTotalUsers').textContent = '0'; // Placeholder
-            document.getElementById('adminTotalDeposits').textContent = Utils.formatCurrency(stats.total_deposits || 0);
-            document.getElementById('adminTotalWithdrawals').textContent = Utils.formatCurrency(stats.total_withdrawals || 0);
-            document.getElementById('adminTotalInvestments').textContent = Utils.formatCurrency(stats.active_investment_value || 0);
-            
-            Debug.info('Admin', 'Admin stats updated successfully');
-        } catch (error) {
-            Debug.error('Admin', 'Failed to update admin stats:', error);
-        }
-    }
-    
-    static showAdminError(message) {
-        const container = document.querySelector('.admin-content');
-        if (container) {
-            container.innerHTML = `
-                <div class="text-center py-5">
-                    <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                    <h4 class="text-warning">Failed to Load Admin Dashboard</h4>
-                    <p class="text-muted">${message}</p>
-                    <button class="btn btn-primary mt-3" onclick="AdminManager.loadAdminDashboard()">
-                        <i class="fas fa-redo"></i> Retry
-                    </button>
-                </div>
-            `;
-        }
-    }
-}
-
-// ===== HEALTH CHECK =====
-async function checkAPIHealth() {
-    try {
-        const isHealthy = await ApiService.healthCheck();
-        if (!isHealthy) {
-            Debug.warn('Health', 'API health check failed');
-            Utils.showNotification('Connection issues detected. Some features may not work properly.', 'warning');
-        }
-    } catch (error) {
-        Debug.error('Health', 'Health check failed:', error);
-    }
-}
-
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
-    Debug.info('App', 'Initializing Raw Wealthy v38.0 - Production Ready Version...');
-    console.log('🚀 Raw Wealthy Frontend v38.0 - Production Ready');
+    Debug.info('App', 'Initializing Raw Wealthy v38.0 - Debugged Version...');
+    console.log('🚀 Raw Wealthy Frontend v38.0 - Debugged Version');
     console.log('📊 Debug Mode:', CONFIG.DEBUG_MODE);
     console.log('🔐 Auth Status:', authToken ? 'Logged In' : 'Logged Out');
     console.log('👤 Current User:', currentUser?.email || 'None');
     console.log('🌐 API Base URL:', CONFIG.API_BASE_URL);
-    console.log('🏦 Platform Bank:', CONFIG.PLATFORM_BANK_DETAILS.bank_name);
-    console.log('💰 Welcome Bonus:', CONFIG.WELCOME_BONUS);
+    console.log('💰 Platform Bank:', CONFIG.PLATFORM_BANK_DETAILS.account_number);
     console.log('============================================');
     
     // Initialize router and event handlers
@@ -7208,10 +6488,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         Debug.info('App', 'No user logged in, showing login page');
     }
-    
-    // Check API health periodically
-    checkAPIHealth();
-    setInterval(checkAPIHealth, 300000); // Every 5 minutes
     
     // Handle offline/online status
     window.addEventListener('online', () => {
@@ -7229,14 +6505,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Debug.warn('Network', 'Connection lost');
     });
     
-    // Auto-refresh data every 2 minutes when on dashboard
-    setInterval(() => {
-        if (authToken && Router.currentSection === 'dashboard') {
-            DashboardManager.loadDashboardData();
-        }
-    }, 120000);
-    
-    Debug.info('App', '✅ Raw Wealthy Frontend v38.0 - Production Ready Initialization Complete');
+    Debug.info('App', '✅ Raw Wealthy Frontend v38.0 - Debugged Version Initialization Complete');
 });
 
 // ===== GLOBAL ERROR HANDLING =====
@@ -7266,11 +6535,7 @@ window.RawWealthy = {
     DepositManager,
     WithdrawalManager,
     TransactionManager,
-    KYCManager,
-    SupportManager,
-    ReferralManager,
-    AdminManager,
-    EventHandlers,
+    ProfileManager,
     
     // Helper functions for external use
     login: AuthManager.login,
@@ -7278,188 +6543,20 @@ window.RawWealthy = {
     navigateTo: Router.navigateTo,
     showNotification: Utils.showNotification,
     formatCurrency: Utils.formatCurrency,
+    calculateTotalEarnings: Utils.calculateTotalEarnings,
+    calculateWithdrawableBalance: Utils.calculateWithdrawableBalance,
+    hasBankDetails: Utils.hasBankDetails,
     
     // Current state
     getCurrentUser: () => currentUser,
     getAuthToken: () => authToken,
     isAdmin: () => isAdmin,
-    getConfig: () => CONFIG,
     
     // Utility functions
     refreshDashboard: () => DashboardManager.loadDashboardData(),
     refreshInvestments: () => InvestmentManager.loadInvestments(),
     refreshDeposits: () => DepositManager.loadDeposits(),
-    refreshWithdrawals: () => WithdrawalManager.loadWithdrawals(),
-    refreshTransactions: () => TransactionManager.loadTransactions(),
-    
-    // Debug functions (only in development)
-    debugCreateAdmin: async (email, password) => {
-        if (CONFIG.DEBUG_MODE) {
-            try {
-                const response = await ApiService.createAdmin(email, password);
-                if (response.success) {
-                    Utils.showNotification('Admin created/debugged', 'success');
-                }
-                return response;
-            } catch (error) {
-                Debug.error('Debug', 'Admin debug failed:', error);
-                return { success: false, error: error.message };
-            }
-        } else {
-            Utils.showNotification('Debug mode required', 'warning');
-            return { success: false, message: 'Debug mode required' };
-        }
-    },
-    
-    debugAdminStatus: async () => {
-        if (CONFIG.DEBUG_MODE) {
-            try {
-                const response = await ApiService.getAdminStatus();
-                console.log('🔍 Admin Debug Status:', response);
-                return response;
-            } catch (error) {
-                Debug.error('Debug', 'Admin status check failed:', error);
-                return { success: false, error: error.message };
-            }
-        } else {
-            Utils.showNotification('Debug mode required', 'warning');
-            return { success: false, message: 'Debug mode required' };
-        }
-    }
-};
-
-// ===== ADDITIONAL UI ENHANCEMENTS =====
-document.addEventListener('DOMContentLoaded', () => {
-    // Add smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Add tooltip functionality
-    const tooltipElements = document.querySelectorAll('.tooltip');
-    tooltipElements.forEach(element => {
-        element.addEventListener('mouseenter', (e) => {
-            const tooltipText = element.getAttribute('data-tooltip');
-            if (tooltipText) {
-                const tooltip = document.createElement('div');
-                tooltip.className = 'custom-tooltip';
-                tooltip.textContent = tooltipText;
-                tooltip.style.position = 'absolute';
-                tooltip.style.background = 'var(--dark-card)';
-                tooltip.style.color = 'var(--text-primary)';
-                tooltip.style.padding = '8px 12px';
-                tooltip.style.borderRadius = '4px';
-                tooltip.style.fontSize = '12px';
-                tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-                tooltip.style.zIndex = '10000';
-                tooltip.style.maxWidth = '200px';
-                tooltip.style.whiteSpace = 'nowrap';
-                
-                document.body.appendChild(tooltip);
-                
-                const rect = element.getBoundingClientRect();
-                tooltip.style.top = (rect.top - tooltip.offsetHeight - 10) + 'px';
-                tooltip.style.left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
-                
-                element._tooltip = tooltip;
-            }
-        });
-        
-        element.addEventListener('mouseleave', () => {
-            if (element._tooltip) {
-                element._tooltip.remove();
-                element._tooltip = null;
-            }
-        });
-    });
-    
-    // Auto-update copyright year
-    const copyrightYear = document.querySelector('.footer-bottom');
-    if (copyrightYear) {
-        const currentYear = new Date().getFullYear();
-        copyrightYear.innerHTML = copyrightYear.innerHTML.replace('2024', currentYear);
-    }
-    
-    // Add loading animation to buttons on click
-    document.addEventListener('click', (e) => {
-        const button = e.target.closest('button');
-        if (button && !button.classList.contains('btn-icon')) {
-            const originalHTML = button.innerHTML;
-            button.innerHTML = '<span class="btn-loader"></span> ' + originalHTML;
-            
-            setTimeout(() => {
-                button.innerHTML = originalHTML;
-            }, 2000);
-        }
-    });
-});
-
-// Add CSS for button loader
-const style = document.createElement('style');
-style.textContent = `
-    .btn-loader {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        border-top-color: white;
-        animation: spin 1s linear infinite;
-        margin-right: 8px;
-        vertical-align: middle;
-    }
-    
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-    
-    .custom-tooltip {
-        position: absolute;
-        background: var(--dark-card);
-        color: var(--text-primary);
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        z-index: 10000;
-        max-width: 200px;
-        white-space: nowrap;
-        pointer-events: none;
-    }
-    
-    .daily-interest-row {
-        background-color: rgba(16, 185, 129, 0.05);
-    }
-    
-    .daily-interest-row:hover {
-        background-color: rgba(16, 185, 129, 0.1);
-    }
-    
-    .payment-method-option input[type="radio"] {
-        display: none;
-    }
-    
-    .payment-method-option label {
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    
-    .payment-method-option input[type="radio"]:checked + label {
-        border-color: var(--primary-color) !important;
-        background-color: rgba(124, 58, 237, 0.1);
-        box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
-    }
-`;
-document.head.appendChild(style);</script>
+    refreshWithdrawals: () => WithdrawalManager.loadWithdrawals()
+};</script>
 </body>
 </html>
- 
