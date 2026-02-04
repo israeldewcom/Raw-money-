@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Raw Wealthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C3AED;
+            --primary-dark: #5B21B6;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .legal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            background: var(--dark-card);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin: 2rem 0 0.8rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid var(--dark-border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .last-updated {
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="legal-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <span>Raw Wealthy</span>
+            </div>
+            <h1>Terms of Service</h1>
+            <p>Last Updated: January 15, 2024</p>
+        </div>
+    </div>
+    
+    <div class="legal-container">
+        <div class="content-card">
+            <div class="last-updated">
+                <i class="fas fa-info-circle"></i>
+                <strong>Important:</strong> Please read these Terms of Service carefully before using Raw Wealthy.
+            </div>
+            
+            <div class="section">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using Raw Wealthy ("Platform"), you accept and agree to be bound by the terms and provision of this agreement. In addition, when using this Platform's particular services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Eligibility:</strong> You must be at least 18 years old and have the legal capacity to enter into binding contracts to use our services. By using Raw Wealthy, you represent and warrant that you meet these requirements.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>2. Account Registration</h2>
+                <p>To access certain features of the Platform, you must register for an account. You agree to:</p>
+                <ul>
+                    <li>Provide accurate, current, and complete information during registration</li>
+                    <li>Maintain and promptly update your account information</li>
+                    <li>Maintain the security of your account credentials</li>
+                    <li>Accept responsibility for all activities that occur under your account</li>
+                    <li>Immediately notify us of any unauthorized use of your account</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. Investment Services</h2>
+                <p>Raw Wealthy provides a platform for investing in raw materials and other investment opportunities. You understand and acknowledge that:</p>
+                
+                <div class="warning-box">
+                    <p><strong>Investment Risk Warning:</strong> All investments carry risk. The value of investments can go down as well as up. Past performance is not indicative of future results. You may lose some or all of your invested capital.</p>
+                </div>
+                
+                <h3>3.1 Investment Plans</h3>
+                <p>We offer various investment plans with different durations and returns. The details of each plan are provided on the Platform. Returns are not guaranteed and are subject to market conditions.</p>
+                
+                <h3>3.2 Fees and Charges</h3>
+                <p>We charge the following fees:</p>
+                <ul>
+                    <li>Platform fee: 10% on withdrawals</li>
+                    <li>Transaction fees as disclosed at the time of transaction</li>
+                    <li>Any third-party payment processor fees</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>4. Deposits and Withdrawals</h2>
+                <h3>4.1 Deposits</h3>
+                <p>All deposits must be made through approved payment methods. Minimum deposit amount is ₦3,500. Deposits are subject to verification and may be delayed for security checks.</p>
+                
+                <h3>4.2 Withdrawals</h3>
+                <p>Withdrawal requests are processed within 24-48 hours. Minimum withdrawal amount is ₦3,500. Withdrawals are subject to KYC verification and platform fees.</p>
+            </div>
+            
+            <div class="section">
+                <h2>5. KYC Verification</h2>
+                <p>To comply with anti-money laundering regulations, we require Know Your Customer (KYC) verification for certain transactions. You agree to provide requested documentation promptly. Failure to complete KYC may restrict your account functionality.</p>
+            </div>
+            
+            <div class="section">
+                <h2>6. User Conduct</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the Platform for any illegal purpose</li>
+                    <li>Create multiple accounts</li>
+                    <li>Attempt to manipulate the Platform</li>
+                    <li>Share your account credentials</li>
+                    <li>Use automated systems to access the Platform</li>
+                    <li>Spread false information about the Platform</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>7. Intellectual Property</h2>
+                <p>All content on the Platform, including text, graphics, logos, and software, is our property or licensed to us and is protected by copyright and other intellectual property laws.</p>
+            </div>
+            
+            <div class="section">
+                <h2>8. Limitation of Liability</h2>
+                <p>To the maximum extent permitted by law, Raw Wealthy shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the Platform.</p>
+            </div>
+            
+            <div class="section">
+                <h2>9. Termination</h2>
+                <p>We may terminate or suspend your account at any time without prior notice for conduct that we believe violates these Terms or is harmful to other users, us, or third parties, or for any other reason.</p>
+            </div>
+            
+            <div class="section">
+                <h2>10. Changes to Terms</h2>
+                <p>We reserve the right to modify these Terms at any time. We will notify you of changes by posting the new Terms on this page and updating the "Last Updated" date.</p>
+            </div>
+            
+            <div class="section">
+                <h2>11. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of Nigeria, without regard to its conflict of law provisions.</p>
+            </div>
+            
+            <div class="section">
+                <h2>12. Contact Information</h2>
+                <p>For questions about these Terms, please contact us:</p>
+                <ul>
+                    <li>Email: legal@rawwealthy.com</li>
+                    <li>Address: [Company Address], Lagos, Nigeria</li>
+                </ul>
+            </div>
+            
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Raw Wealthy. All rights reserved.</p>
+            <p>This document is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </div>
+</body>
+</html>
