@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Raw Wealthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C3AED;
+            --primary-dark: #5B21B6;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .legal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            background: var(--dark-card);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin: 2rem 0 0.8rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid var(--dark-border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .privacy-notice {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10B981;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(30, 41, 59, 0.5);
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            border: 1px solid var(--dark-border);
+            text-align: left;
+        }
+        
+        .data-table th {
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            color: var(--text-secondary);
+        }
+        
+        .rights-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="legal-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <span>Raw Wealthy</span>
+            </div>
+            <h1>Privacy Policy</h1>
+            <p>Last Updated: January 15, 2024</p>
+        </div>
+    </div>
+    
+    <div class="legal-container">
+        <div class="content-card">
+            <div class="privacy-notice">
+                <p><i class="fas fa-shield-alt"></i> <strong>Your Privacy Matters:</strong> We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our Platform.</p>
+            </div>
+            
+            <div class="section">
+                <h2>1. Information We Collect</h2>
+                <h3>1.1 Personal Information</h3>
+                <p>When you register and use our Platform, we collect:</p>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full name</td>
+                            <td>Account identification and KYC verification</td>
+                        </tr>
+                        <tr>
+                            <td>Email address</td>
+                            <td>Account access and communication</td>
+                        </tr>
+                        <tr>
+                            <td>Phone number</td>
+                            <td>Account verification and security</td>
+                        </tr>
+                        <tr>
+                            <td>Date of birth</td>
+                            <td>Age verification and compliance</td>
+                        </tr>
+                        <tr>
+                            <td>Bank details</td>
+                            <td>Withdrawal processing</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>1.2 KYC Documents</h3>
+                <p>For compliance purposes, we collect:</p>
+                <ul>
+                    <li>Government-issued ID (passport, driver's license, etc.)</li>
+                    <li>Proof of address documents</li>
+                    <li>Selfie with ID for verification</li>
+                </ul>
+                
+                <h3>1.3 Financial Information</h3>
+                <p>We collect information about your:</p>
+                <ul>
+                    <li>Investment activities</li>
+                    <li>Deposit and withdrawal transactions</li>
+                    <li>Earnings and balances</li>
+                </ul>
+                
+                <h3>1.4 Technical Information</h3>
+                <p>Automatically collected data includes:</p>
+                <ul>
+                    <li>IP address and device information</li>
+                    <li>Browser type and version</li>
+                    <li>Usage patterns and preferences</li>
+                    <li>Cookies and tracking data</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>2. How We Use Your Information</h2>
+                <p>We use your personal information for the following purposes:</p>
+                <ul>
+                    <li>To provide and maintain our Platform</li>
+                    <li>To process your investments and transactions</li>
+                    <li>To verify your identity for security purposes</li>
+                    <li>To communicate with you about your account</li>
+                    <li>To comply with legal obligations</li>
+                    <li>To improve our services and user experience</li>
+                    <li>To prevent fraud and unauthorized activities</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. Data Sharing and Disclosure</h2>
+                <p>We may share your information with:</p>
+                
+                <h3>3.1 Service Providers</h3>
+                <p>Third-party providers who assist with:</p>
+                <ul>
+                    <li>Payment processing</li>
+                    <li>KYC verification services</li>
+                    <li>Cloud hosting and infrastructure</li>
+                    <li>Customer support services</li>
+                </ul>
+                
+                <h3>3.2 Legal Requirements</h3>
+                <p>We may disclose your information when required by law, such as:</p>
+                <ul>
+                    <li>To comply with legal processes</li>
+                    <li>To respond to government requests</li>
+                    <li>To protect our rights and property</li>
+                    <li>To prevent fraud or security issues</li>
+                </ul>
+                
+                <h3>3.3 Business Transfers</h3>
+                <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of the transaction.</p>
+            </div>
+            
+            <div class="section">
+                <h2>4. Data Security</h2>
+                <p>We implement appropriate technical and organizational security measures to protect your personal information, including:</p>
+                <ul>
+                    <li>SSL encryption for data transmission</li>
+                    <li>Secure server infrastructure</li>
+                    <li>Regular security audits</li>
+                    <li>Access controls and authentication</li>
+                    <li>Data encryption at rest</li>
+                </ul>
+                
+                <div class="rights-box">
+                    <p><strong>Security Responsibility:</strong> While we implement strong security measures, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>5. Your Rights</h2>
+                <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                
+                <h3>5.1 Access and Correction</h3>
+                <p>You can access and update your personal information through your account settings.</p>
+                
+                <h3>5.2 Data Portability</h3>
+                <p>You can request a copy of your personal data in a structured, commonly used format.</p>
+                
+                <h3>5.3 Deletion</h3>
+                <p>You can request deletion of your personal information, subject to legal retention requirements.</p>
+                
+                <h3>5.4 Opt-Out</h3>
+                <p>You can opt-out of marketing communications by updating your preferences or contacting us.</p>
+            </div>
+            
+            <div class="section">
+                <h2>6. Cookies and Tracking</h2>
+                <p>We use cookies and similar tracking technologies to:</p>
+                <ul>
+                    <li>Remember your preferences</li>
+                    <li>Analyze Platform usage</li>
+                    <li>Improve our services</li>
+                    <li>Provide personalized content</li>
+                </ul>
+                
+                <p>You can control cookies through your browser settings. However, disabling cookies may affect Platform functionality.</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. Data Retention</h2>
+                <p>We retain your personal information for as long as necessary to:</p>
+                <ul>
+                    <li>Provide services to you</li>
+                    <li>Comply with legal obligations</li>
+                    <li>Resolve disputes</li>
+                    <li>Enforce our agreements</li>
+                </ul>
+                
+                <p>Financial and transaction data is retained for a minimum of 5 years as required by financial regulations.</p>
+            </div>
+            
+            <div class="section">
+                <h2>8. International Data Transfers</h2>
+                <p>Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers.</p>
+            </div>
+            
+            <div class="section">
+                <h2>9. Children's Privacy</h2>
+                <p>Our Platform is not intended for individuals under 18 years of age. We do not knowingly collect personal information from children.</p>
+            </div>
+            
+            <div class="section">
+                <h2>10. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy periodically. We will notify you of significant changes by posting the new policy on this page and updating the "Last Updated" date.</p>
+            </div>
+            
+            <div class="section">
+                <h2>11. Contact Us</h2>
+                <p>For privacy-related questions or concerns, please contact our Data Protection Officer:</p>
+                <ul>
+                    <li>Email: privacy@rawwealthy.com</li>
+                    <li>Address: [Company Address], Lagos, Nigeria</li>
+                    <li>Phone: +234 906 123 4567</li>
+                </ul>
+            </div>
+            
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Raw Wealthy. All rights reserved.</p>
+            <p>This Privacy Policy complies with GDPR, CCPA, and Nigerian Data Protection Regulation.</p>
+        </div>
+    </div>
+</body>
+</html>
