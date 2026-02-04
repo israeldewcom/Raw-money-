@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Raw Wealthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C3AED;
+            --primary-dark: #5B21B6;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0V100H1000V0Z" fill="%237C3AED" opacity="0.05"/></svg>');
+            background-size: cover;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .stat-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--dark-border);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .section {
+            margin-bottom: 5rem;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .job-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .job-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+        }
+        
+        .job-type {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .job-details {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .job-detail i {
+            color: var(--primary-color);
+        }
+        
+        .job-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .job-tag {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .benefit-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .benefit-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .culture-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .culture-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .culture-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .application-form-container {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid var(--dark-border);
+            margin: 3rem 0;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dark-bg);
+            border: 2px solid var(--dark-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--dark-border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        
+        .file-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .file-label i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--dark-border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .faq-section {
+            margin: 4rem 0;
+        }
+        
+        .faq-item {
+            background: var(--dark-card);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--dark-border);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .department-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--dark-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 0 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid,
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .application-form-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <span>Raw Wealthy</span>
+            </div>
+            <h1>Join Our Team</h1>
+            <p class="subtitle">Build the future of investment with us. We're looking for passionate individuals to help transform how Africa invests.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <div class="stat-number">8</div>
+                <div class="stat-label">African Countries</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="stat-number">96%</div>
+                <div class="stat-label">Employee Satisfaction</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="stat-number">15x</div>
+                <div class="stat-label">Growth in 3 Years</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Open Positions</h2>
+            <p class="section-subtitle">Explore opportunities across our growing teams</p>
+            
+            <div class="department-filter">
+                <button class="filter-btn active" data-filter="all">All Departments</button>
+                <button class="filter-btn" data-filter="engineering">Engineering</button>
+                <button class="filter-btn" data-filter="finance">Finance</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" data-filter="operations">Operations</button>
+                <button class="filter-btn" data-filter="compliance">Compliance</button>
+            </div>
+            
+            <div class="jobs-grid">
+                <!-- Engineering Jobs -->
+                <div class="job-card" data-department="engineering">
+                    <div class="job-header">
+                        <h3 class="job-title">Senior Backend Engineer</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Lagos, Nigeria</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>5+ years experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Posted 2 days ago</span>
+                        </div>
+                    </div>
+                    <p class="job-description">Design and build scalable backend systems for our investment platform. Work with Node.js, Python, and microservices architecture.</p>
+                    <div class="job-tags">
+                        <span class="job-tag">Node.js</span>
+                        <span class="job-tag">Python</span>
+                        <span class="job-tag">AWS</span>
+                        <span class="job-tag">Microservices</span>
+                    </div>
+                    <a href="#apply" class="btn btn-primary">Apply Now</a>
+                </div>
+                
+                <div class="job-card" data-department="engineering">
+                    <div class="job-header">
+                        <h3 class="job-title">Frontend Developer</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Remote (Africa)</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>3+ years experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Posted 1 week ago</span>
+                        </div>
+                    </div>
+                    <p class="job-description">Build beautiful, responsive user interfaces for our investment platform using modern JavaScript frameworks.</p>
+                    <div class="job-tags">
+                        <span class="job-tag">React</span>
+                        <span class="job-tag">TypeScript</span>
+                        <span class="job-tag">Next.js</span>
+                        <span class="job-tag">Tailwind CSS</span>
+                    </div>
+                    <a href="#apply" class="btn btn-primary">Apply Now</a>
+                </div>
+                
+                <!-- Finance Jobs -->
+                <div class="job-card" data-department="finance">
+                    <div class="job-header">
+                        <h3 class="job-title">Investment Analyst</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Lagos, Nigeria</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>4+ years experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Posted 3 days ago</span>
+                        </div>
+                    </div>
+                    <p class="job-description">Analyze raw material markets and identify investment opportunities. Prepare reports and recommendations for investors.</p>
+                    <div class="job-tags">
+                        <span class="job-tag">Financial Analysis</span>
+                        <span class="job-tag">Commodities</span>
+                        <span class="job-tag">Market Research</span>
+                        <span class="job-tag">Excel</span>
+                    </div>
+                    <a href="#apply" class="btn btn-primary">Apply Now</a>
+                </div>
+                
+                <!-- Marketing Jobs -->
+                <div class="job-card" data-department="marketing">
+                    <div class="job-header">
+                        <h3 class="job-title">Growth Marketing Manager</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Remote</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>5+ years experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Posted 5 days ago</span>
+                        </div>
+                    </div>
+                    <p class="job-description">Develop and execute growth strategies to acquire and retain investors across African markets.</p>
+                    <div class="job-tags">
+                        <span class="job-tag">Digital Marketing</span>
+                        <span class="job-tag">Growth Hacking</span>
+                        <span class="job-tag">Analytics</span>
+                        <span class="job-tag">CRM</span>
+                    </div>
+                    <a href="#apply" class="btn btn-primary">Apply Now</a>
+                </div>
+                
+                <!-- Operations Jobs -->
+                <div class="job-card" data-department="operations">
+                    <div class="job-header">
+                        <h3 class="job-title">Customer Support Lead</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Lagos, Nigeria</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>3+ years experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Posted 1 week ago</span>
+                        </div>
+                    </div>
+                    <p class="job-description">Lead our customer support team and ensure exceptional service delivery to our investors.</p>
+                    <div class="job-tags">
+                        <span class="job-tag">Customer Service</span>
+                        <span class="job-tag">Team Leadership</span>
+                        <span class="job-tag">Zendesk</span>
+                        <span class="job-tag">Process Improvement</span>
+                    </div>
+                    <a href="#apply" class="btn btn-primary">Apply Now</a>
+                </div>
+                
+                <!-- Compliance Jobs -->
+                <div class="job-card" data-department="compliance">
+                    <div class="job-header">
+                        <h3 class="job-title">AML Compliance Officer</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Lagos, Nigeria</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>4+ years experience</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Posted 2 days ago</span>
+                        </div>
+                    </div>
+                    <p class="job-description">Ensure compliance with anti-money laundering regulations and develop compliance programs.</p>
+                    <div class="job-tags">
+                        <span class="job-tag">AML</span>
+                        <span class="job-tag">KYC</span>
+                        <span class="job-tag">Regulatory Compliance</span>
+                        <span class="job-tag">Risk Management</span>
+                    </div>
+                    <a href="#apply" class="btn btn-primary">Apply Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Why Join Raw Wealthy?</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="benefit-title">Competitive Compensation</h3>
+                    <p>Above-market salaries, bonuses, and equity options for key roles.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="benefit-title">Health & Wellness</h3>
+                    <p>Comprehensive health insurance and wellness programs for you and your family.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="benefit-title">Learning & Development</h3>
+                    <p>Annual training budget, conferences, and continuous learning opportunities.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3 class="benefit-title">Flexible Work</h3>
+                    <p>Remote work options, flexible hours, and generous vacation policy.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Our Culture</h2>
+            
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-image">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="culture-title">Innovation Driven</h3>
+                    <p>We encourage creativity and experimentation. Every team member has a voice in shaping our products.</p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-image">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="culture-title">Collaborative Environment</h3>
+                    <p>Cross-functional teams work together to solve complex problems and deliver exceptional results.</p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="culture-title">Growth Mindset</h3>
+                    <p>We invest in our people's growth through mentorship, training, and clear career progression paths.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="apply">
+            <h2 class="section-title">Apply Now</h2>
+            <p class="section-subtitle">Submit your application and join our team of innovators</p>
+            
+            <div class="application-form-container">
+                <form id="applicationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">First Name *</label>
+                            <input type="text" id="firstName" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="position">Position Applying For *</label>
+                        <select id="position" class="form-control" required>
+                            <option value="">Select a position</option>
+                            <option value="senior-backend-engineer">Senior Backend Engineer</option>
+                            <option value="frontend-developer">Frontend Developer</option>
+                            <option value="investment-analyst">Investment Analyst</option>
+                            <option value="growth-marketing-manager">Growth Marketing Manager</option>
+                            <option value="customer-support-lead">Customer Support Lead</option>
+                            <option value="aml-compliance-officer">AML Compliance Officer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="coverLetter">Cover Letter *</label>
+                        <textarea id="coverLetter" class="form-control" placeholder="Tell us why you're interested in this position and why you'd be a great fit..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Resume / CV *</label>
+                        <div class="file-upload">
+                            <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+                            <label for="resume" class="file-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Click to upload your resume (PDF, DOC, DOCX)</span>
+                                <span style="font-size: 0.9rem;">Maximum file size: 10MB</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Portfolio or Additional Files</label>
+                        <div class="file-upload">
+                            <input type="file" id="portfolio" multiple>
+                            <label for="portfolio" class="file-label">
+                                <i class="fas fa-file"></i>
+                                <span>Additional files (optional)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="linkedin">LinkedIn Profile</label>
+                        <input type="url" id="linkedin" class="form-control" placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="source">How did you hear about us?</label>
+                        <select id="source" class="form-control">
+                            <option value="">Select an option</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="job-board">Job Board</option>
+                            <option value="referral">Employee Referral</option>
+                            <option value="website">Company Website</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is the hiring process like?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Our hiring process typically includes: 1) Initial resume screening, 2) Phone screening with HR, 3) Technical/role-specific assessment, 4) Interviews with team members, 5) Final interview with leadership, 6) Reference checks, and 7) Offer.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you offer remote work options?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes, we offer flexible work arrangements. Many roles are fully remote, while others are hybrid or office-based depending on the position requirements and team needs.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What benefits do you offer?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We offer comprehensive benefits including competitive salary, health insurance, retirement plans, annual bonuses, equity options, generous vacation time, professional development budget, and wellness programs.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you sponsor work visas?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We sponsor work visas for exceptional candidates in key roles. However, our primary focus is on candidates already authorized to work in our operating countries.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is the typical response time after applying?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We aim to review applications within 1-2 weeks and will contact shortlisted candidates within that timeframe. Due to the volume of applications, we may not be able to respond to all applicants.
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Raw Wealthy. All rights reserved.</p>
+            <p>Raw Wealthy is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees.</p>
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Department filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const jobCards = document.querySelectorAll('.job-card');
+                
+                jobCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.department === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                const icon = question.querySelector('i');
+                if (item.classList.contains('active')) {
+                    icon.className = 'fas fa-chevron-up';
+                } else {
+                    icon.className = 'fas fa-chevron-down';
+                }
+            });
+        });
+        
+        // File upload preview
+        document.getElementById('resume').addEventListener('change', function(e) {
+            const fileLabel = this.nextElementSibling;
+            if (this.files.length > 0) {
+                const fileName = this.files[0].name;
+                fileLabel.innerHTML = `
+                    <i class="fas fa-check-circle" style="color: #10B981;"></i>
+                    <span>${fileName}</span>
+                    <span style="font-size: 0.9rem;">File uploaded successfully</span>
+                `;
+            }
+        });
+        
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                position: document.getElementById('position').value,
+                coverLetter: document.getElementById('coverLetter').value,
+                linkedin: document.getElementById('linkedin').value,
+                source: document.getElementById('source').value
+            };
+            
+            // Here you would normally send this to your backend
+            // For demo purposes, we'll show a success message
+            alert('Thank you for your application! We will review it and get back to you within 2 weeks.');
+            this.reset();
+            
+            // Reset file upload labels
+            document.querySelectorAll('.file-label').forEach(label => {
+                label.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Click to upload</span>
+                `;
+            });
+        });
+        
+        // Smooth scroll to application form
+        document.querySelectorAll('a[href="#apply"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('apply').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
