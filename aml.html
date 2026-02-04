@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AML Policy | Raw Wealthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C3AED;
+            --primary-dark: #5B21B6;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .legal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            background: var(--dark-card);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin: 2rem 0 0.8rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid var(--dark-border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .compliance-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10B981;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #EF4444;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .procedure-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .red-flag {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="legal-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <span>Raw Wealthy</span>
+            </div>
+            <h1>Anti-Money Laundering Policy</h1>
+            <p>Last Updated: January 15, 2024</p>
+        </div>
+    </div>
+    
+    <div class="legal-container">
+        <div class="content-card">
+            <div class="compliance-box">
+                <p><i class="fas fa-balance-scale"></i> <strong>Compliance Statement:</strong> Raw Wealthy is committed to preventing money laundering and terrorist financing activities. We comply with all applicable anti-money laundering (AML) and counter-terrorist financing (CTF) regulations.</p>
+            </div>
+            
+            <div class="section">
+                <h2>1. Policy Overview</h2>
+                <p>This Anti-Money Laundering (AML) Policy outlines our commitment and procedures to prevent money laundering, terrorist financing, and other illegal activities through our Platform.</p>
+                
+                <h3>1.1 Objectives</h3>
+                <p>Our AML program aims to:</p>
+                <ul>
+                    <li>Prevent the Platform from being used for money laundering or terrorist financing</li>
+                    <li>Ensure compliance with all applicable AML/CTF laws and regulations</li>
+                    <li>Protect our users and the integrity of our Platform</li>
+                    <li>Implement robust customer due diligence procedures</li>
+                    <li>Establish suspicious activity monitoring and reporting mechanisms</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>2. Customer Due Diligence (CDD)</h2>
+                <p>We implement a risk-based approach to customer due diligence. All users must complete verification before conducting certain transactions.</p>
+                
+                <div class="procedure-box">
+                    <h3>2.1 Identification Requirements</h3>
+                    <p>We require the following from all users:</p>
+                    <ul>
+                        <li>Full legal name and date of birth</li>
+                        <li>Residential address</li>
+                        <li>Government-issued photo identification</li>
+                        <li>Proof of address (utility bill, bank statement)</li>
+                        <li>Source of funds verification</li>
+                    </ul>
+                </div>
+                
+                <h3>2.2 Enhanced Due Diligence (EDD)</h3>
+                <p>Enhanced due diligence is required for:</p>
+                <ul>
+                    <li>High-value transactions (above regulatory thresholds)</li>
+                    <li>Politically Exposed Persons (PEPs)</li>
+                    <li>Users from high-risk jurisdictions</li>
+                    <li>Unusual transaction patterns</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. Ongoing Monitoring</h2>
+                <p>We continuously monitor user activity for suspicious behavior. Our monitoring systems track:</p>
+                
+                <div class="red-flag">
+                    <i class="fas fa-flag"></i>
+                    <div>
+                        <strong>Red Flag Indicators:</strong> Large, unusual, or suspicious transactions
+                    </div>
+                </div>
+                
+                <div class="red-flag">
+                    <i class="fas fa-flag"></i>
+                    <div>
+                        <strong>Red Flag Indicators:</strong> Rapid movement of funds without clear business purpose
+                    </div>
+                </div>
+                
+                <div class="red-flag">
+                    <i class="fas fa-flag"></i>
+                    <div>
+                        <strong>Red Flag Indicators:</strong> Use of multiple accounts or third parties
+                    </div>
+                </div>
+                
+                <div class="red-flag">
+                    <i class="fas fa-flag"></i>
+                    <div>
+                        <strong>Red Flag Indicators:</strong> Attempts to avoid reporting thresholds
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>4. Transaction Monitoring</h2>
+                <h3>4.1 Transaction Limits</h3>
+                <p>We implement the following transaction limits:</p>
+                <ul>
+                    <li>Daily deposit limit: ₦500,000</li>
+                    <li>Daily withdrawal limit: ₦500,000</li>
+                    <li>Monthly transaction limit: ₦5,000,000</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <p><strong>Transaction Reporting:</strong> Transactions exceeding ₦5,000,000 or equivalent in foreign currency are reported to the appropriate regulatory authorities as required by law.</p>
+                </div>
+                
+                <h3>4.2 Source of Funds Verification</h3>
+                <p>Users may be required to provide documentation verifying the source of their funds, including:</p>
+                <ul>
+                    <li>Bank statements</li>
+                    <li>Pay slips or employment contracts</li>
+                    <li>Business registration documents</li>
+                    <li>Investment account statements</li>
+                    <li>Gift or inheritance documentation</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>5. Record Keeping</h2>
+                <p>We maintain comprehensive records as required by law:</p>
+                
+                <h3>5.1 Retention Period</h3>
+                <p>All records are retained for a minimum of 5 years from the date of:</p>
+                <ul>
+                    <li>Account closure</li>
+                    <li>Last transaction</li>
+                    <li>Business relationship termination</li>
+                </ul>
+                
+                <h3>5.2 Record Types</h3>
+                <p>We maintain records of:</p>
+                <ul>
+                    <li>Customer identification documents</li>
+                    <li>Account files and business correspondence</li>
+                    <li>Transaction records and statements</li>
+                    <li>Suspicious activity reports</li>
+                    <li>Training records and compliance documentation</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>6. Suspicious Activity Reporting</h2>
+                <p>We have established procedures for identifying and reporting suspicious activities:</p>
+                
+                <div class="procedure-box">
+                    <h3>6.1 Internal Reporting</h3>
+                    <p>All employees are trained to recognize and report suspicious activities to the Compliance Officer.</p>
+                </div>
+                
+                <h3>6.2 Regulatory Reporting</h3>
+                <p>Suspicious Activity Reports (SARs) are filed with the appropriate regulatory authorities when required by law.</p>
+                
+                <h3>6.3 Confidentiality</h3>
+                <p>All suspicious activity reports are treated with strict confidentiality. No disclosure is made to the subject of the report.</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. Sanctions Compliance</h2>
+                <p>We screen all users against global sanctions lists, including:</p>
+                <ul>
+                    <li>United Nations Security Council sanctions lists</li>
+                    <li>Office of Foreign Assets Control (OFAC) sanctions</li>
+                    <li>European Union sanctions lists</li>
+                    <li>Local regulatory sanctions lists</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>8. Employee Training</h2>
+                <p>All employees receive regular AML/CTF training, including:</p>
+                <ul>
+                    <li>Recognition of suspicious activities</li>
+                    <li>Customer due diligence procedures</li>
+                    <li>Legal and regulatory requirements</li>
+                    <li>Reporting obligations</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>9. Third-Party Relationships</h2>
+                <p>We conduct due diligence on third-party service providers and ensure they have adequate AML controls in place.</p>
+            </div>
+            
+            <div class="section">
+                <h2>10. User Responsibilities</h2>
+                <p>As a user of Raw Wealthy, you agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information</li>
+                    <li>Cooperate with verification requests</li>
+                    <li>Report any errors or suspicious activities</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                    <li>Not use the Platform for illegal purposes</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>11. Policy Review and Updates</h2>
+                <p>This AML Policy is reviewed annually and updated as needed to comply with changing regulations and industry standards.</p>
+            </div>
+            
+            <div class="section">
+                <h2>12. Contact Information</h2>
+                <p>For AML-related inquiries or to report suspicious activities:</p>
+                <ul>
+                    <li>AML Compliance Officer: compliance@rawwealthy.com</li>
+                    <li>Phone: +234 906 123 4567</li>
+                    <li>Address: [Company Address], Lagos, Nigeria</li>
+                </ul>
+            </div>
+            
+            <div class="compliance-box">
+                <p><i class="fas fa-user-shield"></i> <strong>Your Role in AML Compliance:</strong> By using Raw Wealthy, you play a vital role in preventing financial crime. Please report any suspicious activities immediately.</p>
+            </div>
+            
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Raw Wealthy. All rights reserved.</p>
+            <p>This policy complies with the Nigerian Money Laundering (Prohibition) Act, 2011 and other applicable regulations.</p>
+        </div>
+    </div>
+</body>
+</html>
