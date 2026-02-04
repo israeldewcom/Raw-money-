@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy | Raw Wealthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C3AED;
+            --primary-dark: #5B21B6;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .legal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            background: var(--dark-card);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin: 2rem 0 0.8rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid var(--dark-border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cookie-notice {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10B981;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(30, 41, 59, 0.5);
+        }
+        
+        .cookie-table th,
+        .cookie-table td {
+            padding: 1rem;
+            border: 1px solid var(--dark-border);
+            text-align: left;
+        }
+        
+        .cookie-table th {
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .cookie-table td {
+            color: var(--text-secondary);
+        }
+        
+        .cookie-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .cookie-essential {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10B981;
+        }
+        
+        .cookie-functional {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3B82F6;
+        }
+        
+        .cookie-analytics {
+            background: rgba(245, 158, 11, 0.2);
+            color: #F59E0B;
+        }
+        
+        .cookie-marketing {
+            background: rgba(236, 72, 153, 0.2);
+            color: #EC4899;
+        }
+        
+        .control-options {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .cookie-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="legal-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <span>Raw Wealthy</span>
+            </div>
+            <h1>Cookie Policy</h1>
+            <p>Last Updated: January 15, 2024</p>
+        </div>
+    </div>
+    
+    <div class="legal-container">
+        <div class="content-card">
+            <div class="cookie-notice">
+                <p><i class="fas fa-cookie-bite"></i> <strong>Cookie Notice:</strong> This Cookie Policy explains how Raw Wealthy uses cookies and similar technologies to recognize you when you visit our Platform. It explains what these technologies are and why we use them.</p>
+            </div>
+            
+            <div class="section">
+                <h2>1. What Are Cookies?</h2>
+                <p>Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.</p>
+                
+                <p>Cookies set by the website owner (in this case, Raw Wealthy) are called "first-party cookies." Cookies set by parties other than the website owner are called "third-party cookies." Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics).</p>
+            </div>
+            
+            <div class="section">
+                <h2>2. Why We Use Cookies</h2>
+                <p>We use cookies for several reasons:</p>
+                
+                <h3>2.1 Essential Cookies</h3>
+                <p>These cookies are strictly necessary to provide you with services available through our Platform and to use some of its features, such as access to secure areas.</p>
+                
+                <h3>2.2 Performance and Analytics Cookies</h3>
+                <p>These cookies are used to collect information about traffic to our Platform and how users use the Platform. The information gathered does not identify any individual visitor.</p>
+                
+                <h3>2.3 Functionality Cookies</h3>
+                <p>These cookies allow our Platform to remember choices you make (such as your username, language, or the region you are in) and provide enhanced, more personal features.</p>
+                
+                <h3>2.4 Targeting and Advertising Cookies</h3>
+                <p>These cookies track your browsing habits to enable us to show advertising which is more likely to be of interest to you.</p>
+            </div>
+            
+            <div class="section">
+                <h2>3. Types of Cookies We Use</h2>
+                
+                <table class="cookie-table">
+                    <thead>
+                        <tr>
+                            <th>Cookie Name</th>
+                            <th>Type</th>
+                            <th>Purpose</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>auth_token</td>
+                            <td><span class="cookie-type cookie-essential">Essential</span></td>
+                            <td>User authentication and session management</td>
+                            <td>Session</td>
+                        </tr>
+                        <tr>
+                            <td>user_preferences</td>
+                            <td><span class="cookie-type cookie-functional">Functional</span></td>
+                            <td>Stores user preferences and settings</td>
+                            <td>30 days</td>
+                        </tr>
+                        <tr>
+                            <td>_ga</td>
+                            <td><span class="cookie-type cookie-analytics">Analytics</span></td>
+                            <td>Google Analytics tracking</td>
+                            <td>2 years</td>
+                        </tr>
+                        <tr>
+                            <td>_gid</td>
+                            <td><span class="cookie-type cookie-analytics">Analytics</span></td>
+                            <td>Google Analytics tracking</td>
+                            <td>24 hours</td>
+                        </tr>
+                        <tr>
+                            <td>language</td>
+                            <td><span class="cookie-type cookie-functional">Functional</span></td>
+                            <td>Language preference settings</td>
+                            <td>1 year</td>
+                        </tr>
+                        <tr>
+                            <td>theme</td>
+                            <td><span class="cookie-type cookie-functional">Functional</span></td>
+                            <td>Theme preference (dark/light mode)</td>
+                            <td>1 year</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>4. Third-Party Cookies</h2>
+                <p>In addition to our own cookies, we may also use various third-party cookies to report usage statistics of the Platform, deliver advertisements on and through the Platform, and so on.</p>
+                
+                <h3>4.1 Analytics Services</h3>
+                <p>We use Google Analytics to collect information about how visitors use our Platform. We use this information to compile reports and to help us improve the Platform.</p>
+                
+                <h3>4.2 Social Media Cookies</h3>
+                <p>These cookies are used when you share information using a social media sharing button or "like" button on our Platform, or you link your account or engage with our content on or through a social networking website.</p>
+            </div>
+            
+            <div class="section">
+                <h2>5. How to Control Cookies</h2>
+                
+                <div class="control-options">
+                    <h3>5.1 Browser Controls</h3>
+                    <p>You can set or amend your web browser controls to accept or refuse cookies. If you choose to reject cookies, you may still use our Platform though your access to some functionality and areas may be restricted.</p>
+                    
+                    <h3>5.2 How to Disable Cookies in Popular Browsers:</h3>
+                    <ul>
+                        <li><strong>Google Chrome:</strong> Settings → Privacy and Security → Cookies and other site data</li>
+                        <li><strong>Mozilla Firefox:</strong> Options → Privacy & Security → Cookies and Site Data</li>
+                        <li><strong>Safari:</strong> Preferences → Privacy → Cookies and website data</li>
+                        <li><strong>Microsoft Edge:</strong> Settings → Cookies and site permissions → Cookies and site data</li>
+                    </ul>
+                    
+                    <h3>5.3 Do Not Track Signals</h3>
+                    <p>Some browsers have a "Do Not Track" feature that lets you tell websites that you do not want to have your online activities tracked. Our Platform does not currently respond to "Do Not Track" signals.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>6. Other Tracking Technologies</h2>
+                <p>In addition to cookies, we may use other similar technologies:</p>
+                
+                <h3>6.1 Web Beacons</h3>
+                <p>Small graphic images that may be included on our Platform and in our emails to understand user behavior.</p>
+                
+                <h3>6.2 Local Storage</h3>
+                <p>HTML5 local storage is used to store larger amounts of data on your device, similar to cookies but with greater capacity.</p>
+                
+                <h3>6.3 Session Storage</h3>
+                <p>Similar to local storage but limited to a single browsing session.</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. Changes to This Cookie Policy</h2>
+                <p>We may update this Cookie Policy from time to time to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons. Please revisit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.</p>
+            </div>
+            
+            <div class="section">
+                <h2>8. Contact Us</h2>
+                <p>If you have any questions about our use of cookies or other technologies, please contact us:</p>
+                <ul>
+                    <li>Email: privacy@rawwealthy.com</li>
+                    <li>Phone: +234 906 123 4567</li>
+                    <li>Address: [Company Address], Lagos, Nigeria</li>
+                </ul>
+            </div>
+            
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Raw Wealthy. All rights reserved.</p>
+            <p>This Cookie Policy complies with GDPR, ePrivacy Directive, and other applicable regulations.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Simple cookie consent banner (simplified version)
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                const banner = document.createElement('div');
+                banner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--dark-card);
+                    color: var(--text-primary);
+                    padding: 1.5rem;
+                    border-top: 2px solid var(--primary-color);
+                    z-index: 1000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                `;
+                
+                banner.innerHTML = `
+                    <div style="flex: 1; margin-right: 1rem;">
+                        <strong>Cookie Consent</strong>
+                        <p style="margin: 0.5rem 0 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            We use cookies to enhance your experience on our Platform. By continuing to use our Platform, you agree to our use of cookies.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="acceptCookies" style="padding: 0.5rem 1.5rem; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Accept All
+                        </button>
+                        <button id="rejectCookies" style="padding: 0.5rem 1.5rem; background: transparent; color: var(--text-primary); border: 1px solid var(--dark-border); border-radius: 5px; cursor: pointer;">
+                            Reject Non-Essential
+                        </button>
+                    </div>
+                `;
+                
+                document.body.appendChild(banner);
+                
+                document.getElementById('acceptCookies').addEventListener('click', function() {
+                    localStorage.setItem('cookiesAccepted', 'all');
+                    banner.remove();
+                });
+                
+                document.getElementById('rejectCookies').addEventListener('click', function() {
+                    localStorage.setItem('cookiesAccepted', 'essential');
+                    banner.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
