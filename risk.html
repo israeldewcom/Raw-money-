@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Disclosure | Raw Wealthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C3AED;
+            --primary-dark: #5B21B6;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .legal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            background: var(--dark-card);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin: 2rem 0 0.8rem;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 1px solid var(--dark-border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .warning-banner {
+            background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .warning-banner i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .risk-level {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .risk-high {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 4px solid var(--danger);
+        }
+        
+        .risk-medium {
+            background: rgba(245, 158, 11, 0.2);
+            border-left: 4px solid var(--warning);
+        }
+        
+        .risk-low {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 4px solid #10B981;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .risk-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(30, 41, 59, 0.5);
+        }
+        
+        .risk-table th,
+        .risk-table td {
+            padding: 1rem;
+            border: 1px solid var(--dark-border);
+            text-align: left;
+        }
+        
+        .risk-table th {
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .risk-table td {
+            color: var(--text-secondary);
+        }
+        
+        .acknowledgment {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="legal-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <span>Raw Wealthy</span>
+            </div>
+            <h1>Risk Disclosure Statement</h1>
+            <p>Important: Please read carefully before investing</p>
+        </div>
+    </div>
+    
+    <div class="legal-container">
+        <div class="content-card">
+            <div class="warning-banner">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>HIGH RISK INVESTMENT WARNING</h2>
+                <p>Investing in raw materials and commodities carries significant risk. You could lose some or all of your invested capital. Past performance is not indicative of future results.</p>
+            </div>
+            
+            <div class="acknowledgment">
+                <h3><i class="fas fa-check-circle"></i> Investor Acknowledgement</h3>
+                <p>By investing through Raw Wealthy, you acknowledge that you:</p>
+                <ul>
+                    <li>Understand the risks involved</li>
+                    <li>Have sufficient knowledge and experience</li>
+                    <li>Can afford to lose your investment</li>
+                    <li>Have read and understood this disclosure</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>1. Understanding Investment Risks</h2>
+                <p>All investments carry risk. The degree of risk varies based on the investment type, market conditions, and other factors. Below are key risks you should understand:</p>
+                
+                <div class="risk-level risk-high">
+                    <i class="fas fa-fire"></i>
+                    <div>
+                        <h3>Capital Loss Risk</h3>
+                        <p>You could lose some or all of your invested capital. There is no guarantee of returns or principal protection.</p>
+                    </div>
+                </div>
+                
+                <div class="risk-level risk-high">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <h3>Market Risk</h3>
+                        <p>Investment values fluctuate based on market conditions. Raw material prices are volatile and can change rapidly.</p>
+                    </div>
+                </div>
+                
+                <div class="risk-level risk-medium">
+                    <i class="fas fa-exchange-alt"></i>
+                    <div>
+                        <h3>Liquidity Risk</h3>
+                        <p>Some investments may not be easily sold or converted to cash. Withdrawal restrictions may apply during certain periods.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>2. Specific Risks by Investment Type</h2>
+                
+                <h3>2.1 Raw Material Investments</h3>
+                <table class="risk-table">
+                    <thead>
+                        <tr>
+                            <th>Risk Type</th>
+                            <th>Description</th>
+                            <th>Impact Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Price Volatility</td>
+                            <td>Commodity prices can fluctuate significantly due to supply, demand, and geopolitical factors</td>
+                            <td><span style="color: #EF4444">High</span></td>
+                        </tr>
+                        <tr>
+                            <td>Storage Risk</td>
+                            <td>Physical commodities require storage and may incur additional costs</td>
+                            <td><span style="color: #F59E0B">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td>Quality Risk</td>
+                            <td>Variations in quality can affect commodity value</td>
+                            <td><span style="color: #F59E0B">Medium</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>2.2 Platform-Specific Risks</h3>
+                <ul>
+                    <li><strong>Platform Risk:</strong> Technical failures, system downtime, or security breaches</li>
+                    <li><strong>Counterparty Risk:</strong> Risk that other parties may default on obligations</li>
+                    <li><strong>Regulatory Risk:</strong> Changes in laws or regulations affecting investments</li>
+                    <li><strong>Operational Risk:</strong> Internal process failures or human errors</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. Financial Risks</h2>
+                
+                <h3>3.1 Leverage Risk</h3>
+                <p>If leverage is used, losses can exceed initial investment. Small price movements can result in significant losses.</p>
+                
+                <h3>3.2 Currency Risk</h3>
+                <p>For international investments, exchange rate fluctuations can affect returns.</p>
+                
+                <h3>3.3 Interest Rate Risk</h3>
+                <p>Changes in interest rates can impact investment values, particularly for fixed-income products.</p>
+            </div>
+            
+            <div class="section">
+                <h2>4. Risk Mitigation Measures</h2>
+                <p>We implement several measures to manage risk, but these do not eliminate risk entirely:</p>
+                
+                <div class="risk-level risk-low">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h3>Due Diligence</h3>
+                        <p>We conduct thorough research on investment opportunities before listing them.</p>
+                    </div>
+                </div>
+                
+                <div class="risk-level risk-low">
+                    <i class="fas fa-balance-scale"></i>
+                    <div>
+                        <h3>Diversification</h3>
+                        <p>We recommend diversifying investments across different assets and sectors.</p>
+                    </div>
+                </div>
+                
+                <div class="risk-level risk-low">
+                    <i class="fas fa-file-contract"></i>
+                    <div>
+                        <h3>Transparency</h3>
+                        <p>We provide clear information about investment terms, fees, and risks.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>5. Risk Assessment Questionnaire</h2>
+                <p>Before investing, consider the following questions:</p>
+                <ol>
+                    <li>Can I afford to lose my entire investment?</li>
+                    <li>Do I understand how this investment works?</li>
+                    <li>Have I considered how this investment fits my overall portfolio?</li>
+                    <li>Am I investing money I don't need for living expenses?</li>
+                    <li>Do I have an emergency fund separate from investment funds?</li>
+                </ol>
+                
+                <div class="warning-banner" style="background: rgba(239, 68, 68, 0.2); color: var(--text-primary);">
+                    <h3><i class="fas fa-hand-paper"></i> Investment Suitability Warning</h3>
+                    <p>This Platform may not be suitable for all investors. Consider your investment objectives, financial situation, and risk tolerance before investing.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>6. No Investment Advice</h2>
+                <p>Raw Wealthy does not provide investment advice. The information on our Platform is for educational and informational purposes only. You should consult with a qualified financial advisor before making investment decisions.</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. Limitation of Liability</h2>
+                <p>To the maximum extent permitted by law, Raw Wealthy shall not be liable for any losses resulting from investment decisions made by users. Users invest at their own risk.</p>
+            </div>
+            
+            <div class="section">
+                <h2>8. Contact for Questions</h2>
+                <p>If you have questions about risks associated with specific investments, please contact:</p>
+                <ul>
+                    <li>Email: risk@rawwealthy.com</li>
+                    <li>Phone: +234 906 123 4567</li>
+                </ul>
+            </div>
+            
+            <div class="acknowledgment">
+                <h3><i class="fas fa-signature"></i> Confirmation</h3>
+                <p>By proceeding with investments on Raw Wealthy, I confirm that:</p>
+                <ul>
+                    <li>I have read and understood this Risk Disclosure Statement</li>
+                    <li>I am aware of the risks involved in investing</li>
+                    <li>I accept full responsibility for my investment decisions</li>
+                    <li>I am investing with risk capital I can afford to lose</li>
+                </ul>
+            </div>
+            
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Raw Wealthy. All rights reserved.</p>
+            <p>This document does not constitute financial advice. Consult with a qualified financial advisor before investing.</p>
+        </div>
+    </div>
+</body>
+</html>
