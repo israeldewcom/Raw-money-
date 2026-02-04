@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press | Raw Wealthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C3AED;
+            --primary-dark: #5B21B6;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0V100H1000V0Z" fill="%237C3AED" opacity="0.05"/></svg>');
+            background-size: cover;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .section {
+            margin-bottom: 5rem;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .press-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s;
+        }
+        
+        .press-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .press-image {
+            height: 200px;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .press-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .press-card:hover .press-image img {
+            transform: scale(1.05);
+        }
+        
+        .press-source {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .press-content {
+            padding: 1.5rem;
+        }
+        
+        .press-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .press-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .press-meta-item i {
+            color: var(--primary-color);
+        }
+        
+        .press-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+        
+        .press-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--dark-border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .categories-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--dark-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .press-kit {
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+        
+        .kit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .kit-item {
+            background: var(--dark-card);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--dark-border);
+            transition: transform 0.3s;
+        }
+        
+        .kit-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+        
+        .kit-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .kit-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .kit-size {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section {
+            background: var(--dark-card);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid var(--dark-border);
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .contact-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .contact-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .contact-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .contact-role {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-detail {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--dark-border);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .timeline-content {
+            background: var(--dark-card);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .timeline-content h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .logo-card {
+            background: var(--dark-card);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .logo-preview {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .logo-format {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 0 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .press-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .press-kit,
+            .contact-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <span>Raw Wealthy</span>
+            </div>
+            <h1>Press Room</h1>
+            <p class="subtitle">Latest news, press releases, and media resources about Raw Wealthy and the future of investment in Africa.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Latest Press Coverage</h2>
+            <p class="section-subtitle">See what media outlets are saying about Raw Wealthy and our impact on African investment landscape.</p>
+            
+            <div class="categories-filter">
+                <button class="category-btn active" data-category="all">All Coverage</button>
+                <button class="category-btn" data-category="press-release">Press Releases</button>
+                <button class="category-btn" data-category="news-article">News Articles</button>
+                <button class="category-btn" data-category="interview">Interviews</button>
+                <button class="category-btn" data-category="award">Awards</button>
+            </div>
+            
+            <div class="press-grid">
+                <!-- Press Item 1 -->
+                <div class="press-card" data-category="press-release">
+                    <div class="press-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%237C3AED'/%3E%3Ctext x='200' y='100' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3EPress Release%3C/text%3E%3C/svg%3E" alt="Press Release">
+                        <span class="press-source">Press Release</span>
+                    </div>
+                    <div class="press-content">
+                        <div class="press-meta">
+                            <div class="press-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>January 10, 2024</span>
+                            </div>
+                            <div class="press-meta-item">
+                                <i class="fas fa-newspaper"></i>
+                                <span>Raw Wealthy</span>
+                            </div>
+                        </div>
+                        <h3 class="press-title">Raw Wealthy Announces $25M Series B Funding Round</h3>
+                        <p class="press-excerpt">Leading African investment platform secures funding from international investors to expand across the continent and launch new investment products.</p>
+                        <a href="#read" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Press Item 2 -->
+                <div class="press-card" data-category="news-article">
+                    <div class="press-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%233B82F6'/%3E%3Ctext x='200' y='100' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3EForbes%3C/text%3E%3C/svg%3E" alt="Forbes">
+                        <span class="press-source">Forbes Africa</span>
+                    </div>
+                    <div class="press-content">
+                        <div class="press-meta">
+                            <div class="press-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>December 15, 2023</span>
+                            </div>
+                            <div class="press-meta-item">
+                                <i class="fas fa-newspaper"></i>
+                                <span>Forbes Africa</span>
+                            </div>
+                        </div>
+                        <h3 class="press-title">How Raw Wealthy is Democratizing Investment Access in Africa</h3>
+                        <p class="press-excerpt">Feature story on how Raw Wealthy is breaking down barriers to investment for everyday Africans through technology and education.</p>
+                        <a href="#read" class="btn btn-primary">Read Article</a>
+                    </div>
+                </div>
+                
+                <!-- Press Item 3 -->
+                <div class="press-card" data-category="award">
+                    <div class="press-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%23F59E0B'/%3E%3Ctext x='200' y='100' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3EAward%3C/text%3E%3C/svg%3E" alt="Award">
+                        <span class="press-source">FinTech Awards</span>
+                    </div>
+                    <div class="press-content">
+                        <div class="press-meta">
+                            <div class="press-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>November 20, 2023</span>
+                            </div>
+                            <div class="press-meta-item">
+                                <i class="fas fa-newspaper"></i>
+                                <span>African FinTech Awards</span>
+                            </div>
+                        </div>
+                        <h3 class="press-title">Raw Wealthy Wins "Best Investment Platform" at African FinTech Awards 2023</h3>
+                        <p class="press-excerpt">Recognition for innovation and impact in making investment accessible to millions across the African continent.</p>
+                        <a href="#read" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Press Item 4 -->
+                <div class="press-card" data-category="interview">
+                    <div class="press-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%2310B981'/%3E%3Ctext x='200' y='100' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3ECNN%3C/text%3E%3C/svg%3E" alt="CNN">
+                        <span class="press-source">CNN Africa</span>
+                    </div>
+                    <div class="press-content">
+                        <div class="press-meta">
+                            <div class="press-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>October 5, 2023</span>
+                            </div>
+                            <div class="press-meta-item">
+                                <i class="fas fa-newspaper"></i>
+                                <span>CNN Africa Business</span>
+                            </div>
+                        </div>
+                        <h3 class="press-title">CEO Adebayo Ibrahim on the Future of African FinTech</h3>
+                        <p class="press-excerpt">Exclusive interview discussing the growth of investment technology in Africa and Raw Wealthy's role in shaping the industry.</p>
+                        <a href="#read" class="btn btn-primary">Watch Interview</a>
+                    </div>
+                </div>
+                
+                <!-- Press Item 5 -->
+                <div class="press-card" data-category="news-article">
+                    <div class="press-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%23EF4444'/%3E%3Ctext x='200' y='100' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3EBloomberg%3C/text%3E%3C/svg%3E" alt="Bloomberg">
+                        <span class="press-source">Bloomberg</span>
+                    </div>
+                    <div class="press-content">
+                        <div class="press-meta">
+                            <div class="press-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>September 18, 2023</span>
+                            </div>
+                            <div class="press-meta-item">
+                                <i class="fas fa-newspaper"></i>
+                                <span>Bloomberg Markets</span>
+                            </div>
+                        </div>
+                        <h3 class="press-title">African Investors Flock to Raw Material Platforms Amid Economic Uncertainty</h3>
+                        <p class="press-excerpt">Analysis of the growing trend of African investors turning to raw material investments through platforms like Raw Wealthy.</p>
+                        <a href="#read" class="btn btn-primary">Read Article</a>
+                    </div>
+                </div>
+                
+                <!-- Press Item 6 -->
+                <div class="press-card" data-category="press-release">
+                    <div class="press-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%238B5CF6'/%3E%3Ctext x='200' y='100' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3EPress Release%3C/text%3E%3C/svg%3E" alt="Press Release">
+                        <span class="press-source">Press Release</span>
+                    </div>
+                    <div class="press-content">
+                        <div class="press-meta">
+                            <div class="press-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>August 22, 2023</span>
+                            </div>
+                            <div class="press-meta-item">
+                                <i class="fas fa-newspaper"></i>
+                                <span>Raw Wealthy</span>
+                            </div>
+                        </div>
+                        <h3 class="press-title">Raw Wealthy Expands to 5 New African Countries</h3>
+                        <p class="press-excerpt">Platform now available in Ghana, Kenya, South Africa, Rwanda, and Tanzania, serving over 100,000 investors across the continent.</p>
+                        <a href="#read" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Company Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <h4>Company Founded</h4>
+                        <p>Raw Wealthy was founded with a mission to democratize investment access in Africa.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h4>Platform Launch</h4>
+                        <p>Launched beta platform with 1,000 early adopters in Nigeria.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <h4>Series A Funding</h4>
+                        <p>Raised $8M in Series A funding led by African venture capital firms.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h4>Awards & Recognition</h4>
+                        <p>Won multiple awards including "Best Investment Platform" at African FinTech Awards.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h4>Continental Expansion</h4>
+                        <p>Expanded to 8 African countries with over 100,000 active investors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Press Kit</h2>
+            <p class="section-subtitle">Download official assets and information for media coverage</p>
+            
+            <div class="press-kit">
+                <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">Media Resources</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">All assets are available for media use with proper attribution to Raw Wealthy.</p>
+                
+                <div class="kit-grid">
+                    <div class="kit-item">
+                        <div class="kit-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h4 class="kit-title">Company Logo</h4>
+                        <div class="kit-size">PNG, SVG, EPS</div>
+                        <a href="#download" class="btn btn-secondary">Download</a>
+                    </div>
+                    
+                    <div class="kit-item">
+                        <div class="kit-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4 class="kit-title">Executive Photos</h4>
+                        <div class="kit-size">High-res photos</div>
+                        <a href="#download" class="btn btn-secondary">Download</a>
+                    </div>
+                    
+                    <div class="kit-item">
+                        <div class="kit-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4 class="kit-title">Fact Sheet</h4>
+                        <div class="kit-size">PDF, 2 pages</div>
+                        <a href="#download" class="btn btn-secondary">Download</a>
+                    </div>
+                    
+                    <div class="kit-item">
+                        <div class="kit-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h4 class="kit-title">Brand Video</h4>
+                        <div class="kit-size">MP4, 2 min</div>
+                        <a href="#download" class="btn btn-secondary">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Brand Assets</h2>
+            
+            <div class="logo-showcase">
+                <div class="logo-card">
+                    <div class="logo-preview">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; margin-bottom: 0.5rem; color: var(--text-primary);">Primary Logo</h4>
+                    <div class="logo-format">PNG, SVG</div>
+                    <a href="#download" class="btn btn-secondary">Download</a>
+                </div>
+                
+                <div class="logo-card">
+                    <div class="logo-preview" style="background: white; color: #7C3AED;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; margin-bottom: 0.5rem; color: var(--text-primary);">White Background</h4>
+                    <div class="logo-format">PNG, SVG</div>
+                    <a href="#download" class="btn btn-secondary">Download</a>
+                </div>
+                
+                <div class="logo-card">
+                    <div class="logo-preview" style="background: #1E293B; border: 2px solid #334155;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; margin-bottom: 0.5rem; color: var(--text-primary);">Dark Version</h4>
+                    <div class="logo-format">PNG, SVG</div>
+                    <a href="#download" class="btn btn-secondary">Download</a>
+                </div>
+                
+                <div class="logo-card">
+                    <div class="logo-preview" style="background: transparent; border: 2px solid #7C3AED; color: #7C3AED;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; margin-bottom: 0.5rem; color: var(--text-primary);">Outline Version</h4>
+                    <div class="logo-format">PNG, SVG</div>
+                    <a href="#download" class="btn btn-secondary">Download</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <h2 class="contact-title">Media Contact</h2>
+            <p class="contact-subtitle">For press inquiries, interview requests, or additional information, please contact our media relations team.</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h4 class="contact-name">Sarah Johnson</h4>
+                    <div class="contact-role">Head of Communications</div>
+                    <p class="contact-detail">
+                        <i class="fas fa-envelope"></i> press@rawwealthy.com
+                    </p>
+                    <p class="contact-detail">
+                        <i class="fas fa-phone"></i> +234 906 123 4570
+                    </p>
+                </div>
+                
+                <div class="contact-card">
+                    <h4 class="contact-name">Michael Adebayo</h4>
+                    <div class="contact-role">Media Relations Manager</div>
+                    <p class="contact-detail">
+                        <i class="fas fa-envelope"></i> media@rawwealthy.com
+                    </p>
+                    <p class="contact-detail">
+                        <i class="fas fa-phone"></i> +234 906 123 4571
+                    </p>
+                </div>
+                
+                <div class="contact-card">
+                    <h4 class="contact-name">General Inquiries</h4>
+                    <div class="contact-role">Press Office</div>
+                    <p class="contact-detail">
+                        <i class="fas fa-envelope"></i> press@rawwealthy.com
+                    </p>
+                    <p class="contact-detail">
+                        <i class="fas fa-clock"></i> Mon-Fri, 9AM-6PM WAT
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Raw Wealthy. All rights reserved.</p>
+            <p>For media use only. All assets remain property of Raw Wealthy.</p>
+            <button class="back-btn" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Category filter functionality
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const pressCards = document.querySelectorAll('.press-card');
+                
+                pressCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Simulated download buttons
+        document.querySelectorAll('a[href="#download"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const assetName = this.parentElement.querySelector('.kit-title, h4').textContent;
+                alert(`Downloading ${assetName}... (In a real application, this would download the file)`);
+            });
+        });
+        
+        // Simulated read more buttons
+        document.querySelectorAll('a[href="#read"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const articleTitle = this.parentElement.querySelector('.press-title').textContent;
+                alert(`Opening: ${articleTitle}\n\nIn a real application, this would open the full article or external link.`);
+            });
+        });
+    </script>
+</body>
+</html>
