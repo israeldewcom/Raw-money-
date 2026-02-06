@@ -1473,7 +1473,7 @@
         
         <div class="sidebar-footer mt-4 p-3">
             <div class="text-muted small">
-                <div>Raw Wealthy </div>
+                <div>Raw Wealthy v37.0</div>
                 <div>© 2024 All Rights Reserved</div>
             </div>
         </div>
@@ -1593,7 +1593,7 @@
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="termsAgreement" required>
                                             <label class="form-check-label" for="termsAgreement">
-                                                I agree to the <a href="terms.html" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+                                                I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
                                             </label>
                                         </div>
                                     </div>
@@ -3174,10 +3174,10 @@
                         <a href="#" class="btn btn-icon btn-secondary">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://www.facebook.com/profile.php?id=61587502250758" class="btn btn-icon btn-secondary">
+                        <a href="#" class="btn btn-icon btn-secondary">
                             <i class="fab fa-facebook"></i>
                         </a>
-                        <a href="https://www.instagram.com/rawwealthy.121417?igsh=c2VyOHVzdm5xdWpx" class="btn btn-icon btn-secondary">
+                        <a href="#" class="btn btn-icon btn-secondary">
                             <i class="fab fa-instagram"></i>
                         </a>
                         <a href="#" class="btn btn-icon btn-secondary">
@@ -3200,22 +3200,22 @@
                 <div>
                     <h4 class="footer-title">Company</h4>
                     <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="career.html">Careers</a></li>
-                        <li><a href="press.html">Blog</a></li>
-                        <li><a href="blog.html">Press</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="footer-title">Legal</h4>
                     <ul class="footer-links">
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="cookie.html">Cookie Policy</a></li>
-                        <li><a href="risk.html">Risk Disclosure</a></li>
-                        <li><a href="aml.html">AML Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Risk Disclosure</a></li>
+                        <li><a href="#">AML Policy</a></li>
                     </ul>
                 </div>
                 
@@ -3233,7 +3233,7 @@
             
             <div class="footer-bottom">
                 <p>&copy; 2024 Raw Wealthy. All rights reserved. v37.0</p>
-                
+                <p class="text-muted small">This platform is for demonstration purposes only. Investments carry risk.</p>
             </div>
         </div>
     </footer>
@@ -3323,11 +3323,14 @@
     <div class="loader-overlay" id="loaderOverlay">
         <div class="loader" style="width: 3rem; height: 3rem; border-width: 4px;"></div>
         <div class="loading-text mt-3">Loading...</div>
-    </div><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-// ==============================================
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>// ==============================================
 // RAW WEALTHY PREMIUM v38.0 - PRODUCTION READY
 // Advanced Investment Platform with Complete Features
+// ENHANCED WITH CUSTOM AMOUNT INPUT AND 8 INVESTMENT PLANS
 // ==============================================
 
 // ===== ENHANCED CONFIGURATION =====
@@ -3610,7 +3613,8 @@ class Utils {
         if (!user) return 0;
         const dailyEarnings = user.total_earnings || 0;
         const referralEarnings = user.referral_earnings || 0;
-        return dailyEarnings + referralEarnings;
+        const totalWithdrawn = user.total_withdrawn || 0;
+        return Math.max(0, dailyEarnings + referralEarnings - totalWithdrawn);
     }
 
     static hasBankDetails(user) {
@@ -4623,6 +4627,7 @@ class InvestmentManager {
                 const isPopular = plan.is_popular || false;
                 const icon = this.getPlanIcon(plan.category);
                 const color = this.getPlanColor(plan.category);
+                const maxAmount = plan.max_amount || 'Unlimited';
                 
                 return `
                     <div class="plan-card">
@@ -4636,6 +4641,7 @@ class InvestmentManager {
                         </div>
                         <ul class="plan-features">
                             <li><i class="fas fa-check"></i> Minimum: ${Utils.formatCurrency(plan.min_amount || 0)}</li>
+                            <li><i class="fas fa-check"></i> Maximum: ${maxAmount === 'Unlimited' ? 'Unlimited' : Utils.formatCurrency(maxAmount)}</li>
                             <li><i class="fas fa-check"></i> Daily Interest: ${plan.daily_interest || 0}%</li>
                             <li><i class="fas fa-check"></i> Total Return: ${plan.total_interest || 0}%</li>
                             <li><i class="fas fa-check"></i> Duration: ${plan.duration || 0} Days</li>
@@ -4659,9 +4665,12 @@ class InvestmentManager {
                             data-plan-id="${plan._id}"
                             data-plan-name="${plan.name}"
                             data-min-amount="${plan.min_amount}"
+                            data-max-amount="${plan.max_amount || ''}"
                             data-daily-interest="${plan.daily_interest}"
                             data-total-interest="${plan.total_interest}"
-                            data-duration="${plan.duration}">
+                            data-duration="${plan.duration}"
+                            data-category="${plan.category}"
+                            data-raw-material="${plan.raw_material}">
                             <i class="fas fa-chart-line"></i> Invest Now
                         </button>
                     </div>
@@ -4676,9 +4685,12 @@ class InvestmentManager {
                         id: btn.dataset.planId,
                         name: btn.dataset.planName,
                         minAmount: parseFloat(btn.dataset.minAmount) || 0,
+                        maxAmount: btn.dataset.maxAmount ? parseFloat(btn.dataset.maxAmount) : null,
                         dailyInterest: parseFloat(btn.dataset.dailyInterest) || 0,
                         totalInterest: parseFloat(btn.dataset.totalInterest) || 0,
-                        duration: parseInt(btn.dataset.duration) || 0
+                        duration: parseInt(btn.dataset.duration) || 0,
+                        category: btn.dataset.category,
+                        rawMaterial: btn.dataset.rawMaterial
                     };
                     this.showInvestmentModal(planData);
                 });
@@ -4725,13 +4737,19 @@ class InvestmentManager {
                 const status = investment.status || 'pending';
                 const statusClass = this.getStatusClass(status);
                 const statusText = this.getStatusText(status);
+                const endDate = investment.end_date ? new Date(investment.end_date) : null;
+                const isActive = status === 'active';
+                const daysRemaining = isActive && endDate ? Math.ceil((endDate - new Date()) / (1000 * 60 * 60 * 24)) : 0;
                 
                 return `
                     <tr>
                         <td>${plan.name || 'N/A'}</td>
                         <td>${Utils.formatCurrency(investment.amount)}</td>
                         <td>${Utils.formatDate(investment.start_date)}</td>
-                        <td>${Utils.formatDate(investment.end_date)}</td>
+                        <td>
+                            ${endDate ? Utils.formatDate(investment.end_date) : 'N/A'}
+                            ${isActive && daysRemaining > 0 ? `<br><small class="text-muted">${daysRemaining} days remaining</small>` : ''}
+                        </td>
                         <td class="text-success">${Utils.formatCurrency(investment.earned_so_far || 0)}</td>
                         <td><span class="badge ${statusClass}">${statusText}</span></td>
                         <td>
@@ -4768,10 +4786,21 @@ class InvestmentManager {
         document.getElementById('modalPlanName').textContent = planData.name;
         document.getElementById('modalMinAmount').textContent = Utils.formatCurrency(planData.minAmount);
         
+        if (planData.maxAmount) {
+            document.getElementById('modalMinAmount').innerHTML += ` (Max: ${Utils.formatCurrency(planData.maxAmount)})`;
+        }
+        
         const amountInput = document.getElementById('modalInvestmentAmount');
         if (amountInput) {
             amountInput.value = planData.minAmount;
             amountInput.min = planData.minAmount;
+            amountInput.max = planData.maxAmount || '';
+            amountInput.placeholder = `Enter amount (Min: ${Utils.formatCurrency(planData.minAmount)}${planData.maxAmount ? `, Max: ${Utils.formatCurrency(planData.maxAmount)}` : ''})`;
+            
+            // Add event listener for input validation
+            amountInput.addEventListener('input', (e) => {
+                this.validateInvestmentAmount(e.target);
+            });
         }
         
         document.getElementById('summaryPlanName').textContent = planData.name;
@@ -4789,6 +4818,51 @@ class InvestmentManager {
         this.setupInvestmentModalEvents();
     }
     
+    static validateInvestmentAmount(input) {
+        const value = parseFloat(input.value) || 0;
+        const minAmount = this.currentPlan.minAmount;
+        const maxAmount = this.currentPlan.maxAmount;
+        
+        // Clear any previous validation messages
+        const existingError = input.parentElement.querySelector('.validation-error');
+        if (existingError) {
+            existingError.remove();
+        }
+        
+        if (value < minAmount) {
+            this.showValidationError(input, `Minimum investment is ${Utils.formatCurrency(minAmount)}`);
+            return false;
+        }
+        
+        if (maxAmount && value > maxAmount) {
+            this.showValidationError(input, `Maximum investment is ${Utils.formatCurrency(maxAmount)}`);
+            return false;
+        }
+        
+        // Check user balance
+        if (currentUser && value > currentUser.balance) {
+            this.showValidationError(input, `Insufficient balance. Available: ${Utils.formatCurrency(currentUser.balance)}`);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    static showValidationError(input, message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'validation-error text-danger small mt-1';
+        errorDiv.textContent = message;
+        
+        // Remove existing error if any
+        const existingError = input.parentElement.querySelector('.validation-error');
+        if (existingError) {
+            existingError.remove();
+        }
+        
+        input.parentElement.appendChild(errorDiv);
+        input.classList.add('is-invalid');
+    }
+    
     static setupInvestmentModalEvents() {
         const form = document.getElementById('investmentModalForm');
         const amountInput = document.getElementById('modalInvestmentAmount');
@@ -4800,7 +4874,28 @@ class InvestmentManager {
             return;
         }
         
+        // Clear input field when user clicks on it
+        amountInput.addEventListener('focus', () => {
+            if (parseFloat(amountInput.value) === this.currentPlan.minAmount) {
+                amountInput.value = '';
+            }
+        });
+        
+        // Restore min amount if user leaves field empty
+        amountInput.addEventListener('blur', () => {
+            if (!amountInput.value || parseFloat(amountInput.value) === 0) {
+                amountInput.value = this.currentPlan.minAmount;
+            }
+        });
+        
         amountInput.addEventListener('input', () => {
+            // Clear validation error
+            amountInput.classList.remove('is-invalid');
+            const existingError = amountInput.parentElement.querySelector('.validation-error');
+            if (existingError) {
+                existingError.remove();
+            }
+            
             this.updateInvestmentSummary();
         });
         
@@ -4825,6 +4920,18 @@ class InvestmentManager {
                 modal.classList.remove('active');
                 document.body.style.overflow = '';
                 form.reset();
+                
+                // Reset amount to plan minimum
+                if (amountInput && this.currentPlan) {
+                    amountInput.value = this.currentPlan.minAmount;
+                }
+                
+                // Clear validation errors
+                amountInput.classList.remove('is-invalid');
+                const existingError = amountInput.parentElement.querySelector('.validation-error');
+                if (existingError) {
+                    existingError.remove();
+                }
             }
         };
         
@@ -4840,6 +4947,11 @@ class InvestmentManager {
         
         const amount = parseFloat(amountInput.value) || 0;
         const minAmount = this.currentPlan.minAmount;
+        
+        // Validate amount
+        if (!this.validateInvestmentAmount(amountInput)) {
+            return;
+        }
         
         if (amount < minAmount) {
             amountInput.value = minAmount;
@@ -4879,8 +4991,15 @@ class InvestmentManager {
             const autoRenew = autoRenewCheckbox ? autoRenewCheckbox.checked : false;
             const paymentProof = paymentProofInput ? paymentProofInput.files[0] : null;
             
+            // Final validation
+            if (!this.validateInvestmentAmount(amountInput)) {
+                Utils.hideLoader();
+                return;
+            }
+            
             if (paymentMethod === 'wallet' && currentUser.balance < amount) {
                 Utils.showNotification('Insufficient wallet balance', 'error');
+                Utils.hideLoader();
                 return;
             }
             
@@ -4936,7 +5055,10 @@ class InvestmentManager {
             metals: 'fas fa-gem',
             crypto: 'fab fa-bitcoin',
             real_estate: 'fas fa-home',
-            precious_stones: 'fas fa-gem'
+            precious_stones: 'fas fa-gem',
+            livestock: 'fas fa-paw',
+            timber: 'fas fa-tree',
+            aquaculture: 'fas fa-fish'
         };
         return icons[category] || 'fas fa-chart-line';
     }
@@ -4949,7 +5071,10 @@ class InvestmentManager {
             metals: { background: 'rgba(251, 191, 36, 0.2)', color: '#FBBF24' },
             crypto: { background: 'rgba(139, 92, 246, 0.2)', color: '#8B5CF6' },
             real_estate: { background: 'rgba(59, 130, 246, 0.2)', color: '#3B82F6' },
-            precious_stones: { background: 'rgba(236, 72, 153, 0.2)', color: '#EC4899' }
+            precious_stones: { background: 'rgba(236, 72, 153, 0.2)', color: '#EC4899' },
+            livestock: { background: 'rgba(239, 68, 68, 0.2)', color: '#EF4444' },
+            timber: { background: 'rgba(101, 163, 13, 0.2)', color: '#65A30D' },
+            aquaculture: { background: 'rgba(6, 182, 212, 0.2)', color: '#06B6D4' }
         };
         return colors[category] || { background: 'rgba(124, 58, 237, 0.2)', color: '#7C3AED' };
     }
@@ -5317,7 +5442,6 @@ class DepositManager {
                         <div style="margin-top: 20px; font-size: 12px; color: #666;">
                             Printed from Raw Wealthy Platform on ${new Date().toLocaleDateString()}
                         </div>
-                    </div>
                 `;
                 
                 const printWindow = window.open('', '_blank');
