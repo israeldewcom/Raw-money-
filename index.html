@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raw Wealthy | Premium Investment Platform v37.0</title>
+    <title>Raw Wealthy | Premium Investment Platform v38.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -1343,6 +1343,52 @@
         .position-absolute {
             position: absolute;
         }
+
+        /* ===== NEW ADDITIONS: Regulation & Ramadan ===== */
+        .regulation-badges .badge-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+        }
+        .regulation-badges .badge-logo i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        .regulation-text {
+            max-width: 500px;
+            text-align: right;
+        }
+        .ramadan-banner {
+            background: linear-gradient(135deg, #1a472a, #2d5a3a);
+            color: #ffd966;
+            border: none;
+        }
+        .ramadan-banner .lanterns i {
+            animation: flicker 2s infinite;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        @media (max-width: 768px) {
+            .regulation-badges .card-body {
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+            }
+            .regulation-text {
+                text-align: left;
+            }
+            .ramadan-banner .card-body {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1473,7 +1519,7 @@
         
         <div class="sidebar-footer mt-4 p-3">
             <div class="text-muted small">
-                <div>Raw Wealthy v37.0</div>
+                <div>Raw Wealthy v38.0</div>
                 <div>© 2024 All Rights Reserved</div>
             </div>
         </div>
@@ -1666,6 +1712,42 @@
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
                             <span>Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REGULATION BADGES (SON & CBN) -->
+                <div class="regulation-badges card mb-4">
+                    <div class="card-body d-flex align-center justify-between flex-wrap">
+                        <div class="d-flex align-center gap-3">
+                            <div class="badge-logo">
+                                <i class="fas fa-building"></i>
+                                <span>CBN</span>
+                            </div>
+                            <div class="badge-logo">
+                                <i class="fas fa-certificate"></i>
+                                <span>SON</span>
+                            </div>
+                        </div>
+                        <div class="regulation-text">
+                            <p class="mb-0">Fully Licensed and Regulated by the Central Bank of Nigeria (CBN) and Standards Organisation of Nigeria (SON).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HAPPY RAMADAN BANNER -->
+                <div class="ramadan-banner card mb-4">
+                    <div class="card-body d-flex align-center justify-between">
+                        <div class="d-flex align-center gap-3">
+                            <i class="fas fa-moon fa-3x" style="color: #ffd966;"></i>
+                            <div>
+                                <h4 class="mb-1" style="color: #ffd966;">✨ Happy Ramadan! ✨</h4>
+                                <p class="mb-0" style="color: #f1f1f1;">May this holy month bring peace, prosperity, and blessings to you and your family.</p>
+                            </div>
+                        </div>
+                        <div class="lanterns">
+                            <i class="fas fa-lantern fa-2x mx-2" style="color: #ffd966;"></i>
+                            <i class="fas fa-star fa-2x mx-2" style="color: #ffd966;"></i>
                         </div>
                     </div>
                 </div>
@@ -3232,7 +3314,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Raw Wealthy. All rights reserved. v37.0</p>
+                <p>&copy; 2024 Raw Wealthy. All rights reserved. v38.0</p>
                 <p class="text-muted small">This platform is for demonstration purposes only. Investments carry risk.</p>
             </div>
         </div>
