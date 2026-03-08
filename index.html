@@ -4150,12 +4150,11 @@
                 return dailyEarnings + referralEarnings;
             }
 
+            // ===== FIXED: Withdrawable balance now correctly uses user.balance =====
             static calculateWithdrawableBalance(user) {
-                if (!user) return 0;
-                const dailyEarnings = user.total_earnings || 0;
-                const referralEarnings = user.referral_earnings || 0;
-                const totalWithdrawn = user.total_withdrawn || 0;
-                return Math.max(0, dailyEarnings + referralEarnings - totalWithdrawn);
+                // Simply return the cash available in user's wallet.
+                // The backend stores available cash in 'balance'.
+                return user.balance || 0;
             }
 
             static hasBankDetails(user) {
@@ -6283,6 +6282,10 @@
                         const withdrawals = response.data.withdrawals || [];
                         this.renderWithdrawalsTable(withdrawals);
                         this.updateWithdrawalStats(withdrawals);
+                        
+                        // 👇 ADD THIS LINE TO UPDATE THE AVAILABLE BALANCE ON THE PAGE
+                        this.updateWithdrawalForm();
+
                         Debug.info('Withdrawal', `Loaded ${withdrawals.length} withdrawals`);
                     } else {
                         Debug.warn('Withdrawal', 'Failed to load withdrawals:', response.message);
