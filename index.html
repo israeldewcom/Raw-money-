@@ -2450,12 +2450,6 @@
                                         <!-- Dynamic content based on payment method -->
                                     </div>
                                     
-                                    <!-- Withdrawal Limit Notice -->
-                                    <div class="alert alert-info mb-3">
-                                        <i class="fas fa-clock mr-2"></i>
-                                        <span>Withdrawal limit: <strong>1 request per 24 hours</strong>. Your last withdrawal was: <span id="lastWithdrawalTime">Never</span></span>
-                                    </div>
-                                    
                                     <div class="form-group">
                                         <div class="alert alert-info">
                                             <div class="d-flex justify-between mb-1">
@@ -2517,10 +2511,6 @@
                                     <li class="mb-2">
                                         <i class="fas fa-money-bill text-success mr-2"></i>
                                         <span>Minimum: ₦4,000</span>
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="fas fa-calendar-alt text-primary mr-2"></i>
-                                        <span>Limit: 1 request per day</span>
                                     </li>
                                     <li>
                                         <i class="fas fa-check-circle text-primary mr-2"></i>
@@ -3284,7 +3274,7 @@
             </div>
         </section>
 
-        <!-- Profile Page -->
+        <!-- Profile Page (Enhanced with Logout Button) -->
         <section id="profile" class="page-section">
             <div class="container">
                 <div class="section-header">
@@ -3322,6 +3312,11 @@
                                         <span class="badge badge-success" id="accountStatus">Active</span>
                                     </div>
                                 </div>
+
+                                <!-- NEW: Logout button inside profile card -->
+                                <button class="btn btn-danger btn-block mt-4" id="profileLogoutBtn">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
                             </div>
                         </div>
                         
@@ -3340,10 +3335,6 @@
                                     </button>
                                     <button class="btn btn-outline" data-action="login-history">
                                         <i class="fas fa-history"></i> Login History
-                                    </button>
-                                    <!-- Logout button added here -->
-                                    <button class="btn btn-outline text-danger" id="profileLogoutBtn">
-                                        <i class="fas fa-sign-out-alt"></i> Logout
                                     </button>
                                     <button class="btn btn-outline text-danger" data-action="delete-account">
                                         <i class="fas fa-trash"></i> Delete Account
@@ -3827,7 +3818,7 @@
         <div class="loading-text mt-3">Loading...</div>
     </div>
 
-    <!-- Original JavaScript (unchanged) with added enhancements -->
+    <!-- Original JavaScript (unchanged, plus enhancements) -->
     <script>
         // Conditional loading of Chart.js (performance)
         function loadChartJS() {
@@ -3846,9 +3837,7 @@
 
         // ==============================================
         // RAW WEALTHY PREMIUM v38.2 - ENHANCED EDITION
-        // ALL ORIGINAL CODE PRESERVED + NEW FEATURES:
-        // - Logout button in Profile page
-        // - Withdrawal limit: 1 request per 24 hours
+        // ALL ORIGINAL CODE PRESERVED + NEW FEATURES
         // ==============================================
 
         // ===== ENHANCED CONFIGURATION =====
@@ -3858,7 +3847,7 @@
                 : 'https://real-wealthy-1.onrender.com',
             
             DEBUG_MODE: true,
-            VERSION: '38.2.0',
+            VERSION: '38.2.0',   // Updated version
             
             // Business Logic
             MIN_INVESTMENT: 3500,
@@ -3868,9 +3857,8 @@
             REFERRAL_COMMISSION_PERCENT: 10,
             WELCOME_BONUS: 100,
             
-            // Withdrawal limit: 1 per day (24 hours in milliseconds)
-            WITHDRAWAL_LIMIT_HOURS: 24,
-            WITHDRAWAL_LIMIT_MS: 24 * 60 * 60 * 1000,
+            // NEW: Withdrawal limit (milliseconds in a day)
+            WITHDRAWAL_COOLDOWN_MS: 24 * 60 * 60 * 1000, // 24 hours
             
             // File upload limits
             MAX_FILE_SIZE: 10 * 1024 * 1024,
@@ -4162,34 +4150,15 @@
                 return dailyEarnings + referralEarnings;
             }
 
+            // ===== FIXED: Withdrawable balance now directly uses user.balance =====
             static calculateWithdrawableBalance(user) {
                 if (!user) return 0;
-                const dailyEarnings = user.total_earnings || 0;
-                const referralEarnings = user.referral_earnings || 0;
-                const totalWithdrawn = user.total_withdrawn || 0;
-                return Math.max(0, dailyEarnings + referralEarnings - totalWithdrawn);
+                // Directly return the cash balance that is available for withdrawal
+                return user.balance || 0;
             }
 
             static hasBankDetails(user) {
                 return user && user.bank_details && user.bank_details.account_number && user.bank_details.account_number.trim() !== '';
-            }
-            
-            // New: Check if user can withdraw (once per 24h)
-            static canWithdraw(user) {
-                if (!user || !user.last_withdrawal_at) return true;
-                const lastWithdrawal = new Date(user.last_withdrawal_at).getTime();
-                const now = Date.now();
-                return (now - lastWithdrawal) >= CONFIG.WITHDRAWAL_LIMIT_MS;
-            }
-            
-            // New: Get remaining time until next withdrawal allowed
-            static getWithdrawalWaitTime(user) {
-                if (!user || !user.last_withdrawal_at) return 0;
-                const lastWithdrawal = new Date(user.last_withdrawal_at).getTime();
-                const now = Date.now();
-                const elapsed = now - lastWithdrawal;
-                if (elapsed >= CONFIG.WITHDRAWAL_LIMIT_MS) return 0;
-                return CONFIG.WITHDRAWAL_LIMIT_MS - elapsed;
             }
         }
 
@@ -4309,7 +4278,6 @@
                             account_number: '0123456789',
                             verified: true
                         },
-                        last_withdrawal_at: null, // new field
                         createdAt: new Date(Date.now() - 90*86400000).toISOString(),
                         last_login: new Date().toISOString()
                     };
@@ -4457,10 +4425,31 @@
                 return this.request(`/api/withdrawals${params ? `?${params}` : ''}`);
             }
             
+            // ENHANCED: withdrawal with daily limit check
             static async createWithdrawal(amount, payment_method = 'bank_transfer') {
+                // Check daily limit before sending request
+                const lastWithdrawalTime = StateManager.get('lastWithdrawalTime', 0);
+                const now = Date.now();
+                if (now - lastWithdrawalTime < CONFIG.WITHDRAWAL_COOLDOWN_MS) {
+                    const remaining = CONFIG.WITHDRAWAL_COOLDOWN_MS - (now - lastWithdrawalTime);
+                    const hours = Math.ceil(remaining / (60 * 60 * 1000));
+                    throw { message: `You can only request one withdrawal per day. Please wait ${hours} hour(s).` };
+                }
+                // Store timestamp optimistically (will be overridden on success)
+                StateManager.set('lastWithdrawalTime', now);
+                
                 return this.request('/api/withdrawals', {
                     method: 'POST',
                     body: JSON.stringify({ amount, payment_method })
+                }).then(res => {
+                    // If success, keep timestamp; if fail, remove it
+                    if (!res.success) {
+                        StateManager.remove('lastWithdrawalTime');
+                    }
+                    return res;
+                }).catch(err => {
+                    StateManager.remove('lastWithdrawalTime');
+                    throw err;
                 });
             }
             
@@ -4566,7 +4555,7 @@
             }
         }
 
-        // Demo data arrays (for offline)
+        // Demo data arrays (for offline) - unchanged
         const demoPlans = [
             { _id: 'plan1', name: 'Gold Bullion', description: 'Invest in pure gold', min_amount: 50000, max_amount: 5000000, daily_interest: 1.2, total_interest: 36, duration: 30, category: 'metals', raw_material: 'Gold', is_popular: true },
             { _id: 'plan2', name: 'Crude Oil', description: 'Energy sector', min_amount: 100000, max_amount: 10000000, daily_interest: 1.5, total_interest: 45, duration: 30, category: 'energy', raw_material: 'Oil' },
@@ -4610,11 +4599,6 @@
                         authToken = response.data.token;
                         currentUser = response.data.user;
                         isAdmin = currentUser.role === 'admin' || currentUser.role === 'super_admin';
-                        
-                        // Ensure last_withdrawal_at field exists
-                        if (!currentUser.last_withdrawal_at) {
-                            currentUser.last_withdrawal_at = null;
-                        }
                         
                         StateManager.set('authToken', authToken);
                         StateManager.set('currentUser', currentUser);
@@ -4682,6 +4666,7 @@
                 StateManager.remove('currentUser');
                 StateManager.remove('isAdmin');
                 StateManager.remove('appState');
+                StateManager.remove('lastWithdrawalTime'); // clear withdrawal cooldown
                 
                 appState = {
                     investments: [],
@@ -4716,11 +4701,6 @@
                     if (response.success) {
                         currentUser = response.data.user;
                         isAdmin = currentUser.role === 'admin' || currentUser.role === 'super_admin';
-                        
-                        // Ensure last_withdrawal_at field exists
-                        if (!currentUser.last_withdrawal_at) {
-                            currentUser.last_withdrawal_at = null;
-                        }
                         
                         StateManager.set('currentUser', currentUser);
                         StateManager.set('isAdmin', isAdmin);
@@ -4924,7 +4904,6 @@
                             break;
                         case 'withdrawals':
                             await WithdrawalManager.loadWithdrawals();
-                            WithdrawalManager.updateWithdrawalForm(); // ensure limit display
                             break;
                         case 'transactions':
                             await TransactionManager.loadTransactions();
@@ -6303,6 +6282,10 @@
                         const withdrawals = response.data.withdrawals || [];
                         this.renderWithdrawalsTable(withdrawals);
                         this.updateWithdrawalStats(withdrawals);
+                        
+                        // ===== ADDED: Update the withdrawal form with current user balance =====
+                        this.updateWithdrawalForm();
+                        
                         Debug.info('Withdrawal', `Loaded ${withdrawals.length} withdrawals`);
                     } else {
                         Debug.warn('Withdrawal', 'Failed to load withdrawals:', response.message);
@@ -6395,35 +6378,12 @@
                 }
             }
             
-            // New: Check withdrawal limit
-            static checkWithdrawalLimit() {
-                if (!currentUser) {
-                    Utils.showNotification('User not logged in', 'error');
-                    return false;
-                }
-                
-                if (!Utils.canWithdraw(currentUser)) {
-                    const waitTime = Utils.getWithdrawalWaitTime(currentUser);
-                    const hours = Math.floor(waitTime / (60 * 60 * 1000));
-                    const minutes = Math.floor((waitTime % (60 * 60 * 1000)) / (60 * 1000));
-                    Utils.showNotification(`You can only request one withdrawal per day. Please wait ${hours}h ${minutes}m.`, 'warning');
-                    return false;
-                }
-                
-                return true;
-            }
-            
             static async submitWithdrawal(e) {
                 Debug.info('Withdrawal', 'Submitting withdrawal...');
                 
                 if (e) e.preventDefault();
                 
                 try {
-                    // Check withdrawal limit first
-                    if (!this.checkWithdrawalLimit()) {
-                        return;
-                    }
-                    
                     Utils.showLoader('Processing withdrawal...');
                     
                     const amountInput = document.getElementById('withdrawalAmount');
@@ -6455,10 +6415,6 @@
                     const response = await ApiService.createWithdrawal(amount, 'bank_transfer');
                     
                     if (response.success) {
-                        // Update last withdrawal timestamp
-                        currentUser.last_withdrawal_at = new Date().toISOString();
-                        StateManager.set('currentUser', currentUser);
-                        
                         Utils.showNotification('Withdrawal request submitted successfully! It will be processed by admin.', 'success');
                         
                         const form = document.getElementById('withdrawalForm');
@@ -6467,7 +6423,6 @@
                         if (amountInput) amountInput.value = CONFIG.MIN_WITHDRAWAL;
                         
                         await this.loadWithdrawals();
-                        this.updateWithdrawalForm(); // refresh limit display
                         
                         Debug.info('Withdrawal', 'Withdrawal submitted successfully');
                     } else {
@@ -6491,26 +6446,6 @@
                 const availableBalanceElement = document.getElementById('availableBalance');
                 if (availableBalanceElement) {
                     availableBalanceElement.textContent = Utils.formatCurrency(withdrawableBalance);
-                }
-                
-                // Update last withdrawal time display
-                const lastWithdrawalSpan = document.getElementById('lastWithdrawalTime');
-                if (lastWithdrawalSpan) {
-                    if (currentUser.last_withdrawal_at) {
-                        const lastDate = new Date(currentUser.last_withdrawal_at);
-                        const hoursSince = Math.floor((Date.now() - lastDate) / (60 * 60 * 1000));
-                        const canWithdraw = Utils.canWithdraw(currentUser);
-                        if (canWithdraw) {
-                            lastWithdrawalSpan.innerHTML = `${Utils.formatDateTime(currentUser.last_withdrawal_at)} <span class="text-success">(Withdrawal allowed now)</span>`;
-                        } else {
-                            const waitTime = Utils.getWithdrawalWaitTime(currentUser);
-                            const hours = Math.floor(waitTime / (60 * 60 * 1000));
-                            const minutes = Math.floor((waitTime % (60 * 60 * 1000)) / (60 * 1000));
-                            lastWithdrawalSpan.innerHTML = `${Utils.formatDateTime(currentUser.last_withdrawal_at)} <span class="text-danger">(Wait ${hours}h ${minutes}m)</span>`;
-                        }
-                    } else {
-                        lastWithdrawalSpan.textContent = 'Never';
-                    }
                 }
                 
                 const withdrawalDetails = document.getElementById('withdrawalDetails');
@@ -7239,15 +7174,6 @@
 
                     this.updateBankDetailsForm();
                     
-                    // Setup profile logout button
-                    const profileLogoutBtn = document.getElementById('profileLogoutBtn');
-                    if (profileLogoutBtn) {
-                        profileLogoutBtn.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            AuthManager.logout();
-                        });
-                    }
-                    
                     Debug.info('Profile', 'Profile page updated');
                 } catch (error) {
                     Debug.error('Profile', 'Failed to update profile page:', error);
@@ -7372,8 +7298,21 @@
                 this.setupReferralActions();
                 this.setupProofViewer();
                 this.setupTrustWalletCopy();
+                // NEW: profile logout button
+                this.setupProfileLogout();
                 
                 Debug.info('EventHandlers', 'Event handlers initialized successfully');
+            }
+            
+            // NEW: profile logout button handler
+            static setupProfileLogout() {
+                const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+                if (profileLogoutBtn) {
+                    profileLogoutBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        AuthManager.logout();
+                    });
+                }
             }
             
             static setupMobileMenu() {
