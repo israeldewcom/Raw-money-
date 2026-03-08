@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Raw Wealthy | Premium Investment Platform v38.3 (PWA)</title>
+    <title>Raw Wealthy | Premium Investment Platform v38.2 (PWA)</title>
     <!-- PWA Manifest (inline data URI) -->
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Raw%20Wealthy%22%2C%22short_name%22%3A%22RawWealthy%22%2C%22description%22%3A%22Premium%20Investment%20Platform%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230F172A%22%2C%22theme_color%22%3A%22%237C3AED%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%200%20100%20100%27%3E%253Crect%2520width%3D%27100%27%2520height%3D%27100%27%2520fill%3D%27%25237C3AED%27%2F%3E%253Ctext%2520x%3D%2750%27%2520y%3D%2765%27%2520font-size%3D%2770%27%2520text-anchor%3D%27middle%27%2520fill%3D%27white%27%2520font-family%3D%27Arial%27%3E%25F0%259F%2592%25B0%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%200%20100%20100%27%3E%253Crect%2520width%3D%27100%27%2520height%3D%27100%27%2520fill%3D%27%25237C3AED%27%2F%3E%253Ctext%2520x%3D%2750%27%2520y%3D%2765%27%2520font-size%3D%2770%27%2520text-anchor%3D%27middle%27%2520fill%3D%27white%27%2520font-family%3D%27Arial%27%3E%25F0%259F%2592%25B0%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
     <!-- Theme color for browser UI -->
@@ -1869,7 +1869,7 @@
         
         <div class="sidebar-footer mt-4 p-3">
             <div class="text-muted small">
-                <div>Raw Wealthy v38.3 (PWA)</div>
+                <div>Raw Wealthy v38.2 (PWA)</div>
                 <div>© 2025 All Rights Reserved</div>
             </div>
         </div>
@@ -2017,26 +2017,12 @@
                 
                 <!-- Quick Stats -->
                 <div class="stats-grid mb-4">
-                    <!-- Deposit Balance (original balance) -->
                     <div class="stat-card">
                         <div class="stat-icon bg-primary">
                             <i class="fas fa-wallet"></i>
                         </div>
-                        <div class="stat-value" id="depositBalance">₦ 0.00</div>
-                        <div class="stat-label">Deposit Balance</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>Loading...</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Earnings Balance (NEW) -->
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);">
-                            <i class="fas fa-coins"></i>
-                        </div>
-                        <div class="stat-value" id="earningsBalance">₦ 0.00</div>
-                        <div class="stat-label">Earnings Balance (Withdrawable)</div>
+                        <div class="stat-value" id="totalBalance">₦ 0.00</div>
+                        <div class="stat-label">Total Balance</div>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
                             <span>Loading...</span>
@@ -2060,7 +2046,7 @@
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
                         <div class="stat-value" id="totalEarnings">₦ 0.00</div>
-                        <div class="stat-label">Total Earnings (Lifetime)</div>
+                        <div class="stat-label">Total Earnings</div>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
                             <span>Loading...</span>
@@ -2424,7 +2410,7 @@
                                             <i class="input-group-icon fas fa-money-bill"></i>
                                             <input type="number" class="form-control" id="withdrawalAmount" min="4000" value="4000" required>
                                         </div>
-                                        <small class="text-muted">Available Earnings: <span id="availableEarnings">₦ 0.00</span></small>
+                                        <small class="text-muted">Available Balance: <span id="availableBalance">₦ 0.00</span></small>
                                     </div>
                                     
                                     <div class="form-group">
@@ -3325,14 +3311,6 @@
                                         <span class="text-muted">Account Status</span>
                                         <span class="badge badge-success" id="accountStatus">Active</span>
                                     </div>
-                                    <div class="d-flex justify-between mt-2">
-                                        <span class="text-muted">Deposit Balance</span>
-                                        <span id="profileDepositBalance">₦0.00</span>
-                                    </div>
-                                    <div class="d-flex justify-between">
-                                        <span class="text-muted">Earnings Balance</span>
-                                        <span id="profileEarningsBalance">₦0.00</span>
-                                    </div>
                                 </div>
 
                                 <!-- NEW: Logout button inside profile card -->
@@ -3701,7 +3679,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Raw Wealthy. All rights reserved. v38.3 (PWA)</p>
+                <p>&copy; 2025 Raw Wealthy. All rights reserved. v38.2 (PWA)</p>
                 <p class="text-muted small">This platform is for demonstration purposes only. Investments carry risk.</p>
             </div>
         </div>
@@ -3756,7 +3734,6 @@
                             <input type="number" class="form-control" id="modalInvestmentAmount" required>
                         </div>
                         <small class="text-muted">Minimum: <span id="modalMinAmount">₦ 0.00</span></small>
-                        <small class="text-muted d-block">Available Deposit Balance: <span id="modalDepositBalance">₦ 0.00</span></small>
                     </div>
                     
                     <div class="form-group">
@@ -3859,7 +3836,7 @@
         }
 
         // ==============================================
-        // RAW WEALTHY PREMIUM v38.3 - ENHANCED EDITION
+        // RAW WEALTHY PREMIUM v38.2 - ENHANCED EDITION
         // ALL ORIGINAL CODE PRESERVED + NEW FEATURES
         // ==============================================
 
@@ -3870,7 +3847,7 @@
                 : 'https://real-wealthy-1.onrender.com',
             
             DEBUG_MODE: true,
-            VERSION: '38.3.0',   // Updated version
+            VERSION: '38.2.0',   // Updated version
             
             // Business Logic
             MIN_INVESTMENT: 3500,
@@ -4173,11 +4150,11 @@
                 return dailyEarnings + referralEarnings;
             }
 
-            // ===== UPDATED: Withdrawable balance now uses earnings_balance =====
+            // ===== FIXED: Withdrawable balance now directly uses user.balance =====
             static calculateWithdrawableBalance(user) {
                 if (!user) return 0;
-                // Directly return the earnings balance that is available for withdrawal
-                return user.earnings_balance || 0;
+                // Directly return the cash balance that is available for withdrawal
+                return user.balance || 0;
             }
 
             static hasBankDetails(user) {
@@ -4286,8 +4263,7 @@
                         full_name: 'Demo User',
                         email: 'demo@rawwealthy.com',
                         phone: '+2348000000000',
-                        balance: 1250000,          // deposit balance
-                        earnings_balance: 525000,   // earnings available for withdrawal
+                        balance: 1250000,
                         total_earnings: 450000,
                         referral_earnings: 75000,
                         total_withdrawn: 200000,
@@ -5036,22 +5012,19 @@
                     const user = data.user || {};
                     const stats = data.stats || {};
                     
-                    const depositBalance = user.balance || 0;
-                    const earningsBalance = user.earnings_balance || 0;
+                    const portfolioValue = (user.balance || 0) + (user.total_earnings || 0) + (user.referral_earnings || 0);
                     const totalEarnings = Utils.calculateTotalEarnings(user);
                     const withdrawableBalance = Utils.calculateWithdrawableBalance(user);
                     
-                    // Update new stat cards
-                    document.getElementById('depositBalance').textContent = Utils.formatCurrency(depositBalance);
-                    document.getElementById('earningsBalance').textContent = Utils.formatCurrency(earningsBalance);
+                    document.getElementById('totalBalance').textContent = Utils.formatCurrency(user.balance || 0);
                     document.getElementById('activeInvestments').textContent = Utils.formatCurrency(stats.active_investment_value || 0);
                     document.getElementById('totalEarnings').textContent = Utils.formatCurrency(totalEarnings);
                     document.getElementById('totalReferrals').textContent = user.referral_count || 0;
+                    document.getElementById('availableBalance').textContent = Utils.formatCurrency(withdrawableBalance);
                     
-                    // Update withdrawal form available earnings (if present)
-                    const availableEarningsElement = document.getElementById('availableEarnings');
-                    if (availableEarningsElement) {
-                        availableEarningsElement.textContent = Utils.formatCurrency(earningsBalance);
+                    const withdrawableElement = document.getElementById('withdrawableBalance');
+                    if (withdrawableElement) {
+                        withdrawableElement.textContent = Utils.formatCurrency(withdrawableBalance);
                     }
                     
                     Debug.info('Dashboard', 'Dashboard stats updated successfully');
@@ -5513,7 +5486,6 @@
                 
                 document.getElementById('modalPlanName').textContent = planData.name;
                 document.getElementById('modalMinAmount').textContent = Utils.formatCurrency(planData.minAmount);
-                document.getElementById('modalDepositBalance').textContent = Utils.formatCurrency(currentUser?.balance || 0);
                 
                 if (planData.maxAmount) {
                     document.getElementById('modalMinAmount').innerHTML += ` (Max: ${Utils.formatCurrency(planData.maxAmount)})`;
@@ -5572,9 +5544,9 @@
                     return false;
                 }
                 
-                // Check user deposit balance
+                // Check user balance
                 if (currentUser && value > currentUser.balance) {
-                    this.showValidationError(input, `Insufficient deposit balance. Available: ${Utils.formatCurrency(currentUser.balance)}`);
+                    this.showValidationError(input, `Insufficient balance. Available: ${Utils.formatCurrency(currentUser.balance)}`);
                     return false;
                 }
                 
@@ -5731,7 +5703,7 @@
                     }
                     
                     if (paymentMethod === 'wallet' && currentUser.balance < amount) {
-                        Utils.showNotification('Insufficient deposit balance', 'error');
+                        Utils.showNotification('Insufficient wallet balance', 'error');
                         Utils.hideLoader();
                         return;
                     }
@@ -6311,7 +6283,7 @@
                         this.renderWithdrawalsTable(withdrawals);
                         this.updateWithdrawalStats(withdrawals);
                         
-                        // ===== ADDED: Update the withdrawal form with current user earnings balance =====
+                        // ===== ADDED: Update the withdrawal form with current user balance =====
                         this.updateWithdrawalForm();
                         
                         Debug.info('Withdrawal', `Loaded ${withdrawals.length} withdrawals`);
@@ -6430,7 +6402,7 @@
                     const withdrawableBalance = Utils.calculateWithdrawableBalance(currentUser);
                     
                     if (amount > withdrawableBalance) {
-                        Utils.showNotification(`Insufficient earnings balance. Available: ${Utils.formatCurrency(withdrawableBalance)}`, 'error');
+                        Utils.showNotification(`Insufficient withdrawable balance. Available: ${Utils.formatCurrency(withdrawableBalance)}`, 'error');
                         return;
                     }
                     
@@ -6471,9 +6443,9 @@
                 const withdrawableBalance = Utils.calculateWithdrawableBalance(currentUser);
                 const hasBankDetails = Utils.hasBankDetails(currentUser);
                 
-                const availableEarningsElement = document.getElementById('availableEarnings');
-                if (availableEarningsElement) {
-                    availableEarningsElement.textContent = Utils.formatCurrency(withdrawableBalance);
+                const availableBalanceElement = document.getElementById('availableBalance');
+                if (availableBalanceElement) {
+                    availableBalanceElement.textContent = Utils.formatCurrency(withdrawableBalance);
                 }
                 
                 const withdrawalDetails = document.getElementById('withdrawalDetails');
@@ -7180,12 +7152,6 @@
                         accountStatus.className = `badge ${currentUser.is_active ? 'badge-success' : 'badge-danger'}`;
                     }
                     
-                    // Display both balances on profile
-                    const depositBalanceElem = document.getElementById('profileDepositBalance');
-                    if (depositBalanceElem) depositBalanceElem.textContent = Utils.formatCurrency(currentUser.balance || 0);
-                    const earningsBalanceElem = document.getElementById('profileEarningsBalance');
-                    if (earningsBalanceElem) earningsBalanceElem.textContent = Utils.formatCurrency(currentUser.earnings_balance || 0);
-                    
                     const profileAvatar = document.getElementById('profileAvatar');
                     if (profileAvatar && currentUser.full_name) {
                         const initials = currentUser.full_name
@@ -7591,7 +7557,6 @@
                                 Utils.showNotification('Please fill all required fields', 'error');
                                 return;
                             }
-                                }
                             
                             const kycData = {
                                 id_type: idType,
@@ -7904,8 +7869,8 @@
 
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
-            Debug.info('App', 'Initializing Raw Wealthy v38.3 - Enhanced Edition...');
-            console.log('🚀 Raw Wealthy Premium v38.3 - Enhanced Edition');
+            Debug.info('App', 'Initializing Raw Wealthy v38.2 - Enhanced Edition...');
+            console.log('🚀 Raw Wealthy Premium v38.2 - Enhanced Edition');
             console.log('📊 Debug Mode:', CONFIG.DEBUG_MODE);
             console.log('🔐 Auth Status:', authToken ? 'Logged In' : 'Logged Out');
             console.log('👤 Current User:', currentUser?.email || 'None');
@@ -7941,7 +7906,7 @@
                 Debug.warn('Network', 'Connection lost');
             });
             
-            Debug.info('App', '✅ Raw Wealthy v38.3 Initialization Complete');
+            Debug.info('App', '✅ Raw Wealthy v38.2 Initialization Complete');
         });
 
         // ===== GLOBAL ERROR HANDLING =====
