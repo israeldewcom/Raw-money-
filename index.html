@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Raw Wealthy | Premium Investment Platform v38.3 (PWA) – Separated Balances</title>
+    <title>Raw Wealthy | Premium Investment Platform v38.4 (PWA) – Separated Balances + Enhanced</title>
     <!-- PWA Manifest (inline data URI) -->
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Raw%20Wealthy%22%2C%22short_name%22%3A%22RawWealthy%22%2C%22description%22%3A%22Premium%20Investment%20Platform%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230F172A%22%2C%22theme_color%22%3A%22%237C3AED%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%200%20100%20100%27%3E%253Crect%2520width%3D%27100%27%2520height%3D%27100%27%2520fill%3D%27%25237C3AED%27%2F%3E%253Ctext%2520x%3D%2750%27%2520y%3D%2765%27%2520font-size%3D%2770%27%2520text-anchor%3D%27middle%27%2520fill%3D%27white%27%2520font-family%3D%27Arial%27%3E%25F0%259F%2592%25B0%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%200%20100%20100%27%3E%253Crect%2520width%3D%27100%27%2520height%3D%27100%27%2520fill%3D%27%25237C3AED%27%2F%3E%253Ctext%2520x%3D%2750%27%2520y%3D%2765%27%2520font-size%3D%2770%27%2520text-anchor%3D%27middle%27%2520fill%3D%27white%27%2520font-family%3D%27Arial%27%3E%25F0%259F%2592%25B0%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
     <!-- Theme color for browser UI -->
@@ -1651,6 +1651,104 @@
             word-break: break-all;
             border: 1px solid var(--accent-blue);
         }
+
+        /* ===== ENHANCED UI ADDITIONS ===== */
+        /* Floating action button */
+        .fab {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.2s;
+        }
+        .fab:hover {
+            transform: scale(1.1);
+        }
+        .fab-menu {
+            position: fixed;
+            bottom: 140px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+        }
+        .fab-menu.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .fab-menu-item {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--dark-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(124,58,237,0.3);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .fab-menu-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        /* Skeleton loader */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(124,58,237,0.1) 25%, rgba(124,58,237,0.2) 50%, rgba(124,58,237,0.1) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: var(--radius-md);
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Password strength meter */
+        .password-strength {
+            height: 4px;
+            margin-top: 5px;
+            border-radius: var(--radius-full);
+            background: rgba(124,58,237,0.2);
+        }
+        .password-strength-bar {
+            height: 100%;
+            border-radius: var(--radius-full);
+            transition: width 0.3s, background 0.3s;
+        }
+        .strength-weak { background: #ef4444; width: 25%; }
+        .strength-fair { background: #f59e0b; width: 50%; }
+        .strength-good { background: #3b82f6; width: 75%; }
+        .strength-strong { background: #10b981; width: 100%; }
+
+        /* Investment calculator */
+        .calc-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+        .calc-result {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
     </style>
     <!-- Install Banner Styles (PWA) -->
     <style>
@@ -1739,6 +1837,17 @@
         </button>
     </div>
 
+    <!-- Floating Action Button (Mobile Quick Actions) -->
+    <div class="fab" id="fab">
+        <i class="fas fa-plus"></i>
+    </div>
+    <div class="fab-menu" id="fabMenu">
+        <div class="fab-menu-item" data-action="make-deposit"><i class="fas fa-money-bill-wave"></i></div>
+        <div class="fab-menu-item" data-action="new-investment"><i class="fas fa-chart-line"></i></div>
+        <div class="fab-menu-item" data-action="request-withdrawal"><i class="fas fa-wallet"></i></div>
+        <div class="fab-menu-item" data-action="invite-friends"><i class="fas fa-share-alt"></i></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -1761,6 +1870,9 @@
                     <li><a href="#referrals" class="nav-link" data-section="referrals">Referrals</a></li>
                     <li><a href="#profile" class="nav-link" data-section="profile">Profile</a></li>
                     <li class="admin-nav d-none"><a href="#admin" class="nav-link" data-section="admin">Admin</a></li>
+                    <!-- New pages -->
+                    <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                    <li><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
                 </ul>
                 
                 <div class="nav-user">
@@ -1860,6 +1972,18 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="#about" class="sidebar-link" data-section="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#faq" class="sidebar-link" data-section="faq">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="#logout" class="sidebar-link" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
@@ -1869,7 +1993,7 @@
         
         <div class="sidebar-footer mt-4 p-3">
             <div class="text-muted small">
-                <div>Raw Wealthy v38.3 (Separated Balances)</div>
+                <div>Raw Wealthy v38.4 (Enhanced Edition)</div>
                 <div>© 2025 All Rights Reserved</div>
             </div>
         </div>
@@ -1976,6 +2100,10 @@
                                             <div class="form-group">
                                                 <label class="form-label">Password</label>
                                                 <input type="password" class="form-control" id="registerPassword" placeholder="Create a password" required>
+                                                <div class="password-strength">
+                                                    <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                                                </div>
+                                                <small class="text-muted" id="passwordStrengthText"></small>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -1989,7 +2117,7 @@
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="termsAgreement" required>
                                             <label class="form-check-label" for="termsAgreement">
-                                                I agree to the <a href="terms.html" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+                                                I agree to the <a href="#terms" class="text-primary" data-section="terms">Terms of Service</a> and <a href="#privacy" class="text-primary">Privacy Policy</a>
                                             </label>
                                         </div>
                                     </div>
@@ -2062,6 +2190,32 @@
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
                             <span>Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <!-- NEW: Daily Interest Earned -->
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-value" id="dailyInterestEarned">₦ 0.00</div>
+                        <div class="stat-label">Daily Interest Earned</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Lifetime</span>
+                        </div>
+                    </div>
+                    
+                    <!-- NEW: Referral Bonus Earned -->
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-value" id="referralBonusEarned">₦ 0.00</div>
+                        <div class="stat-label">Referral Bonus Earned</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Lifetime</span>
                         </div>
                     </div>
                 </div>
@@ -2183,6 +2337,38 @@
                 <div class="section-header">
                     <h1>Investment Plans</h1>
                     <p class="text-muted">Choose from our premium investment plans with guaranteed returns</p>
+                </div>
+                
+                <!-- Investment Calculator (NEW) -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="card-title">Investment Calculator</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Select Plan</label>
+                                    <select class="form-control" id="calcPlanSelect">
+                                        <option value="">Select a plan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Investment Amount (₦)</label>
+                                    <input type="range" class="calc-slider" id="calcAmountSlider" min="1000" max="10000000" step="1000" value="50000">
+                                    <input type="number" class="form-control" id="calcAmountInput" value="50000">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="calc-result text-center">
+                                    <div>Daily Profit: <span id="calcDailyProfit">₦ 0.00</span></div>
+                                    <div>Total Profit (30 days): <span id="calcTotalProfit">₦ 0.00</span></div>
+                                    <div>Total Return: <span id="calcTotalReturn">₦ 0.00</span></div>
+                                </div>
+                                <button class="btn btn-primary btn-block mt-3" id="calcInvestNow">Invest Now</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Investment Plans -->
@@ -2490,6 +2676,10 @@
                                         <span id="paidWithdrawals" class="text-success">₦ 0.00</span>
                                     </div>
                                 </div>
+                                <!-- Withdrawal cooldown timer -->
+                                <div id="withdrawalCooldown" class="alert alert-warning small d-none">
+                                    <i class="fas fa-clock"></i> Next withdrawal available in: <span id="cooldownTimer"></span>
+                                </div>
                             </div>
                         </div>
                         
@@ -2615,6 +2805,9 @@
                             <button class="btn btn-primary" id="filterTransactions">
                                 <i class="fas fa-filter"></i> Apply Filters
                             </button>
+                            <button class="btn btn-success" id="exportTransactions">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -2667,7 +2860,7 @@
                             <button class="btn btn-sm btn-secondary" id="refreshTransactions">
                                 <i class="fas fa-sync-alt"></i> Refresh
                             </button>
-                            <button class="btn btn-sm btn-outline" id="exportTransactions">
+                            <button class="btn btn-sm btn-outline" id="exportTransactionsBtn">
                                 <i class="fas fa-download"></i> Export
                             </button>
                         </div>
@@ -3139,6 +3332,11 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Native Share Button (NEW) -->
+                                <button class="btn btn-outline mb-3" id="nativeShareBtn">
+                                    <i class="fas fa-share-alt"></i> Share via...
+                                </button>
+                                
                                 <div class="alert alert-info">
                                     <i class="fas fa-info-circle mr-2"></i>
                                     <span>Earn 10% commission on your referrals' investments. Share your link with friends and family!</span>
@@ -3194,6 +3392,20 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Referral Leaderboard (NEW) -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h3 class="card-title">Top Referrers</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="referralLeaderboard">
+                                    <div class="text-center py-3">
+                                        <div class="loader"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -3310,6 +3522,14 @@
                                     <div class="d-flex justify-between mb-2">
                                         <span class="text-muted">Total Earnings (cumulative)</span>
                                         <span id="profileTotalEarnings">₦ 0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-between mb-2">
+                                        <span class="text-muted">Daily Interest Earned</span>
+                                        <span id="profileDailyInterest" class="text-info">₦ 0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-between mb-2">
+                                        <span class="text-muted">Referral Bonus</span>
+                                        <span id="profileReferralBonus" class="text-info">₦ 0.00</span>
                                     </div>
                                     <div class="d-flex justify-between mb-2">
                                         <span class="text-muted">Member Since</span>
@@ -3614,6 +3834,64 @@
                 </div>
             </div>
         </section>
+
+        <!-- NEW: About Page -->
+        <section id="about" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>About Raw Wealthy</h1>
+                    <p class="text-muted">Your trusted partner in raw material investments</p>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p>Raw Wealthy is a premier investment platform specializing in raw material commodities. We connect investors with lucrative opportunities in gold, oil, diamonds, and more. Licensed by CBN and SON, we ensure secure and transparent investments.</p>
+                        <p>Our mission is to democratize access to commodity investments, offering high returns with low entry barriers. With a user-friendly interface and dedicated support, we make investing simple and rewarding.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: FAQ Page -->
+        <section id="faq" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Frequently Asked Questions</h1>
+                    <p class="text-muted">Find answers to common questions</p>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="accordion" id="faqFull">
+                            <div class="faq-item">
+                                <h5>How do I start investing?</h5>
+                                <p>Register an account, complete KYC, make a deposit, and choose an investment plan.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h5>What are the minimum deposit and withdrawal amounts?</h5>
+                                <p>Minimum deposit is ₦3,500 and minimum withdrawal is ₦4,000.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h5>How long do withdrawals take?</h5>
+                                <p>Withdrawals are processed within 24-48 hours after approval.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Terms & Conditions Modal (Hidden by default, triggered by link) -->
+        <div class="modal" id="termsModal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Terms and Conditions</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ... (full terms)</p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -3660,7 +3938,7 @@
                 <div>
                     <h4 class="footer-title">Company</h4>
                     <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#about">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="career.html">Careers</a></li>
                         <li><a href="blog.html">Blog</a></li>
@@ -3671,8 +3949,8 @@
                 <div>
                     <h4 class="footer-title">Legal</h4>
                     <ul class="footer-links">
+                        <li><a href="#terms" id="termsLink">Terms of Service</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
                         <li><a href="cookie.html">Cookie Policy</a></li>
                         <li><a href="risk.html">Risk Disclosure</a></li>
                         <li><a href="aml.html">AML Policy</a></li>
@@ -3683,7 +3961,7 @@
                     <h4 class="footer-title">Support</h4>
                     <ul class="footer-links">
                         <li><a href="#support">Help Center</a></li>
-                        <li><a href="#support">FAQ</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                         <li><a href="#support">Contact Support</a></li>
                         <li><a href="#support">System Status</a></li>
                         <li><a href="#support">Documentation</a></li>
@@ -3692,7 +3970,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Raw Wealthy. All rights reserved. v38.3 (Separated Balances)</p>
+                <p>&copy; 2025 Raw Wealthy. All rights reserved. v38.4 (Enhanced Edition)</p>
                 <p class="text-muted small">This platform is for demonstration purposes only. Investments carry risk.</p>
             </div>
         </div>
@@ -3727,6 +4005,10 @@
         <a href="#profile" class="bottom-nav-item" data-section="profile">
             <i class="fas fa-user"></i>
             <span>Profile</span>
+        </a>
+        <a href="#about" class="bottom-nav-item" data-section="about">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
         </a>
     </div>
 
@@ -3809,6 +4091,43 @@
         </div>
     </div>
 
+    <!-- Compound Interest Simulator Modal (NEW) -->
+    <div class="modal" id="compoundModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Compound Interest Simulator</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Principal (₦)</label>
+                    <input type="number" class="form-control" id="compoundPrincipal" value="100000">
+                </div>
+                <div class="form-group">
+                    <label>Daily Rate (%)</label>
+                    <input type="number" class="form-control" id="compoundRate" value="1.2" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Days</label>
+                    <input type="number" class="form-control" id="compoundDays" value="30">
+                </div>
+                <div class="form-group">
+                    <label>Compounding Frequency</label>
+                    <select class="form-control" id="compoundFrequency">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="calculateCompound">Calculate</button>
+                <div class="mt-4 text-center">
+                    <h4>Final Amount: <span id="compoundResult">₦ 0.00</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Proof Viewer Modal -->
     <div class="modal" id="proofViewerModal">
         <div class="modal-backdrop"></div>
@@ -3832,7 +4151,7 @@
         <div class="loading-text mt-3">Loading...</div>
     </div>
 
-    <!-- JavaScript (upgraded for separated balances) -->
+    <!-- JavaScript (upgraded for separated balances and new features) -->
     <script>
         // Conditional loading of Chart.js (performance)
         function loadChartJS() {
@@ -3850,7 +4169,7 @@
         }
 
         // ==============================================
-        // RAW WEALTHY PREMIUM v38.3 - SEPARATED BALANCES
+        // RAW WEALTHY PREMIUM v38.4 - SEPARATED BALANCES + ENHANCED
         // ==============================================
 
         // ===== ENHANCED CONFIGURATION =====
@@ -3860,7 +4179,7 @@
                 : 'https://real-wealthy-1.onrender.com',
             
             DEBUG_MODE: true,
-            VERSION: '38.3.0',   // Updated version
+            VERSION: '38.4.0',   // Updated version
             
             // Business Logic
             MIN_INVESTMENT: 3500,
@@ -3994,6 +4313,9 @@
         
         // Selected currency (default from localStorage or NGN)
         let selectedCurrency = StateManager.get('selectedCurrency', 'NGN');
+
+        // Auto-refresh timer
+        let autoRefreshInterval = null;
 
         // ===== ENHANCED UTILITIES =====
         class Utils {
@@ -4172,6 +4494,35 @@
             static hasBankDetails(user) {
                 return user && user.bank_details && user.bank_details.account_number && user.bank_details.account_number.trim() !== '';
             }
+
+            // Password strength meter
+            static checkPasswordStrength(password) {
+                let strength = 0;
+                if (password.length >= 6) strength++;
+                if (password.length >= 8) strength++;
+                if (/[a-z]/.test(password)) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^a-zA-Z0-9]/.test(password)) strength++;
+                return Math.min(strength, 4); // 0-4
+            }
+
+            static getPasswordStrengthLabel(strength) {
+                const labels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+                return labels[strength] || 'Unknown';
+            }
+
+            // Export to CSV
+            static exportToCSV(data, filename) {
+                const csvContent = data.map(row => Object.values(row).join(',')).join('\n');
+                const blob = new Blob([csvContent], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
         }
 
         // ===== CURRENCY MANAGER =====
@@ -4298,7 +4649,7 @@
                     currentUser = demoUser;
                     authToken = 'demo-token';
                     isAdmin = false;
-                    return Promise.resolve({ success: true, data: { user: demoUser, stats: { active_investment_value: 850000 } } });
+                    return Promise.resolve({ success: true, data: { user: demoUser, stats: { active_investment_value: 850000, daily_interest: 5000 } } });
                 }
                 if (endpoint.includes('/api/plans')) {
                     return Promise.resolve({ success: true, data: { plans: demoPlans } });
@@ -4794,6 +5145,15 @@
                 }
                 
                 this.setupNavigation();
+                
+                // Auto-refresh every 30 seconds if logged in and on dashboard
+                if (authToken) {
+                    autoRefreshInterval = setInterval(() => {
+                        if (Router.currentSection === 'dashboard') {
+                            DashboardManager.loadDashboardData();
+                        }
+                    }, 30000);
+                }
             }
             
             static setupNavigation() {
@@ -4886,7 +5246,9 @@
                     support: 'Support Center',
                     referrals: 'Referral Program',
                     profile: 'My Profile',
-                    admin: 'Admin Dashboard'
+                    admin: 'Admin Dashboard',
+                    about: 'About Us',
+                    faq: 'FAQ'
                 };
                 return titles[section] || 'Premium Investment Platform';
             }
@@ -4940,6 +5302,10 @@
                                 Utils.showNotification('Admin access required', 'error');
                                 this.navigateTo('dashboard');
                             }
+                            break;
+                        case 'about':
+                        case 'faq':
+                            // Static pages, no data needed
                             break;
                     }
                     
@@ -5034,7 +5400,9 @@
                     document.getElementById('totalEarnings').textContent = Utils.formatCurrency(totalEarnings);
                     document.getElementById('totalReferrals').textContent = user.referral_count || 0;
                     
-                    // Withdrawal page's available balance is updated via WithdrawalManager
+                    // NEW: Daily interest and referral bonus
+                    document.getElementById('dailyInterestEarned').textContent = Utils.formatCurrency(user.total_earnings || 0);
+                    document.getElementById('referralBonusEarned').textContent = Utils.formatCurrency(user.referral_earnings || 0);
                     
                     Debug.info('Dashboard', 'Dashboard stats updated successfully');
                 } catch (error) {
@@ -5299,6 +5667,7 @@
                     const plansResponse = await ApiService.getPlans();
                     if (plansResponse.success) {
                         this.renderInvestmentPlans(plansResponse.data.plans || []);
+                        this.populateCalculatorPlans(plansResponse.data.plans || []);
                     }
                     
                     const investmentsResponse = await ApiService.getInvestments();
@@ -5313,6 +5682,20 @@
                 } finally {
                     Utils.hideLoader();
                 }
+            }
+            
+            static populateCalculatorPlans(plans) {
+                const select = document.getElementById('calcPlanSelect');
+                if (!select) return;
+                
+                select.innerHTML = '<option value="">Select a plan</option>';
+                plans.forEach(plan => {
+                    const option = document.createElement('option');
+                    option.value = plan._id;
+                    option.textContent = plan.name;
+                    option.dataset.daily = plan.daily_interest;
+                    select.appendChild(option);
+                });
             }
             
             static renderInvestmentPlans(plans) {
@@ -6513,6 +6896,28 @@
                 }
                 
                 this.calculateWithdrawalFees();
+                
+                // Cooldown timer
+                this.updateCooldownTimer();
+            }
+            
+            static updateCooldownTimer() {
+                const cooldownDiv = document.getElementById('withdrawalCooldown');
+                const lastWithdrawalTime = StateManager.get('lastWithdrawalTime', 0);
+                const now = Date.now();
+                
+                if (lastWithdrawalTime && (now - lastWithdrawalTime < CONFIG.WITHDRAWAL_COOLDOWN_MS)) {
+                    const remaining = CONFIG.WITHDRAWAL_COOLDOWN_MS - (now - lastWithdrawalTime);
+                    const hours = Math.floor(remaining / (60 * 60 * 1000));
+                    const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
+                    document.getElementById('cooldownTimer').textContent = `${hours}h ${minutes}m`;
+                    cooldownDiv.classList.remove('d-none');
+                    
+                    // Update every minute
+                    setTimeout(() => this.updateCooldownTimer(), 60000);
+                } else {
+                    cooldownDiv.classList.add('d-none');
+                }
             }
             
             static calculateWithdrawalFees() {
@@ -6759,6 +7164,18 @@
                     cancelled: 'Cancelled'
                 };
                 return texts[status] || status;
+            }
+            
+            static exportToCSV() {
+                const table = document.getElementById('transactionsTable');
+                if (!table) return;
+                
+                const rows = Array.from(table.querySelectorAll('tr')).map(row => 
+                    Array.from(row.querySelectorAll('td, th')).map(cell => cell.innerText)
+                );
+                
+                Utils.exportToCSV(rows, 'transactions.csv');
+                Utils.showNotification('Exported to CSV', 'success');
             }
             
             static showTransactionError(message) {
@@ -7023,6 +7440,9 @@
                             this.renderReferralsTable(referralsResponse.data.referrals || []);
                         }
                         
+                        // Load leaderboard (demo)
+                        this.renderLeaderboard();
+                        
                         Debug.info('Referral', 'Referral data loaded successfully');
                     } else {
                         Debug.warn('Referral', 'Failed to load referral data:', response.message);
@@ -7107,6 +7527,27 @@
                     `;
                 }
             }
+            
+            static renderLeaderboard() {
+                const leaderboard = document.getElementById('referralLeaderboard');
+                if (!leaderboard) return;
+                
+                // Demo leaderboard
+                leaderboard.innerHTML = `
+                    <div class="leaderboard-item d-flex justify-between mb-2">
+                        <span><i class="fas fa-trophy text-warning"></i> John D.</span>
+                        <span class="text-success">${Utils.formatCurrency(25000)}</span>
+                    </div>
+                    <div class="leaderboard-item d-flex justify-between mb-2">
+                        <span><i class="fas fa-trophy text-secondary"></i> Jane S.</span>
+                        <span class="text-success">${Utils.formatCurrency(18750)}</span>
+                    </div>
+                    <div class="leaderboard-item d-flex justify-between mb-2">
+                        <span><i class="fas fa-trophy text-bronze"></i> Mike T.</span>
+                        <span class="text-success">${Utils.formatCurrency(12300)}</span>
+                    </div>
+                `;
+            }
         }
 
         // ===== PROFILE MANAGER =====
@@ -7153,6 +7594,12 @@
                     
                     const totalEarningsEl = document.getElementById('profileTotalEarnings');
                     if (totalEarningsEl) totalEarningsEl.textContent = Utils.formatCurrency(Utils.calculateTotalEarnings(currentUser));
+                    
+                    const dailyInterestEl = document.getElementById('profileDailyInterest');
+                    if (dailyInterestEl) dailyInterestEl.textContent = Utils.formatCurrency(currentUser.total_earnings || 0);
+                    
+                    const referralBonusEl = document.getElementById('profileReferralBonus');
+                    if (referralBonusEl) referralBonusEl.textContent = Utils.formatCurrency(currentUser.referral_earnings || 0);
                     
                     const kycBadge = document.getElementById('kycBadge');
                     if (kycBadge) {
@@ -7333,6 +7780,20 @@
                 this.setupTrustWalletCopy();
                 // NEW: profile logout button
                 this.setupProfileLogout();
+                // NEW: floating action button
+                this.setupFAB();
+                // NEW: password strength
+                this.setupPasswordStrength();
+                // NEW: investment calculator
+                this.setupCalculator();
+                // NEW: compound simulator
+                this.setupCompoundModal();
+                // NEW: terms modal
+                this.setupTermsModal();
+                // NEW: export transactions
+                this.setupExport();
+                // NEW: native share
+                this.setupNativeShare();
                 
                 Debug.info('EventHandlers', 'Event handlers initialized successfully');
             }
@@ -7898,12 +8359,195 @@
                     });
                 }
             }
+
+            static setupFAB() {
+                const fab = document.getElementById('fab');
+                const fabMenu = document.getElementById('fabMenu');
+                if (fab && fabMenu) {
+                    fab.addEventListener('click', () => {
+                        fabMenu.classList.toggle('show');
+                    });
+                    document.addEventListener('click', (e) => {
+                        if (!fab.contains(e.target) && !fabMenu.contains(e.target)) {
+                            fabMenu.classList.remove('show');
+                        }
+                    });
+                }
+            }
+
+            static setupPasswordStrength() {
+                const passwordInput = document.getElementById('registerPassword');
+                const strengthBar = document.getElementById('passwordStrengthBar');
+                const strengthText = document.getElementById('passwordStrengthText');
+                if (passwordInput && strengthBar && strengthText) {
+                    passwordInput.addEventListener('input', () => {
+                        const strength = Utils.checkPasswordStrength(passwordInput.value);
+                        strengthBar.className = 'password-strength-bar';
+                        if (strength === 0) strengthBar.classList.add('strength-weak');
+                        else if (strength === 1) strengthBar.classList.add('strength-weak');
+                        else if (strength === 2) strengthBar.classList.add('strength-fair');
+                        else if (strength === 3) strengthBar.classList.add('strength-good');
+                        else strengthBar.classList.add('strength-strong');
+                        strengthText.textContent = Utils.getPasswordStrengthLabel(strength);
+                    });
+                }
+            }
+
+            static setupCalculator() {
+                const calcPlan = document.getElementById('calcPlanSelect');
+                const calcAmountSlider = document.getElementById('calcAmountSlider');
+                const calcAmountInput = document.getElementById('calcAmountInput');
+                const calcDailyProfit = document.getElementById('calcDailyProfit');
+                const calcTotalProfit = document.getElementById('calcTotalProfit');
+                const calcTotalReturn = document.getElementById('calcTotalReturn');
+                const calcInvestNow = document.getElementById('calcInvestNow');
+
+                if (calcPlan && calcAmountSlider && calcAmountInput) {
+                    const updateCalc = () => {
+                        const selected = calcPlan.options[calcPlan.selectedIndex];
+                        if (!selected || !selected.dataset.daily) {
+                            calcDailyProfit.textContent = Utils.formatCurrency(0);
+                            calcTotalProfit.textContent = Utils.formatCurrency(0);
+                            calcTotalReturn.textContent = Utils.formatCurrency(0);
+                            return;
+                        }
+                        const dailyRate = parseFloat(selected.dataset.daily) / 100;
+                        const amount = parseFloat(calcAmountInput.value) || 0;
+                        const dailyProfit = amount * dailyRate;
+                        const totalProfit = dailyProfit * 30;
+                        calcDailyProfit.textContent = Utils.formatCurrency(dailyProfit);
+                        calcTotalProfit.textContent = Utils.formatCurrency(totalProfit);
+                        calcTotalReturn.textContent = Utils.formatCurrency(amount + totalProfit);
+                    };
+
+                    calcPlan.addEventListener('change', updateCalc);
+                    calcAmountSlider.addEventListener('input', (e) => {
+                        calcAmountInput.value = e.target.value;
+                        updateCalc();
+                    });
+                    calcAmountInput.addEventListener('input', (e) => {
+                        calcAmountSlider.value = e.target.value;
+                        updateCalc();
+                    });
+                }
+
+                if (calcInvestNow) {
+                    calcInvestNow.addEventListener('click', () => {
+                        // Simulate investing from calculator: select plan and open modal
+                        const selected = calcPlan.options[calcPlan.selectedIndex];
+                        if (!selected || !selected.value) {
+                            Utils.showNotification('Please select a plan first', 'warning');
+                            return;
+                        }
+                        // Find the corresponding invest button and click
+                        const planId = selected.value;
+                        const investBtn = document.querySelector(`.invest-btn[data-plan-id="${planId}"]`);
+                        if (investBtn) investBtn.click();
+                    });
+                }
+            }
+
+            static setupCompoundModal() {
+                // Add button to open compound modal (e.g., in investments page)
+                const investmentsHeader = document.querySelector('#investments .section-header');
+                if (investmentsHeader) {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn btn-outline btn-sm ms-2';
+                    btn.innerHTML = '<i class="fas fa-calculator"></i> Compound Simulator';
+                    btn.onclick = () => {
+                        document.getElementById('compoundModal').classList.add('active');
+                    };
+                    investmentsHeader.appendChild(btn);
+                }
+
+                document.getElementById('calculateCompound').addEventListener('click', () => {
+                    const principal = parseFloat(document.getElementById('compoundPrincipal').value) || 0;
+                    const rate = parseFloat(document.getElementById('compoundRate').value) / 100;
+                    const days = parseInt(document.getElementById('compoundDays').value) || 0;
+                    const freq = document.getElementById('compoundFrequency').value;
+                    
+                    let periods = days;
+                    if (freq === 'weekly') periods = days / 7;
+                    else if (freq === 'monthly') periods = days / 30;
+                    
+                    const final = principal * Math.pow(1 + rate, periods);
+                    document.getElementById('compoundResult').textContent = Utils.formatCurrency(final);
+                });
+
+                // Close modal
+                document.querySelector('#compoundModal .modal-close').addEventListener('click', () => {
+                    document.getElementById('compoundModal').classList.remove('active');
+                });
+                document.querySelector('#compoundModal .modal-backdrop').addEventListener('click', () => {
+                    document.getElementById('compoundModal').classList.remove('active');
+                });
+            }
+
+            static setupTermsModal() {
+                const termsLink = document.getElementById('termsLink');
+                if (termsLink) {
+                    termsLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        document.getElementById('termsModal').classList.add('active');
+                    });
+                }
+                document.querySelector('#termsModal .modal-close').addEventListener('click', () => {
+                    document.getElementById('termsModal').classList.remove('active');
+                });
+                document.querySelector('#termsModal .modal-backdrop').addEventListener('click', () => {
+                    document.getElementById('termsModal').classList.remove('active');
+                });
+            }
+
+            static setupExport() {
+                const exportBtn = document.getElementById('exportTransactionsBtn');
+                if (exportBtn) {
+                    exportBtn.addEventListener('click', () => {
+                        TransactionManager.exportToCSV();
+                    });
+                }
+            }
+
+            static setupNativeShare() {
+                const shareBtn = document.getElementById('nativeShareBtn');
+                if (shareBtn) {
+                    shareBtn.addEventListener('click', async () => {
+                        const referralLink = document.getElementById('referralLink')?.value;
+                        const referralCode = document.getElementById('referralCode')?.value;
+                        
+                        if (!referralLink) {
+                            Utils.showNotification('Referral link not available', 'error');
+                            return;
+                        }
+                        
+                        const shareData = {
+                            title: 'Join Raw Wealthy',
+                            text: `Use my referral code ${referralCode} to sign up and start investing!`,
+                            url: referralLink
+                        };
+                        
+                        if (navigator.share) {
+                            try {
+                                await navigator.share(shareData);
+                                Utils.showNotification('Shared successfully!', 'success');
+                            } catch (err) {
+                                if (err.name !== 'AbortError') {
+                                    Utils.showNotification('Sharing failed', 'error');
+                                }
+                            }
+                        } else {
+                            // Fallback: copy to clipboard
+                            await Utils.copyToClipboard(`${shareData.text} ${shareData.url}`);
+                        }
+                    });
+                }
+            }
         }
 
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
-            Debug.info('App', 'Initializing Raw Wealthy v38.3 - Separated Balances Edition...');
-            console.log('🚀 Raw Wealthy Premium v38.3 - Separated Balances Edition');
+            Debug.info('App', 'Initializing Raw Wealthy v38.4 - Enhanced Edition...');
+            console.log('🚀 Raw Wealthy Premium v38.4 - Enhanced Edition');
             console.log('📊 Debug Mode:', CONFIG.DEBUG_MODE);
             console.log('🔐 Auth Status:', authToken ? 'Logged In' : 'Logged Out');
             console.log('👤 Current User:', currentUser?.email || 'None');
@@ -7939,7 +8583,7 @@
                 Debug.warn('Network', 'Connection lost');
             });
             
-            Debug.info('App', '✅ Raw Wealthy v38.3 Initialization Complete');
+            Debug.info('App', '✅ Raw Wealthy v38.4 Initialization Complete');
         });
 
         // ===== GLOBAL ERROR HANDLING =====
@@ -8062,36 +8706,5 @@
             }
         })();
     </script>
-
-    <!-- Placeholder for sw.js content (you need to create this file) -->
-    <!--
-        sw.js content (create this file in your root):
-        const CACHE_NAME = 'rawwealthy-cache-v1';
-        const urlsToCache = [
-            '/',
-            '/index.html',
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-            'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap',
-            'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css',
-            'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
-        ];
-        self.addEventListener('install', event => {
-            event.waitUntil(
-                caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-            );
-        });
-        self.addEventListener('fetch', event => {
-            event.respondWith(
-                caches.match(event.request).then(response => response || fetch(event.request))
-            );
-        });
-        self.addEventListener('activate', event => {
-            event.waitUntil(
-                caches.keys().then(keys => Promise.all(
-                    keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-                ))
-            );
-        });
-    -->
 </body>
 </html>
