@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Raw Wealthy | Premium Investment Platform v38.4 (PWA) – Separated Balances + Enhanced</title>
+    <title>Raw Wealthy | Premium Investment Platform v39.0 (PWA) – Advanced Edition</title>
     <!-- PWA Manifest (inline data URI) -->
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Raw%20Wealthy%22%2C%22short_name%22%3A%22RawWealthy%22%2C%22description%22%3A%22Premium%20Investment%20Platform%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230F172A%22%2C%22theme_color%22%3A%22%237C3AED%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%200%20100%20100%27%3E%253Crect%2520width%3D%27100%27%2520height%3D%27100%27%2520fill%3D%27%25237C3AED%27%2F%3E%253Ctext%2520x%3D%2750%27%2520y%3D%2765%27%2520font-size%3D%2770%27%2520text-anchor%3D%27middle%27%2520fill%3D%27white%27%2520font-family%3D%27Arial%27%3E%25F0%259F%2592%25B0%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%200%20100%20100%27%3E%253Crect%2520width%3D%27100%27%2520height%3D%27100%27%2520fill%3D%27%25237C3AED%27%2F%3E%253Ctext%2520x%3D%2750%27%2520y%3D%2765%27%2520font-size%3D%2770%27%2520text-anchor%3D%27middle%27%2520fill%3D%27white%27%2520font-family%3D%27Arial%27%3E%25F0%259F%2592%25B0%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
     <!-- Theme color for browser UI -->
@@ -15,20 +15,23 @@
     <meta name="google-site-verification" content="tUxp_DpU8tzFSBwr5VrkI7LTodtoqS9fztzkH0FTxbE" />
     <meta name="google-site-verification" content="PB3lWW6G3FccAT72e65ehI6ILq12ZxNzS_RUsXDVufE" />
     <style>
-        /* ===== CSS VARIABLES & THEME ===== */
+        /* ===== CSS VARIABLES & THEME – ADVANCED EDITION ===== */
         :root {
-            /* Color Palette - Enhanced with more vibrant shades */
+            /* Enhanced color palette with neon accents */
             --primary-color: #7C3AED;
             --primary-dark: #5B21B6;
             --primary-light: #8B5CF6;
+            --primary-neon: #a78bfa;
             --secondary-color: #10B981;
             --secondary-dark: #059669;
+            --secondary-neon: #34d399;
             --accent-blue: #3B82F6;
             --accent-red: #EF4444;
             --accent-orange: #F59E0B;
             --accent-yellow: #FBBF24;
             --accent-purple: #A78BFA;
             --accent-pink: #EC4899;
+            --accent-cyan: #06B6D4;
             --dark-bg: #0F172A;
             --dark-card: #1E293B;
             --dark-border: #334155;
@@ -37,21 +40,23 @@
             --text-secondary: #94A3B8;
             --text-muted: #64748B;
             
-            /* Gradients - More dynamic */
+            /* Advanced gradients */
             --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
             --gradient-secondary: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);
             --gradient-danger: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
             --gradient-success: linear-gradient(135deg, #10B981 0%, #22C55E 100%);
             --gradient-purple-pink: linear-gradient(135deg, #A78BFA 0%, #EC4899 100%);
             --gradient-blue-cyan: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+            --gradient-gold: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
             
-            /* Shadows - Enhanced glow */
+            /* Enhanced shadows with neon glow */
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
             --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
             --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
             --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.4);
             --shadow-glow-success: 0 0 30px rgba(16, 185, 129, 0.4);
+            --shadow-glow-danger: 0 0 30px rgba(239, 68, 68, 0.4);
             
             /* Spacing */
             --space-xs: 0.5rem;
@@ -68,7 +73,7 @@
             --radius-xl: 24px;
             --radius-full: 9999px;
             
-            /* Transitions */
+            /* Transitions – smoother */
             --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -83,13 +88,11 @@
             --z-tooltip: 1070;
         }
         
-        /* Dark Theme Overrides */
         [data-theme="dark"] {
             --dark-bg: #0F172A;
             --dark-card: #1E293B;
         }
         
-        /* Light Theme */
         [data-theme="light"] {
             --dark-bg: #F1F5F9;
             --dark-card: #FFFFFF;
@@ -100,7 +103,7 @@
             --text-muted: #64748B;
         }
         
-        /* ===== BASE STYLES ===== */
+        /* ===== BASE STYLES with advanced animations ===== */
         * {
             margin: 0;
             padding: 0;
@@ -122,7 +125,7 @@
             position: relative;
         }
         
-        /* Animated background particles */
+        /* Animated particle background */
         body::before {
             content: '';
             position: fixed;
@@ -130,16 +133,36 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
-            animation: pulseBackground 15s ease-in-out infinite;
+            animation: pulseBackground 20s ease-in-out infinite;
         }
         
         @keyframes pulseBackground {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        
+        /* Floating orbs */
+        .orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+            animation: float 25s infinite alternate;
+        }
+        .orb-1 { top: 10%; left: 5%; }
+        .orb-2 { bottom: 10%; right: 5%; background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%); animation-duration: 30s; }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
         }
         
         /* ===== TYPOGRAPHY ===== */
@@ -180,6 +203,7 @@
         
         a:hover {
             color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-neon);
         }
         
         /* ===== LAYOUT UTILITIES ===== */
@@ -200,9 +224,7 @@
             text-align: center;
         }
         
-        /* ===== COMPONENTS ===== */
-        
-        /* Cards - Enhanced with glass morphism and hover animations */
+        /* ===== COMPONENTS – enhanced glass morphism ===== */
         .card {
             background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
@@ -225,7 +247,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
             opacity: 0;
             transition: opacity var(--transition-normal);
             pointer-events: none;
@@ -237,8 +259,8 @@
         
         .card:hover {
             box-shadow: var(--shadow-xl), var(--shadow-glow);
-            transform: translateY(-4px) scale(1.01);
-            border-color: rgba(124, 58, 237, 0.4);
+            transform: translateY(-6px) scale(1.02);
+            border-color: rgba(124, 58, 237, 0.6);
         }
         
         .card-header {
@@ -256,7 +278,7 @@
             color: var(--text-primary);
         }
         
-        /* Buttons - Enhanced with glow effects and active states */
+        /* Buttons – advanced hover effects */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -284,7 +306,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -296,7 +318,7 @@
         
         .btn:hover {
             box-shadow: var(--shadow-lg), var(--shadow-glow);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
         
         .btn:active {
@@ -331,6 +353,11 @@
             color: var(--primary-color);
         }
         
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
         .btn-sm {
             padding: 0.5rem 1rem;
             font-size: 0.75rem;
@@ -352,7 +379,7 @@
             border-radius: var(--radius-full);
         }
         
-        /* Forms - Enhanced with floating labels and better validation */
+        /* Forms */
         .form-group {
             margin-bottom: var(--space-lg);
             position: relative;
@@ -404,7 +431,7 @@
             color: var(--text-muted);
         }
         
-        /* Badges - Enhanced */
+        /* Badges */
         .badge {
             display: inline-block;
             padding: 0.25rem 0.75rem;
@@ -447,6 +474,12 @@
             margin-bottom: var(--space-md);
             border-left: 4px solid;
             backdrop-filter: blur(5px);
+            animation: slideInLeft 0.3s ease;
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
         .alert-success {
@@ -783,7 +816,7 @@
             min-height: 100vh;
         }
         
-        /* Dashboard Stats */
+        /* Dashboard Stats – animated */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -799,6 +832,24 @@
             border: 1px solid rgba(124, 58, 237, 0.2);
             transition: all var(--transition-normal);
             animation: fadeInUp 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .stat-card:hover::after {
+            opacity: 1;
         }
         
         .stat-card:hover {
@@ -822,6 +873,12 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
+            animation: countUp 2s ease-out;
+        }
+        
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .stat-label {
@@ -1493,7 +1550,7 @@
             position: absolute;
         }
 
-        /* ===== NEW ADDITIONS: Regulation & Ramadan ===== */
+        /* Regulation & Ramadan */
         .regulation-badges .badge-logo {
             display: flex;
             align-items: center;
@@ -1541,7 +1598,7 @@
             }
         }
 
-        /* ===== MOBILE BOTTOM NAVIGATION (ENHANCED) ===== */
+        /* Mobile Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -1607,7 +1664,7 @@
                 min-height: 44px;
             }
             input, select, textarea {
-                font-size: 16px !important; /* prevent zoom on iOS */
+                font-size: 16px !important;
             }
         }
 
@@ -1652,7 +1709,6 @@
             border: 1px solid var(--accent-blue);
         }
 
-        /* ===== ENHANCED UI ADDITIONS ===== */
         /* Floating action button */
         .fab {
             position: fixed;
@@ -1749,9 +1805,8 @@
             font-weight: 700;
             color: var(--secondary-color);
         }
-    </style>
-    <!-- Install Banner Styles (PWA) -->
-    <style>
+
+        /* Install Banner */
         .install-banner {
             position: sticky;
             top: 0;
@@ -1818,7 +1873,11 @@
     </style>
 </head>
 <body>
-    <!-- PWA Install Banner (hidden initially) -->
+    <!-- Floating Orbs (new decorative elements) -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- PWA Install Banner -->
     <div id="installBanner" class="install-banner">
         <div class="banner-content">
             <i class="fas fa-download"></i>
@@ -1837,7 +1896,7 @@
         </button>
     </div>
 
-    <!-- Floating Action Button (Mobile Quick Actions) -->
+    <!-- Floating Action Button -->
     <div class="fab" id="fab">
         <i class="fas fa-plus"></i>
     </div>
@@ -1870,13 +1929,11 @@
                     <li><a href="#referrals" class="nav-link" data-section="referrals">Referrals</a></li>
                     <li><a href="#profile" class="nav-link" data-section="profile">Profile</a></li>
                     <li class="admin-nav d-none"><a href="#admin" class="nav-link" data-section="admin">Admin</a></li>
-                    <!-- New pages -->
                     <li><a href="#about" class="nav-link" data-section="about">About</a></li>
                     <li><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
                 </ul>
                 
                 <div class="nav-user">
-                    <!-- Multi-Currency Selector -->
                     <select id="currencySelector" class="currency-selector">
                         <option value="NGN">₦ NGN</option>
                         <option value="USD">$ USD</option>
@@ -1993,7 +2050,7 @@
         
         <div class="sidebar-footer mt-4 p-3">
             <div class="text-muted small">
-                <div>Raw Wealthy v38.4 (Enhanced Edition)</div>
+                <div>Raw Wealthy v39.0 (Advanced Edition)</div>
                 <div>© 2025 All Rights Reserved</div>
             </div>
         </div>
@@ -2001,7 +2058,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Login Page (Default) -->
+        <!-- Login Page -->
         <section id="login" class="page-section active">
             <div class="container">
                 <div class="row justify-center" style="min-height: 80vh; align-items: center;">
@@ -2143,7 +2200,7 @@
                     <p class="text-muted">Welcome back, <span id="userGreeting">User</span>! Here's your investment overview.</p>
                 </div>
                 
-                <!-- Quick Stats -->
+                <!-- Quick Stats (updated with withdrawable balance) -->
                 <div class="stats-grid mb-4">
                     <div class="stat-card">
                         <div class="stat-icon bg-primary">
@@ -2171,13 +2228,13 @@
                     
                     <div class="stat-card">
                         <div class="stat-icon" style="background: var(--gradient-success);">
-                            <i class="fas fa-money-bill-wave"></i>
+                            <i class="fas fa-coins"></i>
                         </div>
-                        <div class="stat-value" id="totalEarnings">₦ 0.00</div>
-                        <div class="stat-label">Total Earnings (Cumulative)</div>
+                        <div class="stat-value" id="withdrawableBalance">₦ 0.00</div>
+                        <div class="stat-label">Withdrawable Balance</div>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>Loading...</span>
+                            <span>Available</span>
                         </div>
                     </div>
                     
@@ -2193,26 +2250,24 @@
                         </div>
                     </div>
                     
-                    <!-- NEW: Daily Interest Earned -->
                     <div class="stat-card">
                         <div class="stat-icon" style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);">
                             <i class="fas fa-coins"></i>
                         </div>
                         <div class="stat-value" id="dailyInterestEarned">₦ 0.00</div>
-                        <div class="stat-label">Daily Interest Earned</div>
+                        <div class="stat-label">Lifetime Earnings</div>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>Lifetime</span>
+                            <span>Total Earned</span>
                         </div>
                     </div>
                     
-                    <!-- NEW: Referral Bonus Earned -->
                     <div class="stat-card">
                         <div class="stat-icon" style="background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);">
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="stat-value" id="referralBonusEarned">₦ 0.00</div>
-                        <div class="stat-label">Referral Bonus Earned</div>
+                        <div class="stat-label">Referral Bonus</div>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
                             <span>Lifetime</span>
@@ -2220,7 +2275,7 @@
                     </div>
                 </div>
 
-                <!-- REGULATION BADGES (SON & CBN) -->
+                <!-- Regulation Badges -->
                 <div class="regulation-badges card mb-4">
                     <div class="card-body d-flex align-center justify-between flex-wrap">
                         <div class="d-flex align-center gap-3">
@@ -2239,7 +2294,7 @@
                     </div>
                 </div>
 
-                <!-- HAPPY RAMADAN BANNER -->
+                <!-- Ramadan Banner -->
                 <div class="ramadan-banner card mb-4">
                     <div class="card-body d-flex align-center justify-between">
                         <div class="d-flex align-center gap-3">
@@ -2339,7 +2394,7 @@
                     <p class="text-muted">Choose from our premium investment plans with guaranteed returns</p>
                 </div>
                 
-                <!-- Investment Calculator (NEW) -->
+                <!-- Investment Calculator -->
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="card-title">Investment Calculator</h3>
@@ -2467,7 +2522,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Platform Trust Wallet Address (NEW) -->
+                                    <!-- Platform Trust Wallet Address -->
                                     <div class="trust-wallet-card mb-4">
                                         <h5 class="mb-3"><i class="fas fa-shield-alt me-2"></i> Platform Trust Wallet (USDT/TRC20)</h5>
                                         <div class="wallet-address mb-2" id="trustWalletAddress">0xaddb676548540110d5389f4488311acd1587b48d</div>
@@ -2596,7 +2651,7 @@
                                             <i class="input-group-icon fas fa-money-bill"></i>
                                             <input type="number" class="form-control" id="withdrawalAmount" min="4000" value="4000" required>
                                         </div>
-                                        <small class="text-muted">Earnings Balance (withdrawable): <span id="availableBalance">₦ 0.00</span></small>
+                                        <small class="text-muted">Withdrawable Balance: <span id="availableBalance">₦ 0.00</span></small>
                                     </div>
                                     
                                     <div class="form-group">
@@ -2633,7 +2688,7 @@
                                     </div>
                                     
                                     <div id="withdrawalDetails">
-                                        <!-- Dynamic content based on payment method -->
+                                        <!-- Dynamic content -->
                                     </div>
                                     
                                     <div class="form-group">
@@ -2676,7 +2731,6 @@
                                         <span id="paidWithdrawals" class="text-success">₦ 0.00</span>
                                     </div>
                                 </div>
-                                <!-- Withdrawal cooldown timer -->
                                 <div id="withdrawalCooldown" class="alert alert-warning small d-none">
                                     <i class="fas fa-clock"></i> Next withdrawal available in: <span id="cooldownTimer"></span>
                                 </div>
@@ -3332,7 +3386,6 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Native Share Button (NEW) -->
                                 <button class="btn btn-outline mb-3" id="nativeShareBtn">
                                     <i class="fas fa-share-alt"></i> Share via...
                                 </button>
@@ -3342,7 +3395,6 @@
                                     <span>Earn 10% commission on your referrals' investments. Share your link with friends and family!</span>
                                 </div>
                                 
-                                <!-- Share Buttons -->
                                 <div class="d-flex flex-wrap gap-2">
                                     <button class="btn btn-outline" data-share="whatsapp">
                                         <i class="fab fa-whatsapp"></i> WhatsApp
@@ -3396,7 +3448,7 @@
                             </div>
                         </div>
                         
-                        <!-- Referral Leaderboard (NEW) -->
+                        <!-- Referral Leaderboard -->
                         <div class="card mt-4">
                             <div class="card-header">
                                 <h3 class="card-title">Top Referrers</h3>
@@ -3486,7 +3538,7 @@
             </div>
         </section>
 
-        <!-- Profile Page (Enhanced with Logout Button and Balances) -->
+        <!-- Profile Page -->
         <section id="profile" class="page-section">
             <div class="container">
                 <div class="section-header">
@@ -3516,7 +3568,7 @@
                                         <span id="profileDepositBalance">₦ 0.00</span>
                                     </div>
                                     <div class="d-flex justify-between mb-2">
-                                        <span class="text-muted">Earnings Balance (withdrawable)</span>
+                                        <span class="text-muted">Withdrawable Balance</span>
                                         <span id="profileEarningsBalance" class="text-success">₦ 0.00</span>
                                     </div>
                                     <div class="d-flex justify-between mb-2">
@@ -3545,7 +3597,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Logout button inside profile card -->
                                 <button class="btn btn-danger btn-block mt-4" id="profileLogoutBtn">
                                     <i class="fas fa-sign-out-alt"></i> Logout
                                 </button>
@@ -3811,7 +3862,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Deposit Balance</th>
-                                            <th>Earnings Balance</th>
+                                            <th>Withdrawable Balance</th>
                                             <th>Status</th>
                                             <th>KYC</th>
                                             <th>Actions</th>
@@ -3835,7 +3886,7 @@
             </div>
         </section>
 
-        <!-- NEW: About Page -->
+        <!-- About Page -->
         <section id="about" class="page-section">
             <div class="container">
                 <div class="section-header">
@@ -3851,7 +3902,7 @@
             </div>
         </section>
 
-        <!-- NEW: FAQ Page -->
+        <!-- FAQ Page -->
         <section id="faq" class="page-section">
             <div class="container">
                 <div class="section-header">
@@ -3879,7 +3930,7 @@
             </div>
         </section>
 
-        <!-- NEW: Terms & Conditions Modal (Hidden by default, triggered by link) -->
+        <!-- Terms & Conditions Modal -->
         <div class="modal" id="termsModal">
             <div class="modal-backdrop"></div>
             <div class="modal-content">
@@ -3970,13 +4021,13 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Raw Wealthy. All rights reserved. v38.4 (Enhanced Edition)</p>
+                <p>&copy; 2025 Raw Wealthy. All rights reserved. v39.0 (Advanced Edition)</p>
                 <p class="text-muted small">This platform is for demonstration purposes only. Investments carry risk.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile Bottom Navigation (ENHANCED) -->
+    <!-- Mobile Bottom Navigation -->
     <div class="bottom-nav" id="bottomNav">
         <a href="#dashboard" class="bottom-nav-item" data-section="dashboard">
             <i class="fas fa-home"></i>
@@ -4091,7 +4142,7 @@
         </div>
     </div>
 
-    <!-- Compound Interest Simulator Modal (NEW) -->
+    <!-- Compound Interest Simulator Modal -->
     <div class="modal" id="compoundModal">
         <div class="modal-backdrop"></div>
         <div class="modal-content">
@@ -4151,9 +4202,14 @@
         <div class="loading-text mt-3">Loading...</div>
     </div>
 
-    <!-- JavaScript (upgraded for separated balances and new features) -->
+    <!-- JavaScript (Advanced Edition with separated balances logic) -->
     <script>
-        // Conditional loading of Chart.js (performance)
+        // ==============================================
+        // RAW WEALTHY PREMIUM v39.0 – ADVANCED EDITION
+        // Separated Balances (earnings_balance = total_earnings + referral_earnings - total_withdrawn)
+        // ==============================================
+
+        // Helper function to load Chart.js only when needed
         function loadChartJS() {
             return new Promise((resolve, reject) => {
                 if (window.Chart) {
@@ -4168,10 +4224,6 @@
             });
         }
 
-        // ==============================================
-        // RAW WEALTHY PREMIUM v38.4 - SEPARATED BALANCES + ENHANCED
-        // ==============================================
-
         // ===== ENHANCED CONFIGURATION =====
         const CONFIG = {
             API_BASE_URL: window.location.hostname === 'localhost' 
@@ -4179,9 +4231,8 @@
                 : 'https://real-wealthy-1.onrender.com',
             
             DEBUG_MODE: true,
-            VERSION: '38.4.0',   // Updated version
+            VERSION: '39.0.0',   // Advanced edition
             
-            // Business Logic
             MIN_INVESTMENT: 3500,
             MIN_DEPOSIT: 3500,
             MIN_WITHDRAWAL: 4000,
@@ -4189,10 +4240,8 @@
             REFERRAL_COMMISSION_PERCENT: 10,
             WELCOME_BONUS: 100,
             
-            // NEW: Withdrawal limit (milliseconds in a day)
             WITHDRAWAL_COOLDOWN_MS: 24 * 60 * 60 * 1000, // 24 hours
             
-            // File upload limits
             MAX_FILE_SIZE: 10 * 1024 * 1024,
             ALLOWED_MIME_TYPES: {
                 'image/jpeg': 'jpg',
@@ -4204,7 +4253,6 @@
                 'image/svg+xml': 'svg'
             },
 
-            // Platform Bank Details (Updated from screenshot)
             PLATFORM_BANK_DETAILS: {
                 bank_name: "OPay",
                 account_name: "JOSEPH INALEGWU ISRAEL",
@@ -4213,14 +4261,12 @@
                 deposit_instructions: "After payment, upload your payment proof for verification"
             },
             
-            // Platform Trust Wallet Address (NEW)
             TRUST_WALLET: {
                 address: "ekfjsshsjh242;djdfj",
                 network: "USDT (TRC20)",
                 note: "Send only USDT on TRC20 network to this address."
             },
             
-            // Multi-currency support
             CURRENCIES: {
                 NGN: { symbol: '₦', rate: 1, name: 'Nigerian Naira' },
                 USD: { symbol: '$', rate: 0.00067, name: 'US Dollar' },
@@ -4232,7 +4278,7 @@
             }
         };
 
-        // ===== ADVANCED DEBUGGING SYSTEM =====
+        // ===== ADVANCED DEBUGGING =====
         const Debug = {
             enabled: CONFIG.DEBUG_MODE,
             
@@ -4311,10 +4357,7 @@
             lastUpdated: null
         });
         
-        // Selected currency (default from localStorage or NGN)
         let selectedCurrency = StateManager.get('selectedCurrency', 'NGN');
-
-        // Auto-refresh timer
         let autoRefreshInterval = null;
 
         // ===== ENHANCED UTILITIES =====
@@ -4328,7 +4371,6 @@
                     const curr = currency || selectedCurrency;
                     const currencyInfo = CONFIG.CURRENCIES[curr] || CONFIG.CURRENCIES.NGN;
                     
-                    // Convert amount if needed (amount is always stored in NGN)
                     let convertedAmount = amount;
                     if (!skipConversion && curr !== 'NGN') {
                         convertedAmount = amount * currencyInfo.rate;
@@ -4485,17 +4527,33 @@
                 return dailyEarnings + referralEarnings;
             }
 
-            // ===== UPDATED: Withdrawable balance now directly uses earnings_balance =====
-            static calculateWithdrawableBalance(user) {
+            // ===== NEW: compute total withdrawn from withdrawals list =====
+            static async getTotalWithdrawn() {
+                try {
+                    const response = await ApiService.getWithdrawals();
+                    if (response.success) {
+                        return response.data.withdrawals
+                            .filter(w => w.status === 'paid')
+                            .reduce((sum, w) => sum + (w.amount || 0), 0);
+                    }
+                } catch (error) {
+                    Debug.error('Utils', 'Failed to fetch withdrawals for total withdrawn', error);
+                }
+                return 0;
+            }
+
+            // ===== UPDATED: withdrawable balance = total_earnings + referral_earnings - total_withdrawn =====
+            static async calculateWithdrawableBalance(user) {
                 if (!user) return 0;
-                return user.earnings_balance || 0;
+                const earnings = (user.total_earnings || 0) + (user.referral_earnings || 0);
+                const totalWithdrawn = await this.getTotalWithdrawn();
+                return Math.max(0, earnings - totalWithdrawn);
             }
 
             static hasBankDetails(user) {
                 return user && user.bank_details && user.bank_details.account_number && user.bank_details.account_number.trim() !== '';
             }
 
-            // Password strength meter
             static checkPasswordStrength(password) {
                 let strength = 0;
                 if (password.length >= 6) strength++;
@@ -4504,7 +4562,7 @@
                 if (/[A-Z]/.test(password)) strength++;
                 if (/[0-9]/.test(password)) strength++;
                 if (/[^a-zA-Z0-9]/.test(password)) strength++;
-                return Math.min(strength, 4); // 0-4
+                return Math.min(strength, 4);
             }
 
             static getPasswordStrengthLabel(strength) {
@@ -4512,7 +4570,6 @@
                 return labels[strength] || 'Unknown';
             }
 
-            // Export to CSV
             static exportToCSV(data, filename) {
                 const csvContent = data.map(row => Object.values(row).join(',')).join('\n');
                 const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -4541,11 +4598,9 @@
             }
             
             static updateAllAmounts() {
-                // Refresh all displayed amounts by re-rendering current page
                 const currentSection = Router.currentSection;
                 Router.loadSectionData(currentSection);
                 
-                // Update dashboard stats if visible
                 if (currentSection === 'dashboard' && currentUser) {
                     DashboardManager.updateDashboardStats({ user: currentUser });
                 }
@@ -4608,7 +4663,6 @@
                 } catch (error) {
                     Debug.error('API', `[${requestId}] Request failed:`, error);
                     
-                    // Offline demo fallback
                     if (!navigator.onLine || error.message?.includes('Failed to fetch')) {
                         Debug.warn('API', 'Using offline demo data for', endpoint);
                         return this.getDemoResponse(endpoint, options);
@@ -4619,15 +4673,13 @@
             }
 
             static getDemoResponse(endpoint, options) {
-                // Simulate logged-in user if none
                 if (!currentUser && endpoint.includes('/api/profile')) {
                     const demoUser = StateManager.get('demoUser') || {
                         _id: 'demo123',
                         full_name: 'Demo User',
                         email: 'demo@rawwealthy.com',
                         phone: '+2348000000000',
-                        balance: 1250000,               // deposit balance
-                        earnings_balance: 325000,        // total_earnings + referral_earnings - total_withdrawn
+                        balance: 1250000,
                         total_earnings: 450000,
                         referral_earnings: 75000,
                         total_withdrawn: 200000,
@@ -4681,7 +4733,6 @@
                 if (endpoint.includes('/api/support/tickets')) {
                     return Promise.resolve({ success: true, data: { tickets: [] } });
                 }
-                // Default fallback
                 return Promise.resolve({ success: true, data: {} });
             }
             
@@ -4789,9 +4840,7 @@
                 return this.request(`/api/withdrawals${params ? `?${params}` : ''}`);
             }
             
-            // ENHANCED: withdrawal with daily limit check
             static async createWithdrawal(amount, payment_method = 'bank_transfer') {
-                // Check daily limit before sending request
                 const lastWithdrawalTime = StateManager.get('lastWithdrawalTime', 0);
                 const now = Date.now();
                 if (now - lastWithdrawalTime < CONFIG.WITHDRAWAL_COOLDOWN_MS) {
@@ -4799,14 +4848,12 @@
                     const hours = Math.ceil(remaining / (60 * 60 * 1000));
                     throw { message: `You can only request one withdrawal per day. Please wait ${hours} hour(s).` };
                 }
-                // Store timestamp optimistically (will be overridden on success)
                 StateManager.set('lastWithdrawalTime', now);
                 
                 return this.request('/api/withdrawals', {
                     method: 'POST',
                     body: JSON.stringify({ amount, payment_method })
                 }).then(res => {
-                    // If success, keep timestamp; if fail, remove it
                     if (!res.success) {
                         StateManager.remove('lastWithdrawalTime');
                     }
@@ -4919,7 +4966,7 @@
             }
         }
 
-        // Demo data arrays (for offline) - updated to include earnings_balance
+        // Demo data arrays (for offline)
         const demoPlans = [
             { _id: 'plan1', name: 'Gold Bullion', description: 'Invest in pure gold', min_amount: 50000, max_amount: 5000000, daily_interest: 1.2, total_interest: 36, duration: 30, category: 'metals', raw_material: 'Gold', is_popular: true },
             { _id: 'plan2', name: 'Crude Oil', description: 'Energy sector', min_amount: 100000, max_amount: 10000000, daily_interest: 1.5, total_interest: 45, duration: 30, category: 'energy', raw_material: 'Oil' },
@@ -5030,7 +5077,7 @@
                 StateManager.remove('currentUser');
                 StateManager.remove('isAdmin');
                 StateManager.remove('appState');
-                StateManager.remove('lastWithdrawalTime'); // clear withdrawal cooldown
+                StateManager.remove('lastWithdrawalTime');
                 
                 appState = {
                     investments: [],
@@ -5146,7 +5193,6 @@
                 
                 this.setupNavigation();
                 
-                // Auto-refresh every 30 seconds if logged in and on dashboard
                 if (authToken) {
                     autoRefreshInterval = setInterval(() => {
                         if (Router.currentSection === 'dashboard') {
@@ -5305,7 +5351,6 @@
                             break;
                         case 'about':
                         case 'faq':
-                            // Static pages, no data needed
                             break;
                     }
                     
@@ -5384,7 +5429,7 @@
                 }
             }
             
-            static updateDashboardStats(data) {
+            static async updateDashboardStats(data) {
                 Debug.info('Dashboard', 'Updating dashboard stats...', data);
                 
                 try {
@@ -5393,14 +5438,16 @@
                     
                     const portfolioValue = (user.balance || 0) + (user.earnings_balance || 0);
                     const totalEarnings = Utils.calculateTotalEarnings(user);
-                    const withdrawableBalance = Utils.calculateWithdrawableBalance(user);
+                    const withdrawableBalance = await Utils.calculateWithdrawableBalance(user);
                     
                     document.getElementById('totalBalance').textContent = Utils.formatCurrency(user.balance || 0);
                     document.getElementById('activeInvestments').textContent = Utils.formatCurrency(stats.active_investment_value || 0);
-                    document.getElementById('totalEarnings').textContent = Utils.formatCurrency(totalEarnings);
-                    document.getElementById('totalReferrals').textContent = user.referral_count || 0;
                     
-                    // NEW: Daily interest and referral bonus
+                    // New withdrawable balance stat
+                    const withdrawableEl = document.getElementById('withdrawableBalance');
+                    if (withdrawableEl) withdrawableEl.textContent = Utils.formatCurrency(withdrawableBalance);
+                    
+                    document.getElementById('totalReferrals').textContent = user.referral_count || 0;
                     document.getElementById('dailyInterestEarned').textContent = Utils.formatCurrency(user.total_earnings || 0);
                     document.getElementById('referralBonusEarned').textContent = Utils.formatCurrency(user.referral_earnings || 0);
                     
@@ -5526,7 +5573,6 @@
                 }
                 
                 try {
-                    // Load Chart.js only when needed
                     const Chart = await loadChartJS();
                     
                     const ctx = canvas.getContext('2d');
@@ -5890,19 +5936,16 @@
                     amountInput.max = planData.maxAmount || '';
                     amountInput.placeholder = `Enter amount (Min: ${Utils.formatCurrency(planData.minAmount)}${planData.maxAmount ? `, Max: ${Utils.formatCurrency(planData.maxAmount)}` : ''})`;
                     
-                    // Show deposit balance
                     const depositInfo = document.getElementById('depositBalanceInfo');
                     if (depositInfo) {
                         depositInfo.innerHTML = `Your deposit balance: ${Utils.formatCurrency(currentUser?.balance || 0)}`;
                     }
                     
-                    // Debounced input handler
                     let timeout;
                     amountInput.addEventListener('input', (e) => {
                         clearTimeout(timeout);
                         timeout = setTimeout(() => {
                             this.validateInvestmentAmount(e.target);
-                            // Update remaining balance hint
                             const val = parseFloat(e.target.value) || 0;
                             const remaining = (currentUser?.balance || 0) - val;
                             if (depositInfo) {
@@ -5932,7 +5975,6 @@
                 const minAmount = this.currentPlan.minAmount;
                 const maxAmount = this.currentPlan.maxAmount;
                 
-                // Clear any previous validation messages
                 const existingError = input.parentElement.querySelector('.validation-error');
                 if (existingError) {
                     existingError.remove();
@@ -5948,7 +5990,6 @@
                     return false;
                 }
                 
-                // Check user deposit balance
                 if (currentUser && value > currentUser.balance) {
                     this.showValidationError(input, `Insufficient deposit balance. Available: ${Utils.formatCurrency(currentUser.balance)}`);
                     return false;
@@ -5962,7 +6003,6 @@
                 errorDiv.className = 'validation-error text-danger small mt-1';
                 errorDiv.textContent = message;
                 
-                // Remove existing error if any
                 const existingError = input.parentElement.querySelector('.validation-error');
                 if (existingError) {
                     existingError.remove();
@@ -5983,14 +6023,12 @@
                     return;
                 }
                 
-                // Clear input field when user clicks on it
                 amountInput.addEventListener('focus', () => {
                     if (parseFloat(amountInput.value) === this.currentPlan.minAmount) {
                         amountInput.value = '';
                     }
                 });
                 
-                // Restore min amount if user leaves field empty
                 amountInput.addEventListener('blur', () => {
                     if (!amountInput.value || parseFloat(amountInput.value) === 0) {
                         amountInput.value = this.currentPlan.minAmount;
@@ -5998,7 +6036,6 @@
                 });
                 
                 amountInput.addEventListener('input', () => {
-                    // Clear validation error
                     amountInput.classList.remove('is-invalid');
                     const existingError = amountInput.parentElement.querySelector('.validation-error');
                     if (existingError) {
@@ -6030,12 +6067,10 @@
                         document.body.style.overflow = '';
                         form.reset();
                         
-                        // Reset amount to plan minimum
                         if (amountInput && this.currentPlan) {
                             amountInput.value = this.currentPlan.minAmount;
                         }
                         
-                        // Clear validation errors
                         amountInput.classList.remove('is-invalid');
                         const existingError = amountInput.parentElement.querySelector('.validation-error');
                         if (existingError) {
@@ -6057,7 +6092,6 @@
                 const amount = parseFloat(amountInput.value) || 0;
                 const minAmount = this.currentPlan.minAmount;
                 
-                // Validate amount
                 if (!this.validateInvestmentAmount(amountInput)) {
                     return;
                 }
@@ -6100,7 +6134,6 @@
                     const autoRenew = autoRenewCheckbox ? autoRenewCheckbox.checked : false;
                     const paymentProof = paymentProofInput ? paymentProofInput.files[0] : null;
                     
-                    // Final validation
                     if (!this.validateInvestmentAmount(amountInput)) {
                         Utils.hideLoader();
                         return;
@@ -6258,8 +6291,6 @@
                         const deposits = response.data.deposits || [];
                         this.renderDepositsTable(deposits);
                         this.updateDepositStats(deposits);
-                        
-                        // Update bank details section
                         this.updateBankDetailsSection();
                         
                         Debug.info('Deposit', `Loaded ${deposits.length} deposits`);
@@ -6358,18 +6389,15 @@
                 }
             }
             
-            // ENHANCED: Add bank details section with platform details
             static updateBankDetailsSection() {
                 const bankDetailsInfo = document.getElementById('bankDetailsInfo');
                 if (!bankDetailsInfo) return;
                 
                 const hasUserBankDetails = Utils.hasBankDetails(currentUser);
                 
-                // Clear existing content
                 bankDetailsInfo.innerHTML = '';
                 
                 if (hasUserBankDetails) {
-                    // Show user's bank details for withdrawals
                     bankDetailsInfo.innerHTML = `
                         <div class="bank-details-card p-3 border rounded">
                             <h6 class="mb-3">Your Bank Details</h6>
@@ -6392,7 +6420,6 @@
                     `;
                 }
                 
-                // Always show platform bank details for deposits
                 const platformDetailsHTML = `
                     <div class="card mb-4">
                         <div class="card-header">
@@ -6468,15 +6495,11 @@
                     </div>
                 `;
                 
-                // Insert platform bank details before user bank details
                 bankDetailsInfo.insertAdjacentHTML('beforeend', platformDetailsHTML);
-                
-                // Add event listeners for copy and share buttons
                 this.setupBankDetailsEvents();
             }
             
             static setupBankDetailsEvents() {
-                // Copy bank details button
                 const copyBtn = document.getElementById('copyBankDetails');
                 if (copyBtn) {
                     copyBtn.addEventListener('click', async () => {
@@ -6485,7 +6508,6 @@
                     });
                 }
                 
-                // Share bank details button
                 const shareBtn = document.getElementById('shareBankDetails');
                 if (shareBtn) {
                     shareBtn.addEventListener('click', () => {
@@ -6500,13 +6522,11 @@
                                 console.log('Error sharing:', err);
                             });
                         } else {
-                            // Fallback: copy to clipboard
                             Utils.copyToClipboard(shareText);
                         }
                     });
                 }
                 
-                // Save bank details button
                 const saveBtn = document.querySelector('[data-action="save-bank-details"]');
                 if (saveBtn) {
                     saveBtn.addEventListener('click', () => {
@@ -6517,13 +6537,11 @@
                             note: CONFIG.PLATFORM_BANK_DETAILS.note
                         };
                         
-                        // Save to localStorage
                         StateManager.set('platformBankDetails', bankDetails);
                         Utils.showNotification('Bank details saved for quick access!', 'success');
                     });
                 }
                 
-                // Print bank details button
                 const printBtn = document.querySelector('[data-action="print-bank-details"]');
                 if (printBtn) {
                     printBtn.addEventListener('click', () => {
@@ -6686,9 +6704,7 @@
                         const withdrawals = response.data.withdrawals || [];
                         this.renderWithdrawalsTable(withdrawals);
                         this.updateWithdrawalStats(withdrawals);
-                        
-                        // Update the withdrawal form with current user balance (earnings_balance)
-                        this.updateWithdrawalForm();
+                        await this.updateWithdrawalForm();
                         
                         Debug.info('Withdrawal', `Loaded ${withdrawals.length} withdrawals`);
                     } else {
@@ -6803,10 +6819,10 @@
                         return;
                     }
                     
-                    const withdrawableBalance = Utils.calculateWithdrawableBalance(currentUser);
+                    const withdrawableBalance = await Utils.calculateWithdrawableBalance(currentUser);
                     
                     if (amount > withdrawableBalance) {
-                        Utils.showNotification(`Insufficient earnings balance. Available: ${Utils.formatCurrency(withdrawableBalance)}`, 'error');
+                        Utils.showNotification(`Insufficient withdrawable balance. Available: ${Utils.formatCurrency(withdrawableBalance)}`, 'error');
                         return;
                     }
                     
@@ -6840,11 +6856,11 @@
                 }
             }
             
-            static updateWithdrawalForm() {
+            static async updateWithdrawalForm() {
                 const withdrawalForm = document.getElementById('withdrawalForm');
                 if (!withdrawalForm) return;
                 
-                const withdrawableBalance = Utils.calculateWithdrawableBalance(currentUser);
+                const withdrawableBalance = await Utils.calculateWithdrawableBalance(currentUser);
                 const hasBankDetails = Utils.hasBankDetails(currentUser);
                 
                 const availableBalanceElement = document.getElementById('availableBalance');
@@ -6896,8 +6912,6 @@
                 }
                 
                 this.calculateWithdrawalFees();
-                
-                // Cooldown timer
                 this.updateCooldownTimer();
             }
             
@@ -6913,7 +6927,6 @@
                     document.getElementById('cooldownTimer').textContent = `${hours}h ${minutes}m`;
                     cooldownDiv.classList.remove('d-none');
                     
-                    // Update every minute
                     setTimeout(() => this.updateCooldownTimer(), 60000);
                 } else {
                     cooldownDiv.classList.add('d-none');
@@ -7440,7 +7453,6 @@
                             this.renderReferralsTable(referralsResponse.data.referrals || []);
                         }
                         
-                        // Load leaderboard (demo)
                         this.renderLeaderboard();
                         
                         Debug.info('Referral', 'Referral data loaded successfully');
@@ -7532,7 +7544,6 @@
                 const leaderboard = document.getElementById('referralLeaderboard');
                 if (!leaderboard) return;
                 
-                // Demo leaderboard
                 leaderboard.innerHTML = `
                     <div class="leaderboard-item d-flex justify-between mb-2">
                         <span><i class="fas fa-trophy text-warning"></i> John D.</span>
@@ -7552,7 +7563,7 @@
 
         // ===== PROFILE MANAGER =====
         class ProfileManager {
-            static updateProfilePage() {
+            static async updateProfilePage() {
                 Debug.info('Profile', 'Updating profile page...');
                 
                 if (!currentUser) return;
@@ -7585,12 +7596,12 @@
                             : 'Never';
                     }
                     
-                    // Display balances
                     const depositBalanceEl = document.getElementById('profileDepositBalance');
                     if (depositBalanceEl) depositBalanceEl.textContent = Utils.formatCurrency(currentUser.balance || 0);
                     
+                    const withdrawable = await Utils.calculateWithdrawableBalance(currentUser);
                     const earningsBalanceEl = document.getElementById('profileEarningsBalance');
-                    if (earningsBalanceEl) earningsBalanceEl.textContent = Utils.formatCurrency(currentUser.earnings_balance || 0);
+                    if (earningsBalanceEl) earningsBalanceEl.textContent = Utils.formatCurrency(withdrawable);
                     
                     const totalEarningsEl = document.getElementById('profileTotalEarnings');
                     if (totalEarningsEl) totalEarningsEl.textContent = Utils.formatCurrency(Utils.calculateTotalEarnings(currentUser));
@@ -7697,21 +7708,22 @@
                 try {
                     Utils.showLoader('Loading admin dashboard...');
                     
-                    // Populate admin stats with demo data (including earnings balance if needed)
                     document.getElementById('adminTotalUsers').textContent = '1,247';
                     document.getElementById('adminTotalDeposits').textContent = Utils.formatCurrency(58400000);
                     document.getElementById('adminTotalWithdrawals').textContent = Utils.formatCurrency(12300000);
                     document.getElementById('adminTotalInvestments').textContent = Utils.formatCurrency(46200000);
 
-                    // Build admin users table with both balances
                     const usersTbody = document.getElementById('adminUsersTable');
                     if (usersTbody) {
+                        // For each user, compute withdrawable balance (demo)
+                        const demoWithdrawable1 = 325000; // earnings - withdrawn
+                        const demoWithdrawable2 = 120000;
                         usersTbody.innerHTML = `
                             <tr>
                                 <td>Demo User</td>
                                 <td>demo@rawwealthy.com</td>
                                 <td>${Utils.formatCurrency(1250000)}</td>
-                                <td>${Utils.formatCurrency(325000)}</td>
+                                <td>${Utils.formatCurrency(demoWithdrawable1)}</td>
                                 <td><span class="badge badge-success">Active</span></td>
                                 <td><span class="badge badge-success">Verified</span></td>
                                 <td><button class="btn btn-sm btn-primary">Edit</button></td>
@@ -7720,7 +7732,7 @@
                                 <td>John Doe</td>
                                 <td>john@example.com</td>
                                 <td>${Utils.formatCurrency(850000)}</td>
-                                <td>${Utils.formatCurrency(120000)}</td>
+                                <td>${Utils.formatCurrency(demoWithdrawable2)}</td>
                                 <td><span class="badge badge-success">Active</span></td>
                                 <td><span class="badge badge-warning">Pending</span></td>
                                 <td><button class="btn btn-sm btn-primary">Edit</button></td>
@@ -7728,7 +7740,6 @@
                         `;
                     }
 
-                    // Activate tabs
                     document.querySelectorAll('#admin .tab').forEach(tab => {
                         tab.addEventListener('click', (e) => {
                             document.querySelectorAll('#admin .tab').forEach(t => t.classList.remove('active'));
@@ -7738,7 +7749,6 @@
                             const target = document.getElementById(tabId + 'Tab');
                             if (target) target.classList.add('active');
                             else {
-                                // create dummy content if not exists
                                 const parent = document.querySelector('#admin .card-body');
                                 let newTab = document.getElementById(tabId + 'Tab');
                                 if (!newTab) {
@@ -7778,27 +7788,18 @@
                 this.setupReferralActions();
                 this.setupProofViewer();
                 this.setupTrustWalletCopy();
-                // NEW: profile logout button
                 this.setupProfileLogout();
-                // NEW: floating action button
                 this.setupFAB();
-                // NEW: password strength
                 this.setupPasswordStrength();
-                // NEW: investment calculator
                 this.setupCalculator();
-                // NEW: compound simulator
                 this.setupCompoundModal();
-                // NEW: terms modal
                 this.setupTermsModal();
-                // NEW: export transactions
                 this.setupExport();
-                // NEW: native share
                 this.setupNativeShare();
                 
                 Debug.info('EventHandlers', 'Event handlers initialized successfully');
             }
             
-            // NEW: profile logout button handler
             static setupProfileLogout() {
                 const profileLogoutBtn = document.getElementById('profileLogoutBtn');
                 if (profileLogoutBtn) {
@@ -8433,13 +8434,11 @@
 
                 if (calcInvestNow) {
                     calcInvestNow.addEventListener('click', () => {
-                        // Simulate investing from calculator: select plan and open modal
                         const selected = calcPlan.options[calcPlan.selectedIndex];
                         if (!selected || !selected.value) {
                             Utils.showNotification('Please select a plan first', 'warning');
                             return;
                         }
-                        // Find the corresponding invest button and click
                         const planId = selected.value;
                         const investBtn = document.querySelector(`.invest-btn[data-plan-id="${planId}"]`);
                         if (investBtn) investBtn.click();
@@ -8448,7 +8447,6 @@
             }
 
             static setupCompoundModal() {
-                // Add button to open compound modal (e.g., in investments page)
                 const investmentsHeader = document.querySelector('#investments .section-header');
                 if (investmentsHeader) {
                     const btn = document.createElement('button');
@@ -8474,7 +8472,6 @@
                     document.getElementById('compoundResult').textContent = Utils.formatCurrency(final);
                 });
 
-                // Close modal
                 document.querySelector('#compoundModal .modal-close').addEventListener('click', () => {
                     document.getElementById('compoundModal').classList.remove('active');
                 });
@@ -8536,7 +8533,6 @@
                                 }
                             }
                         } else {
-                            // Fallback: copy to clipboard
                             await Utils.copyToClipboard(`${shareData.text} ${shareData.url}`);
                         }
                     });
@@ -8546,8 +8542,8 @@
 
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', () => {
-            Debug.info('App', 'Initializing Raw Wealthy v38.4 - Enhanced Edition...');
-            console.log('🚀 Raw Wealthy Premium v38.4 - Enhanced Edition');
+            Debug.info('App', 'Initializing Raw Wealthy v39.0 - Advanced Edition...');
+            console.log('🚀 Raw Wealthy Premium v39.0 - Advanced Edition');
             console.log('📊 Debug Mode:', CONFIG.DEBUG_MODE);
             console.log('🔐 Auth Status:', authToken ? 'Logged In' : 'Logged Out');
             console.log('👤 Current User:', currentUser?.email || 'None');
@@ -8556,7 +8552,6 @@
             console.log('💰 Selected Currency:', selectedCurrency);
             console.log('============================================');
             
-            // Initialize currency selector
             CurrencyManager.init();
             
             Router.init();
@@ -8583,7 +8578,7 @@
                 Debug.warn('Network', 'Connection lost');
             });
             
-            Debug.info('App', '✅ Raw Wealthy v38.4 Initialization Complete');
+            Debug.info('App', '✅ Raw Wealthy v39.0 Initialization Complete');
         });
 
         // ===== GLOBAL ERROR HANDLING =====
@@ -8641,10 +8636,9 @@
         };
     </script>
 
-    <!-- PWA Service Worker Registration & Install Banner Logic (added without altering original code) -->
+    <!-- PWA Service Worker Registration & Install Banner Logic -->
     <script>
         (function() {
-            // Service Worker Registration
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
                     navigator.serviceWorker.register('/sw.js')
@@ -8653,17 +8647,14 @@
                 });
             }
 
-            // Install Banner Logic
             let deferredPrompt;
             const installBanner = document.getElementById('installBanner');
             const installBtn = document.getElementById('installBtn');
             const dismissBtn = document.getElementById('dismissBanner');
 
-            // Show banner if not already installed and beforeinstallprompt fires
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredPrompt = e;
-                // Don't show if already in standalone mode
                 if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
                     return;
                 }
@@ -8681,23 +8672,19 @@
 
             dismissBtn.addEventListener('click', () => {
                 installBanner.classList.remove('show');
-                // Optionally store in localStorage to not show again for some time
                 localStorage.setItem('installBannerDismissed', Date.now());
             });
 
-            // Hide banner if already installed (standalone mode)
             if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
                 installBanner.style.display = 'none';
             }
 
-            // Check for app update (service worker waiting)
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.ready.then(reg => {
                     reg.addEventListener('updatefound', () => {
                         const newWorker = reg.installing;
                         newWorker.addEventListener('statechange', () => {
                             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // New version available
                                 Utils.showNotification('A new version is available. Refresh to update.', 'info', 10000);
                             }
                         });
